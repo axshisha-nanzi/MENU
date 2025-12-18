@@ -5,116 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENU | AX SHISHA</title>
     <style>
-        /* 引用更具現代感的字體：Oswald (粗獷街頭) + Montserrat (時尚簡潔) */
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@200;400;600;800&family=Noto+Sans+TC:wght@300;500;700&display=swap');
+        /* 融合上上版的氣質與最新版的潮流感 */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@300;400;600&family=Noto+Sans+TC:wght@300;500;700&display=swap');
 
         :root {
-            --bg-base: #080808;
-            --accent-gold: #d4b483; /* 較亮一點的時尚金 */
-            --accent-glow: rgba(212, 180, 131, 0.3);
-            --text-main: #ffffff;
-            --text-dim: #777777;
-            --card-bg: rgba(255, 255, 255, 0.04);
+            --bg-base: #0c0b0a;
+            --accent-gold: #c2a378;
+            --accent-dim: #8e735b;
+            --text-main: #f0ede9;
+            --text-dim: #6e675f;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Montserrat', 'Noto Sans TC', sans-serif; 
             margin: 0; background-color: var(--bg-base); color: var(--text-main); line-height: 1.6;
-            background-image: linear-gradient(180deg, #121212 0%, #080808 100%);
+            /* 恢復上上版的漸層質感，減少生硬感 */
+            background-image: radial-gradient(circle at 50% 0%, #1a1714 0%, #0c0b0a 100%);
             background-attachment: fixed;
-            -webkit-font-smoothing: antialiased;
         }
 
         .container { max-width: 480px; margin: auto; padding: 60px 20px; }
 
-        /* HEADER - 潮流標誌感 */
-        .header { text-align: center; margin-bottom: 50px; }
+        /* HEADER - 維持高級感標題 */
+        .header { text-align: center; margin-bottom: 45px; }
         .header h1 { 
-            font-family: 'Oswald', sans-serif; font-size: 3.8rem; font-weight: 700; 
-            color: var(--text-main); margin: 0; letter-spacing: 12px;
-            text-shadow: 0 0 20px var(--accent-glow);
+            font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; 
+            color: var(--accent-gold); margin: 0; letter-spacing: 15px; text-indent: 15px;
         }
         .header p { 
-            font-family: 'Oswald', sans-serif; font-size: 0.9rem; color: var(--accent-gold); 
-            letter-spacing: 5px; margin-top: 5px; font-weight: 500; text-transform: uppercase;
+            font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--accent-dim); 
+            letter-spacing: 4px; margin-top: 5px; font-weight: 400;
         }
 
-        /* 搜尋吧 - 極簡暗黑風 */
+        /* 搜尋吧 - 柔化玻璃質感 */
         .search-area { margin-bottom: 35px; }
         .search-input {
-            width: 100%; padding: 15px 25px; border-radius: 4px;
-            background: #151515; border: 1px solid #222;
-            color: #fff; font-size: 0.85rem; outline: none; transition: 0.3s;
-            box-sizing: border-box; letter-spacing: 1px;
+            width: 100%; padding: 14px 20px; border-radius: 8px;
+            background: var(--glass); border: 1px solid rgba(194, 163, 120, 0.15);
+            color: var(--text-main); font-size: 0.85rem; outline: none; transition: 0.3s;
+            box-sizing: border-box;
         }
-        .search-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 15px var(--accent-glow); }
+        .search-input:focus { border-color: var(--accent-gold); background: rgba(255,255,255,0.06); }
 
-        /* 一行式導覽 - 移除中文，強化視覺重點 */
+        /* 導覽列 - 中英並行 */
         .nav-sticky {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(8, 8, 8, 0.9); backdrop-filter: blur(15px);
-            margin: 0 -20px 40px -20px; border-bottom: 1px solid #1a1a1a;
+            background: rgba(12, 11, 10, 0.95); backdrop-filter: blur(15px);
+            margin: 0 -20px 40px -20px; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .nav-bar {
             display: flex; overflow-x: auto; white-space: nowrap;
-            padding: 15px 25px; gap: 30px; scrollbar-width: none;
+            padding: 15px 25px; gap: 28px; scrollbar-width: none;
         }
         .nav-bar::-webkit-scrollbar { display: none; }
         .nav-bar a { text-align: center; text-decoration: none; transition: 0.3s; }
-        .nav-bar .nav-cn { display: block; font-size: 0.85rem; font-weight: 700; color: #555; letter-spacing: 1px; }
-        .nav-bar .nav-en { display: block; font-family: 'Oswald', sans-serif; font-size: 0.6rem; color: #333; margin-top: 2px; }
+        .nav-bar .nav-cn { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-dim); }
+        .nav-bar .nav-en { display: block; font-family: 'Oswald', sans-serif; font-size: 0.6rem; color: #444; margin-top: 2px; text-transform: uppercase; }
         .nav-bar a:active .nav-cn, .nav-bar a:focus .nav-cn { color: var(--accent-gold); }
 
-        /* 分類標題 - 粗獷美學 */
-        .category-group { margin-top: 80px; scroll-margin-top: 100px; }
-        .category-title { margin-bottom: 40px; position: relative; }
-        .title-cn { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: 2px; }
-        .title-en { font-family: 'Oswald', sans-serif; font-size: 1rem; color: var(--accent-gold); letter-spacing: 3px; display: block; opacity: 0.7; }
+        /* 分類標題 */
+        .category-group { margin-top: 70px; scroll-margin-top: 100px; }
+        .category-title { margin-bottom: 35px; }
+        .title-cn { font-size: 1.4rem; font-weight: 700; color: var(--text-main); letter-spacing: 2px; }
+        .title-en { font-family: 'Oswald', sans-serif; font-size: 0.9rem; color: var(--accent-gold); letter-spacing: 2px; display: block; opacity: 0.8; }
 
         .sub-tag {
-            font-family: 'Oswald', sans-serif; font-size: 0.85rem; color: #444; font-weight: 500;
-            margin: 40px 0 20px 0; letter-spacing: 4px; text-transform: uppercase;
-            border-bottom: 1px solid #1a1a1a; display: inline-block; padding-bottom: 5px;
+            font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--accent-dim);
+            margin: 35px 0 15px 0; letter-spacing: 3px; display: flex; align-items: center; gap: 10px;
+            text-transform: uppercase;
         }
+        .sub-tag::after { content: ""; flex: 1; height: 1px; background: rgba(142, 115, 91, 0.15); }
 
-        /* 品項設計 - 中文大小平衡、增加科技感 */
+        /* 品項設計 - 優化中文大小 */
         .item { 
-            margin-bottom: 30px; position: relative; transition: 0.3s;
+            margin-bottom: 25px; padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: 0.3s;
         }
-        .item-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px; }
-        
-        .cn-name { font-size: 1.05rem; color: #eee; font-weight: 500; letter-spacing: 0.5px; }
-        .en-name { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: #555; font-weight: 400; text-transform: uppercase; display: block; margin-top: 2px; }
-        
-        .item-price { font-family: 'Oswald', sans-serif; color: var(--accent-gold); font-size: 1.1rem; font-weight: 500; }
-        
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .cn-name { font-size: 1.05rem; color: var(--text-main); font-weight: 500; letter-spacing: 0.5px; }
+        .en-name { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--text-dim); font-weight: 400; text-transform: uppercase; margin-left: 10px; }
+        .item-price { font-family: 'Oswald', sans-serif; color: var(--accent-gold); font-size: 1.05rem; font-weight: 500; }
         .item-content { 
-            font-size: 0.7rem; color: #777; font-weight: 400; line-height: 1.6;
+            font-size: 0.75rem; color: #7a736a; margin-top: 8px; 
+            font-weight: 300; line-height: 1.6;
         }
 
-        /* 底部資訊 - 潮流店舖感 */
+        /* 底部與回到頂部 */
         .info-footer { 
-            margin-top: 100px; padding: 60px 0; text-align: center;
-            border-top: 1px solid #1a1a1a;
+            margin-top: 100px; padding: 50px 0; text-align: center;
+            border-top: 1px dotted rgba(194, 163, 120, 0.2);
         }
-        .footer-brand { font-family: 'Oswald', sans-serif; font-size: 2rem; color: #fff; letter-spacing: 15px; margin-bottom: 40px; opacity: 0.5; }
-        .contact-box { font-size: 0.8rem; color: #666; font-weight: 400; }
-        .contact-box div { margin: 15px 0; letter-spacing: 1px; }
-        .contact-box b { color: var(--accent-gold); font-family: 'Oswald', sans-serif; font-weight: 500; margin-right: 10px; }
+        .footer-brand { font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--accent-gold); letter-spacing: 10px; margin-bottom: 30px; }
+        .contact-box { font-size: 0.8rem; color: var(--text-dim); }
+        .contact-box div { margin: 12px 0; }
+        .contact-box b { color: var(--accent-gold); font-family: 'Oswald', sans-serif; margin-right: 8px; }
 
         .warning-box { 
-            margin: 50px 10px 0 10px; border: 1px solid #222; color: #555; padding: 20px;
-            font-size: 0.7rem; letter-spacing: 2px; font-weight: 600; line-height: 2;
+            margin: 40px 10px 0 10px; border: 1px solid #3d211f; color: #8c423b; padding: 20px;
+            font-size: 0.7rem; letter-spacing: 2px; font-weight: 700; line-height: 2;
         }
 
-        /* 新增：回到頂部按鈕 */
         .back-to-top {
-            position: fixed; bottom: 30px; right: 20px; width: 45px; height: 45px;
-            background: var(--accent-gold); color: #000; border-radius: 50%;
+            position: fixed; bottom: 30px; right: 20px; width: 40px; height: 40px;
+            background: var(--accent-gold); color: #0c0b0a; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            text-decoration: none; font-size: 0.8rem; font-weight: 800;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); z-index: 200;
+            text-decoration: none; font-size: 0.6rem; font-weight: 800; z-index: 200;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
     </style>
 </head>
@@ -127,7 +126,7 @@
     </div>
 
     <div class="search-area">
-        <input type="text" class="search-input" placeholder="SEARCH DRINKS..." onkeyup="filterItems(this.value)">
+        <input type="text" class="search-input" placeholder="尋找今日氛圍..." onkeyup="filterItems(this.value)">
     </div>
 
     <div class="nav-sticky">
@@ -146,17 +145,11 @@
             <span class="title-en">SIGNATURE COCKTAILS</span>
         </div>
         <div class="item menu-item">
-            <div class="item-header">
-                <div><span class="cn-name">青空琉璃</span><span class="en-name">Azure Crystal</span></div>
-                <span class="item-price">350</span>
-            </div>
+            <div class="item-header"><div><span class="cn-name">青空琉璃</span><span class="en-name">Azure Crystal</span></div><span class="item-price">350</span></div>
             <div class="item-content">香蕉利口酒 / 香草利口酒 / 萊姆汁 / 特製糖漿 / 藍柑橘糖漿 / 甜味氣泡水</div>
         </div>
         <div class="item menu-item">
-            <div class="item-header">
-                <div><span class="cn-name">萌芽</span><span class="en-name">Budding</span></div>
-                <span class="item-price">350</span>
-            </div>
+            <div class="item-header"><div><span class="cn-name">萌芽</span><span class="en-name">Budding</span></div><span class="item-price">350</span></div>
             <div class="item-content">伏特加 / 君度橙酒 / 百香果糖漿 / 特製糖漿 / 薑汁汽水 / 萊姆汁</div>
         </div>
     </div>
@@ -215,7 +208,7 @@
             <div class="item-content">威士忌 / 蘇打水</div>
         </div>
 
-        <div class="sub-tag">Signature</div>
+        <div class="sub-tag">Classic Signature</div>
         <div class="item menu-item">
             <div class="item-header"><div><span class="cn-name">桑格利亞</span><span class="en-name">Sangria</span></div><span class="item-price">300</span></div>
             <div class="item-content">白蘭地 / 君度橙酒 / 紅酒 / 覆盆子糖漿 / 黑醋栗糖漿 / 檸檬汁</div>
@@ -249,7 +242,6 @@
         <div class="item menu-item"><div class="item-header"><div><span class="cn-name">百富 12年雙桶</span><span class="en-name">Balvenie 12Y</span></div><span class="item-price">390 | 3900</span></div></div>
         <div class="item menu-item"><div class="item-header"><div><span class="cn-name">格蘭利威 15年雪莉桶</span><span class="en-name">Glenlivet 15Y</span></div><span class="item-price">450 | 4500</span></div></div>
         <div class="item menu-item"><div class="item-header"><div><span class="cn-name">幕赫 12年</span><span class="en-name">Mortlach 12Y</span></div><span class="item-price">390 | 3900</span></div></div>
-
         <div class="sub-tag">Others</div>
         <div class="item menu-item"><div class="item-header"><div><span class="cn-name">洋可夫特級伏特加</span><span class="en-name">Yankov Premium</span></div><span class="item-price">290 | 2680</span></div></div>
         <div class="item menu-item"><div class="item-header"><div><span class="cn-name">緋紅凱薩琳伏特加</span><span class="en-name">Scarlet Catherine</span></div><span class="item-price">400 | 4000</span></div></div>
@@ -296,9 +288,9 @@
     <div class="info-footer">
         <div class="footer-brand">AX SHISHA</div>
         <div class="contact-box">
-            <div><b>ADD</b> 高雄市楠梓區惠民路273號</div>
-            <div><b>TEL</b> 0988-850-431</div>
-            <div><b>HRS</b> 19:00 - 02:00</div>
+            <div><b>ADDRESS</b> 高雄市楠梓區惠民路273號</div>
+            <div><b>RESERVATION</b> 0988-850-431</div>
+            <div><b>HOURS</b> 19:00 - 02:00</div>
         </div>
         <div class="warning-box">
             未滿十八歲禁止飲酒。禁止酒駕。<br>
@@ -318,7 +310,7 @@
             item.style.display = text.includes(search) ? 'block' : 'none';
         });
         const subTags = document.querySelectorAll('.sub-tag');
-        subTags.forEach(tag => tag.style.display = search.length > 0 ? 'none' : 'block');
+        subTags.forEach(tag => tag.style.display = search.length > 0 ? 'none' : 'flex');
     }
 </script>
 
