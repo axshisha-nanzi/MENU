@@ -9,29 +9,31 @@
 
         :root {
             --hermes-orange: #f37021;
-            --bg-neutral: #282a2d; /* 完美平衡的藝術灰 */
-            --glass-card: rgba(255, 255, 255, 0.04);
-            --text-white: #ffffff;
-            --text-gray: #a8a8a8;
+            /* 棉麻米灰色調 */
+            --bg-linen: #d9d4cc; 
+            --glass-card: rgba(255, 255, 255, 0.45); 
+            --text-dark: #3a3835;
+            --text-gray: #706d68;
         }
 
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Noto Sans TC', 'Montserrat', sans-serif; 
-            margin: 0; background-color: var(--bg-neutral); color: var(--text-white); 
+            margin: 0; background-color: var(--bg-linen); color: var(--text-dark); 
+            /* 模擬棉麻材質感背景 */
             background-image: 
-                radial-gradient(at 0% 0%, rgba(255,255,255,0.03) 0%, transparent 50%),
-                radial-gradient(at 50% 100%, rgba(0,0,0,0.1) 0%, transparent 50%);
+                radial-gradient(at 50% 0%, #e2ded8 0%, #d9d4cc 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
             background-attachment: fixed; -webkit-font-smoothing: antialiased;
         }
 
         .container { max-width: 480px; margin: auto; padding: 20px; }
 
-        /* HEADER - 質感微調 */
+        /* HEADER */
         .header { text-align: center; padding: 60px 20px 40px; }
         .header h1 { 
             font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 200; 
-            letter-spacing: 12px; margin: 0; text-indent: 12px;
+            letter-spacing: 12px; margin: 0; text-indent: 12px; color: var(--text-dark);
         }
         .header .sub-brand { 
             font-family: 'Montserrat', sans-serif; font-size: 0.7rem; 
@@ -42,8 +44,8 @@
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
         .search-bar {
             width: 100%; padding: 12px 25px; border-radius: 40px;
-            background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.05);
-            color: white; font-size: 0.85rem; outline: none;
+            background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-dark); font-size: 0.85rem; outline: none;
             backdrop-filter: blur(15px); box-sizing: border-box; text-align: center;
         }
 
@@ -56,36 +58,37 @@
         .nav-btn {
             text-decoration: none; color: var(--text-gray); font-size: 0.75rem; 
             background: var(--glass-card); padding: 8px 16px; border-radius: 20px;
-            transition: 0.3s; font-weight: 400;
+            transition: 0.3s; font-weight: 400; border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .nav-btn:active, .nav-btn.active { background: var(--hermes-orange); color: white; }
+        .nav-btn:active, .nav-btn.active { background: var(--hermes-orange); color: white; border-color: var(--hermes-orange); }
 
         /* 分類標題 */
         .cat-group { margin: 60px 0 25px; text-align: center; }
-        .cat-main { font-size: 1.3rem; font-weight: 400; letter-spacing: 6px; display: block; }
-        .cat-sub { font-size: 0.6rem; color: var(--hermes-orange); letter-spacing: 3px; font-weight: 300; text-transform: uppercase; margin-top: 8px; opacity: 0.9; }
+        .cat-main { font-size: 1.3rem; font-weight: 400; letter-spacing: 6px; display: block; color: var(--text-dark); }
+        .cat-sub { font-size: 0.6rem; color: var(--hermes-orange); letter-spacing: 3px; font-weight: 500; text-transform: uppercase; margin-top: 8px; }
 
         .tag-line {
-            font-size: 0.65rem; color: var(--text-gray); font-weight: 300;
+            font-size: 0.65rem; color: var(--text-gray); font-weight: 400;
             margin: 35px 0 15px; letter-spacing: 2px; text-align: center;
         }
 
-        /* 品項卡片 - 均衡灰調與圓滑 */
+        /* 品項卡片 - 棉麻上的薄紗質感 */
         .card { 
             background: var(--glass-card); border-radius: 25px; padding: 22px 25px;
-            margin-bottom: 12px; backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.02); transition: 0.3s;
+            margin-bottom: 12px; backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.4); transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
-        .card:active { transform: scale(0.98); background: rgba(255,255,255,0.08); }
+        .card:active { transform: scale(0.98); background: rgba(255,255,255,0.6); }
 
         .card-row { display: flex; justify-content: space-between; align-items: flex-start; }
-        .name-zh { font-size: 0.95rem; font-weight: 400; color: white; letter-spacing: 1.5px; margin-bottom: 3px; display: block; }
-        .name-en { font-size: 0.6rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; font-weight: 300; }
-        .val-ntd { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: var(--hermes-orange); font-weight: 500; }
+        .name-zh { font-size: 0.95rem; font-weight: 400; color: var(--text-dark); letter-spacing: 1.5px; margin-bottom: 3px; display: block; }
+        .name-en { font-size: 0.6rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; font-weight: 400; }
+        .val-ntd { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: var(--hermes-orange); font-weight: 600; }
         
         .item-desc { 
             font-size: 0.7rem; color: var(--text-gray); margin-top: 12px; 
-            line-height: 1.5; font-weight: 300; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 10px;
+            line-height: 1.5; font-weight: 300; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px;
         }
 
         /* 頁腳 */
@@ -94,20 +97,21 @@
         .pill-btn {
             display: inline-flex; align-items: center; background: var(--glass-card);
             padding: 9px 20px; border-radius: 30px; margin: 5px; 
-            color: var(--text-white); text-decoration: none; font-size: 0.75rem; font-weight: 300;
+            color: var(--text-dark); text-decoration: none; font-size: 0.75rem; font-weight: 400;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .legal-notice { 
-            margin-top: 40px; color: #55585c; font-size: 0.6rem; 
+            margin-top: 40px; color: #a5a19b; font-size: 0.6rem; 
             letter-spacing: 2px; line-height: 2;
         }
 
         .top-scroller {
             position: fixed; bottom: 30px; right: 25px; width: 42px; height: 42px;
-            background: var(--glass-card); color: white; border-radius: 50%;
+            background: var(--glass-card); color: var(--text-dark); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             text-decoration: none; backdrop-filter: blur(10px); font-size: 0.55rem; z-index: 100;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.4);
         }
     </style>
 </head>
@@ -211,13 +215,13 @@
     <footer class="footer">
         <div class="footer-brand">AX SHISHA</div>
         <div>
-            <a href="http://googleusercontent.com/maps.google.com/?q=高雄市楠梓區惠民路273號" class="pill-btn">📍 高雄楠梓區惠民路273號</a>
+            <a href="https://maps.google.com/?q=高雄市楠梓區惠民路273號" class="pill-btn">📍 高雄楠梓區惠民路273號</a>
             <a href="tel:0988850431" class="pill-btn">📞 0988-850-431</a>
             <div class="pill-btn">🕒 19:00 - 02:00</div>
         </div>
         <div class="legal-notice">
             🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕<br>
-            EXPERIENCE THE LUXURY RESPONSIBLY
+            NATURAL VIBE • DRINK RESPONSIBLY
         </div>
     </footer>
 </div>
@@ -245,3 +249,4 @@
 
 </body>
 </html>
+
