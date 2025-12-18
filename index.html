@@ -3,152 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AX SHISHA MENU</title>
+    <title>MENU | AX SHISHA</title>
     <style>
         :root {
-            --gold: #d4af37;
-            --bg-dark: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --text-main: #f5f5f5;
-            --text-sub: #a0a0a0;
+            --accent-blue: #4a90e2;
+            --bg-dark: #121418;
+            --card-bg: #1c1f26;
+            --text-gold: #c9ad7f;
+            --text-main: #e0e6ed;
+            --text-sub: #8a96a3;
+            --grey-blue: #2c333d;
         }
         body { 
-            font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif; 
-            margin: 0; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6;
+            font-family: -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif; 
+            margin: 0; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.4;
         }
-        .container { max-width: 600px; margin: auto; padding: 40px 20px; }
-        .header { text-align: center; margin-bottom: 50px; border-bottom: 1px solid var(--gold); padding-bottom: 20px; }
-        .header h1 { color: var(--gold); font-size: 2.2rem; margin: 0; letter-spacing: 5px; }
-        .header p { font-size: 0.9rem; color: var(--text-sub); margin-top: 10px; }
+        .container { max-width: 600px; margin: auto; padding: 30px 15px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { color: var(--accent-blue); font-size: 1.8rem; margin: 0; letter-spacing: 4px; font-weight: 300; }
+        .header p { font-size: 0.8rem; color: var(--text-sub); margin-top: 5px; letter-spacing: 2px; }
 
-        .category-group { margin-top: 40px; }
+        .category-group { margin-top: 35px; }
         .category-title { 
-            color: var(--gold); font-size: 1.5rem; font-weight: bold; border-left: 4px solid var(--gold);
-            padding-left: 15px; margin-bottom: 20px; display: block;
+            color: var(--accent-blue); font-size: 1.1rem; font-weight: 500; 
+            border-bottom: 1px solid var(--grey-blue); padding-bottom: 8px; margin-bottom: 15px; display: block;
         }
-        .sub-category-title { color: var(--gold); font-size: 1.2rem; margin: 20px 0 10px 0; opacity: 0.9; }
+        .sub-title { 
+            color: var(--text-sub); font-size: 0.85rem; margin: 20px 0 10px 0; 
+            display: flex; align-items: center; gap: 10px;
+        }
+        .sub-title::after { content: ""; flex: 1; height: 1px; background: var(--grey-blue); }
 
-        .item { background: var(--card-bg); padding: 18px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .item-header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .item-name { font-size: 1.1rem; font-weight: bold; color: var(--text-main); }
-        .item-price { color: var(--gold); font-weight: bold; font-family: 'Arial', sans-serif; white-space: nowrap; margin-left: 10px; }
-        .item-content { font-size: 0.85rem; color: var(--text-sub); margin-top: 6px; }
+        .item { background: var(--card-bg); padding: 15px; border-radius: 4px; margin-bottom: 8px; border-left: 3px solid var(--grey-blue); }
+        .item-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        
+        /* 讓英文不換行且字體適中 */
+        .item-name { font-size: 0.85rem; font-weight: 400; color: var(--text-main); white-space: nowrap; }
+        .cn-name { font-size: 0.75rem; color: var(--text-sub); margin-right: 8px; }
+        
+        .item-price { color: var(--accent-blue); font-weight: 600; font-size: 0.85rem; font-family: 'Verdana', sans-serif; }
+        .item-content { font-size: 0.7rem; color: #6b7785; margin-top: 4px; }
 
-        .info { margin-top: 60px; text-align: center; padding: 20px; border-top: 1px solid #333; color: var(--text-sub); font-size: 0.9rem; }
-        .warning { font-size: 0.75rem; margin-top: 20px; opacity: 0.6; letter-spacing: 1px; }
-        a { color: var(--gold); text-decoration: none; }
+        .info { margin-top: 50px; text-align: center; padding: 20px; color: var(--text-sub); font-size: 0.75rem; }
+        .warning { font-size: 0.7rem; margin-top: 15px; color: #4e5966; letter-spacing: 1px; border: 1px solid #2c333d; padding: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h1>AX SHISHA</h1>
-        <p>MENU</p>
+        <h1>MENU</h1>
+        <p>AX SHISHA</p>
     </div>
 
     <div class="category-group">
-        <span class="category-title">特製調酒 Special Cocktail</span>
+        <span class="category-title">特製調酒 SPECIAL COCKTAIL</span>
         <div class="item">
-            <div class="item-header"><span class="item-name">青空琉璃 AZURE CRYSTAL</span><span class="item-price">NT$ 350</span></div>
+            <div class="item-header"><span><span class="cn-name">青空琉璃</span><span class="item-name">AZURE CRYSTAL</span></span><span class="item-price">350</span></div>
             <div class="item-content">香蕉利口酒、香草利口酒、萊姆汁、特製糖漿、藍柑橘糖漿、甜味氣泡水</div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">萌芽 BUDDING</span><span class="item-price">NT$ 350</span></div>
+            <div class="item-header"><span><span class="cn-name">萌芽</span><span class="item-name">BUDDING</span></span><span class="item-price">350</span></div>
             <div class="item-content">伏特加、君度橙酒、百香果糖漿、特製糖漿、薑汁汽水、萊姆汁</div>
         </div>
     </div>
 
     <div class="category-group">
-        <span class="category-title">經典調酒 Classic Cocktail</span>
+        <span class="category-title">調酒系列 COCKTAILS</span>
+        
+        <div class="sub-title">琴酒 GIN</div>
         <div class="item">
-            <div class="item-header"><span class="item-name">桑格利亞 SANGRIA</span><span class="item-price">NT$ 300</span></div>
-            <div class="item-content">白蘭地、君度橙酒、紅酒、覆盆子糖漿、黑醋栗糖漿、檸檬汁</div>
+            <div class="item-header"><span><span class="cn-name">琴蕾</span><span class="item-name">GIMLET</span></span><span class="item-price">250</span></div>
+            <div class="item-content">琴酒、檸檬汁、特製糖漿</div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">紅塵 RED DUST</span><span class="item-price">NT$ 300</span></div>
-            <div class="item-content">艾碧斯、赤梅酒、君度橙酒、芒果糖漿、檸檬汁</div>
+            <div class="item-header"><span><span class="cn-name">咖啡尼格羅尼</span><span class="item-name">CAFE NEGRONI</span></span><span class="item-price">300</span></div>
+            <div class="item-content">琴酒、咖啡口酒、金巴利香甜酒、法式香艾酒、檸檬酸</div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">長島冰茶 LONG ISLAND ICETEA</span><span class="item-price">NT$ 350</span></div>
-            <div class="item-content">伏特加、琴酒、蘭姆酒、龍舌蘭、君度橙酒、檸檬汁、特製糖漿、可樂</div>
+            <div class="item-header"><span><span class="cn-name">三葉草</span><span class="item-name">SHAMROCK</span></span><span class="item-price">270</span></div>
+            <div class="item-content">琴酒、覆盆子糖漿、檸檬汁、蛋白液</div>
+        </div>
+
+        <div class="sub-title">伏特加 VODKA</div>
+        <div class="item">
+            <div class="item-header"><span><span class="cn-name">柯夢波丹</span><span class="item-name">COSMOPOLITAN</span></span><span class="item-price">270</span></div>
+            <div class="item-content">伏特加、君度橙酒、檸檬汁、特製糖漿、蔓越莓汁</div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">紅牛野莓 RED BULL WILD BERRY</span><span class="item-price">NT$ 300</span></div>
-            <div class="item-content">紅牛野莓、野格</div>
+            <div class="item-header"><span><span class="cn-name">海風</span><span class="item-name">SEA BREEZE</span></span><span class="item-price">270</span></div>
+            <div class="item-content">伏特加、紫羅蘭香甜酒、蔓越莓汁、葡萄柚汁、檸檬汁</div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">紅牛野格 RED BULL JAGER</span><span class="item-price">NT$ 350</span></div>
-            <div class="item-content">紅牛、野格</div>
+            <div class="item-header"><span><span class="cn-name">紅牛伏特加</span><span class="item-name">VODKA REDBULL</span></span><span class="item-price">300</span></div>
+            <div class="item-content">伏特加、紅牛</div>
+        </div>
+
+        <div class="sub-title">龍舌蘭 TEQUILA</div>
+        <div class="item">
+            <div class="item-header"><span><span class="cn-name">破冰船</span><span class="item-name">ICE BREAKER</span></span><span class="item-price">270</span></div>
+            <div class="item-content">龍舌蘭、君度橙酒、葡萄柚汁、檸檬汁、紅石榴糖漿</div>
+        </div>
+        <div class="item">
+            <div class="item-header"><span><span class="cn-name">莫斯科驢子</span><span class="item-name">MOSCOW MULE</span></span><span class="item-price">250</span></div>
+            <div class="item-content">龍舌蘭、檸檬汁、薑汁汽水</div>
+        </div>
+
+        <div class="sub-title">威士忌 WHISKY</div>
+        <div class="item">
+            <div class="item-header"><span><span class="cn-name">吻我</span><span class="item-name">KISS ME</span></span><span class="item-price">270</span></div>
+            <div class="item-content">蘇格蘭威士忌、紅酒、檸檬汁、櫻桃利口酒、覆盆子糖漿</div>
         </div>
     </div>
 
     <div class="category-group">
-        <span class="category-title">洋可夫特調 Yankov Vodka Cocktail</span>
+        <span class="category-title">洋可夫特調 YANKOV VODKA</span>
         <div class="item">
-            <div class="item-header"><span class="item-name">緋紅撞奶 SCARLET MILK FUSION</span><span class="item-price">NT$ 350</span></div>
+            <div class="item-header"><span><span class="cn-name">緋紅撞奶</span><span class="item-name">SCARLET MILK FUSION</span></span><span class="item-price">350</span></div>
             <div class="item-content">緋紅、鮮奶、特製糖漿</div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">台灣凍檸茶 TAIWANESE ICED LEMON TEA</span><span class="item-price">NT$ 350</span></div>
+            <div class="item-header"><span><span class="cn-name">台灣凍檸茶</span><span class="item-name">TAIWANESE LEMON TEA</span></span><span class="item-price">350</span></div>
             <div class="item-content">緋紅、白可可香甜酒、萊姆汁、蜂蜜、特製糖漿</div>
         </div>
+    </div>
+
+    <div class="category-group">
+        <span class="category-title">烈酒 SPIRITS</span>
         <div class="item">
-            <div class="item-header"><span class="item-name">戀人 LOVER</span><span class="item-price">NT$ 350</span></div>
-            <div class="item-content">緋紅、覆盆子糖漿、蔓越莓汁、檸檬酸</div>
+            <div class="item-header"><span><span class="cn-name">洋可夫特級伏特加</span><span class="item-name">YANKOV PREMIUM</span></span><span class="item-price">290 | 2680</span></div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">櫻花莓語 SAKURA BERRY WHISPER</span><span class="item-price">NT$ 350</span></div>
-            <div class="item-content">緋紅、蔓越莓汁、赤梅酒、鹽漬櫻花糖漿、檸檬酸</div>
+            <div class="item-header"><span><span class="cn-name">大摩 12年</span><span class="item-name">DALMORE 12Y</span></span><span class="item-price">390 | 3900</span></div>
+        </div>
+        <div class="item">
+            <div class="item-header"><span><span class="cn-name">百富 12年雙桶</span><span class="item-name">BALVENIE 12Y</span></span><span class="item-price">390 | 3900</span></div>
         </div>
     </div>
 
     <div class="category-group">
-        <span class="category-title">烈酒 SPIRIT</span>
-        
-        <div class="sub-category-title">伏特加 VODKA</div>
+        <span class="category-title">啤酒與軟飲 BEER & DRINKS</span>
         <div class="item">
-            <div class="item-header"><span class="item-name">洋可夫特級伏特加 YANKOV PREMIUM VODKA</span><span class="item-price">$290 | $2680</span></div>
+            <div class="item-header"><span><span class="cn-name">可樂娜</span><span class="item-name">CORONA</span></span><span class="item-price">150 | 750</span></div>
         </div>
         <div class="item">
-            <div class="item-header"><span class="item-name">緋紅凱薩琳伏特加 SCARLET CATHERINE VODKA</span><span class="item-price">$400 | $4000</span></div>
+            <div class="item-header"><span><span class="cn-name">1664</span><span class="item-name">1664 BLANC</span></span><span class="item-price">180 | 900</span></div>
         </div>
-
-        <div class="sub-category-title">龍舌蘭 TEQUILA</div>
         <div class="item">
-            <div class="item-header"><span class="item-name">唐胡立歐 ANEJO 龍舌蘭 DON JULIO ANEJO</span><span class="item-price">$400 | $4000</span></div>
+            <div class="item-header"><span><span class="cn-name">紅牛 / 氣泡水</span><span class="item-name">RED BULL / SODA</span></span><span class="item-price">150 / 120</span></div>
         </div>
-
-        <div class="sub-category-title">琴酒 GIN</div>
-        <div class="item">
-            <div class="item-header"><span class="item-name">日本季之美京都干式琴酒 KI NO BO KYOTO DRY GIN</span><span class="item-price">$360 | $3600</span></div>
-        </div>
-
-        <div class="sub-category-title">威士忌 WHISKY</div>
-        <div class="item"><div class="item-header"><span class="item-name">格蘭傑 X 因子單一麥芽 GLENMORANGIE X</span><span class="item-price">$220 | $2200</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">大摩 12年單一麥芽 DALMORE 12Y</span><span class="item-price">$390 | $3900</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">百富 12年雙桶單一麥芽 BALVENIE 12Y</span><span class="item-price">$390 | $3900</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">格蘭利威 15年雪莉桶單一麥芽 GLENLIVET 15Y</span><span class="item-price">$450 | $4500</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">幕赫 12年單一麥芽 MORTLACH 12Y</span><span class="item-price">$390 | $3900</span></div></div>
-    </div>
-
-    <div class="category-group">
-        <span class="category-title">啤酒 BEER</span>
-        <div class="item"><div class="item-header"><span class="item-name">可樂娜 CORONA</span><span class="item-price">$150 | $750</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">西班牙金星 ESTRELLA</span><span class="item-price">$150 | $750</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">1664</span><span class="item-price">$180 | $900</span></div></div>
-
-        <span class="category-title" style="margin-top:30px">軟性飲料 SOFT DRINKS</span>
-        <div class="item"><div class="item-header"><span class="item-name">紅牛 REDBULL / 無糖氣泡水 SODA</span><span class="item-price">$150 / $120</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">薑汁汽水 / 通寧水 / 雪碧 / 可樂</span><span class="item-price">$120</span></div></div>
-        <div class="item"><div class="item-header"><span class="item-name">果汁 (蘋果/蔓越莓) JUICE</span><span class="item-price">$120</span></div></div>
     </div>
 
     <div class="info">
-        <p>📍 <a href="https://maps.app.goo.gl/YourMapLink" target="_blank">高雄市楠梓區惠民路273號</a></p>
-        <p>📞 <a href="tel:0988850431">0988-850-431</a></p>
-        <p>🕒 19:00 - 02:00 (週一至週日)</p>
-        <div class="warning">未滿十八歲請勿飲酒。禁止酒駕，生命有保障。</div>
+        <p>高雄市楠梓區惠民路273號</p>
+        <p>0988-850-431 | 19:00 - 02:00</p>
+        <div class="warning">理性飲酒，禁止酒駕。未成年請勿飲酒。</div>
     </div>
 </div>
 
