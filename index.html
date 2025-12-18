@@ -5,84 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENU | AX SHISHA</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@300;400;700&family=Noto+Sans+TC:wght@300;500;700&display=swap');
 
         :root {
-            --bg-darker: #0f0d0c;
-            --bg-coffee: #1a1614;
-            --card-brown: #241f1c;
-            --accent-gold: #b38e5d;
-            --accent-light: #d4b483;
-            --text-main: #e8e2d9;
-            --text-dim: #8c8179;
-            --border-color: rgba(179, 142, 93, 0.2);
+            --bg-base: #0d0b0a;
+            --bg-glow: #1a1715;
+            --accent-gold: #c2a378;
+            --accent-soft: #8e735b;
+            --text-main: #f0ede9;
+            --text-dim: #7d736a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
         }
 
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Montserrat', 'Noto Sans TC', sans-serif; 
-            margin: 0; background-color: var(--bg-darker); color: var(--text-main); line-height: 1.6;
+            margin: 0; background-color: var(--bg-base); color: var(--text-main); line-height: 1.6;
+            background-image: radial-gradient(circle at center, var(--bg-glow) 0%, var(--bg-base) 100%);
+            background-attachment: fixed;
         }
 
-        .container { max-width: 500px; margin: auto; padding: 40px 15px; }
+        .container { max-width: 500px; margin: auto; padding: 50px 18px; }
 
-        .header { text-align: center; margin-bottom: 20px; }
+        /* 頂部大標改為 MENU */
+        .header { text-align: center; margin-bottom: 30px; }
         .header h1 { 
-            font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; 
-            color: var(--accent-gold); margin: 0; letter-spacing: 12px;
+            font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; 
+            color: var(--accent-gold); margin: 0; letter-spacing: 15px; text-transform: uppercase;
         }
-        .header p { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 5px; text-transform: uppercase; }
+        .header p { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 6px; text-transform: uppercase; margin-top: 5px; }
 
-        /* 導覽列：現代懸浮感 */
+        /* 導覽列：去生硬化 */
         .nav-bar {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
-            margin: 30px 0 40px 0; position: sticky; top: 0; background: rgba(15, 13, 12, 0.95);
-            padding: 12px 0; z-index: 100; border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(5px);
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+            margin: 20px 0 50px 0; position: sticky; top: 0; background: rgba(13, 11, 10, 0.9);
+            padding: 15px 0; z-index: 100; backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(194, 163, 120, 0.1);
         }
         .nav-bar a {
-            color: var(--accent-light); text-decoration: none; font-size: 0.7rem; font-weight: 700;
-            padding: 5px 12px; border: 1px solid var(--border-color); border-radius: 2px; transition: 0.3s;
+            color: var(--accent-gold); text-decoration: none; font-size: 0.7rem; font-weight: 700;
+            padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(194, 163, 120, 0.2);
+            transition: all 0.3s;
         }
-        .nav-bar a:active { background: var(--accent-gold); color: white; }
+        .nav-bar a:active { transform: scale(0.95); background: var(--accent-gold); color: var(--bg-base); }
 
-        .category-group { margin-top: 50px; scroll-margin-top: 90px; }
+        .category-group { margin-top: 60px; scroll-margin-top: 100px; }
         
-        /* 大標題：平衡感中英並列 */
-        .category-title { 
-            display: flex; flex-direction: column; align-items: center; 
-            margin-bottom: 35px; text-align: center;
-        }
-        .title-en { font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; }
-        .title-cn { font-size: 0.9rem; color: var(--text-dim); font-weight: 700; letter-spacing: 8px; margin-top: 2px; }
-        .title-line { width: 40px; height: 2px; background: var(--accent-gold); margin-top: 10px; }
+        .category-title { text-align: center; margin-bottom: 40px; position: relative; }
+        .title-en { font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--accent-gold); letter-spacing: 4px; text-transform: uppercase; }
+        .title-cn { font-size: 0.85rem; color: var(--text-dim); font-weight: 700; letter-spacing: 10px; display: block; margin-top: 5px; }
+        .category-title::after { content: ""; display: block; width: 30px; height: 2px; background: var(--accent-gold); margin: 15px auto; opacity: 0.5; }
 
         .sub-tag {
-            font-family: 'Oswald', sans-serif; font-size: 0.95rem; color: var(--accent-light);
+            font-family: 'Oswald', sans-serif; font-size: 0.9rem; color: var(--accent-soft);
             margin: 30px 0 15px 0; letter-spacing: 2px; text-transform: uppercase;
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; gap: 12px; font-weight: 500;
         }
-        .sub-tag::after { content: ""; flex: 1; height: 1px; background: var(--border-color); }
+        .sub-tag::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, rgba(142, 115, 91, 0.3), transparent); }
 
-        /* 項目優化：質感卡片 */
+        /* 項目質感優化 */
         .item { 
-            margin-bottom: 15px; padding: 18px; background: var(--card-brown); 
-            border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.02);
+            margin-bottom: 12px; padding: 20px; background: var(--glass-bg); 
+            border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: background 0.3s;
         }
-        .item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+        .item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; }
         
         .name-box { display: flex; flex-direction: column; }
-        .cn-name { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 3px; font-weight: 400; }
-        .en-name { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--text-main); letter-spacing: 0.5px; }
+        .cn-name { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 4px; letter-spacing: 1px; }
+        .en-name { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text-main); letter-spacing: 0.5px; }
         
-        .item-price { font-family: 'Oswald', sans-serif; color: var(--accent-gold); font-size: 1rem; font-weight: 700; }
-        .item-content { font-size: 0.7rem; color: #7a7067; margin-top: 8px; font-weight: 400; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; }
+        .item-price { font-family: 'Oswald', sans-serif; color: var(--accent-gold); font-size: 1.1rem; font-weight: 700; }
+        .item-content { font-size: 0.72rem; color: #756d66; margin-top: 10px; font-weight: 400; line-height: 1.6; letter-spacing: 0.5px; }
 
-        .info-footer { margin-top: 80px; text-align: center; color: var(--text-dim); padding-bottom: 60px; border-top: 1px solid var(--border-color); padding-top: 40px;}
+        .info-footer { margin-top: 100px; text-align: center; color: var(--text-dim); padding-bottom: 80px; }
         .warning-box { 
-            margin: 30px 10px 0 10px; border: 1px solid #542c28; color: #a65149; padding: 15px;
-            font-size: 0.7rem; letter-spacing: 2px; font-weight: 700; line-height: 1.8;
+            margin: 40px 10px 0 10px; border: 1px solid #4a2824; color: #9c4c44; padding: 20px;
+            font-size: 0.75rem; letter-spacing: 2px; font-weight: 700; border-radius: 2px;
         }
     </style>
 </head>
@@ -90,8 +89,8 @@
 
 <div class="container">
     <div class="header">
-        <h1>AX</h1>
-        <p>Shisha & Cocktail Bar</p>
+        <h1>MENU</h1>
+        <p>AX SHISHA EXPERIENCE</p>
     </div>
 
     <div class="nav-bar">
@@ -102,11 +101,10 @@
         <a href="#beer-drinks">啤酒軟飲</a>
     </div>
 
-    <div class="category-group" id="special">
+    <div id="special" class="category-group">
         <div class="category-title">
             <span class="title-en">Special Cocktail</span>
             <span class="title-cn">特製調酒</span>
-            <div class="title-line"></div>
         </div>
         <div class="item">
             <div class="item-header"><div class="name-box"><span class="cn-name">青空琉璃</span><span class="en-name">AZURE CRYSTAL</span></div><span class="item-price">350</span></div>
@@ -118,11 +116,10 @@
         </div>
     </div>
 
-    <div class="category-group" id="classic">
+    <div id="classic" class="category-group">
         <div class="category-title">
-            <span class="title-en">The Cocktails</span>
-            <span class="title-cn">系列調酒</span>
-            <div class="title-line"></div>
+            <span class="title-en">Classic Spirits</span>
+            <span class="title-cn">經典系列</span>
         </div>
         
         <div class="sub-tag">Gin Base</div>
@@ -196,17 +193,16 @@
         </div>
     </div>
 
-    <div class="category-group" id="spirits">
+    <div id="spirits" class="category-group">
         <div class="category-title">
-            <span class="title-en">Spirits Collection</span>
+            <span class="title-en">Fine Spirits</span>
             <span class="title-cn">精選烈酒</span>
-            <div class="title-line"></div>
         </div>
         
         <div class="sub-tag">Whisky (Shot / Bottle)</div>
         <div class="item">
             <div class="item-header"><div class="name-box"><span class="cn-name">格蘭傑 X 因子</span><span class="en-name">GLENMORANGIE X</span></div><span class="item-price">220 | 2200</span></div>
-            <div class="item-content">單一麥芽蘇格蘭威士忌</div>
+            <div class="item-content">單一麥芽蘇格蘭威士忌 / X 因子</div>
         </div>
         <div class="item"><div class="item-header"><div class="name-box"><span class="cn-name">大摩 12年</span><span class="en-name">DALMORE 12Y</span></div><span class="item-price">390 | 3900</span></div></div>
         <div class="item"><div class="item-header"><div class="name-box"><span class="cn-name">百富 12年雙桶</span><span class="en-name">BALVENIE 12Y</span></div><span class="item-price">390 | 3900</span></div></div>
@@ -220,11 +216,10 @@
         <div class="item"><div class="item-header"><div class="name-box"><span class="cn-name">唐胡立歐 Anejo</span><span class="en-name">DON JULIO ANEJO</span></div><span class="item-price">400 | 4000</span></div></div>
     </div>
 
-    <div class="category-group" id="yankov">
+    <div id="yankov" class="category-group">
         <div class="category-title">
             <span class="title-en">Yankov Special</span>
             <span class="title-cn">洋可夫特調</span>
-            <div class="title-line"></div>
         </div>
         <div class="item">
             <div class="item-header"><div class="name-box"><span class="cn-name">緋紅撞奶</span><span class="en-name">SCARLET MILK FUSION</span></div><span class="item-price">350</span></div>
@@ -244,11 +239,10 @@
         </div>
     </div>
 
-    <div class="category-group" id="beer-drinks">
+    <div id="beer-drinks" class="category-group">
         <div class="category-title">
             <span class="title-en">Beer & Soft Drinks</span>
             <span class="title-cn">啤酒軟飲</span>
-            <div class="title-line"></div>
         </div>
         <div class="sub-tag">Beer</div>
         <div class="item"><div class="item-header"><div class="name-box"><span class="cn-name">可樂娜 / 西班牙金星</span><span class="en-name">CORONA / ESTRELLA</span></div><span class="item-price">150 | 750</span></div></div>
@@ -263,7 +257,8 @@
 
     <div class="info-footer">
         <p>高雄市楠梓區惠民路273號</p>
-        <p>0988-850-431 | 19:00 - 02:00</p>
+        <p>RESERVATION: 0988-850-431</p>
+        <p>OPEN: 19:00 - 02:00</p>
         <div class="warning-box">
             未滿十八歲禁止飲酒。禁止酒駕。<br>
             DRINK RESPONSIBLY. BE SAFE.
