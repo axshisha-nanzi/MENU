@@ -3,121 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AX SHISHA | 精品菜單</title>
+    <title>AX SHISHA | 極致水煙菜單</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Montserrat:wght@100;300;500&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Montserrat:wght@200;400&family=Noto+Sans+TC:wght@300;500;700&display=swap');
 
         :root {
-            --primary-bg: #0a0908; 
-            --secondary-bg: #161412;
-            --champagne-gold: #d4b483;
-            --soft-gold: rgba(212, 180, 131, 0.4);
-            --pearl-white: #f5f5f5;
-            --smoke-gray: #8e8e8e;
-            --glass: rgba(26, 22, 20, 0.85);
+            --bg-deep: #080a0f; /* 午夜深藍 */
+            --bg-glow: #151a26; /* 煙燻紫藍 */
+            --accent-main: #b89f81; /* 柔和香檳金 */
+            --accent-light: rgba(184, 159, 129, 0.2);
+            --text-pure: #ffffff;
+            --text-soft: #a0a8b5;
+            --glass-bg: rgba(255, 255, 255, 0.03);
         }
 
         html { scroll-behavior: smooth; }
         body { 
-            font-family: 'Montserrat', 'Noto Sans TC', sans-serif; 
-            margin: 0; background: var(--primary-bg); color: var(--pearl-white); 
-            background-image: radial-gradient(circle at top, #1a1614 0%, #0a0908 100%);
+            font-family: 'Noto Sans TC', 'Montserrat', sans-serif; 
+            margin: 0; background-color: var(--bg-deep); color: var(--text-pure); 
+            background-image: radial-gradient(circle at 50% 0%, #1a2235 0%, #080a0f 70%);
             background-attachment: fixed; -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 500px; margin: auto; padding: 40px 25px; }
+        .container { max-width: 500px; margin: auto; padding: 40px 20px; }
 
-        /* HEADER - 品牌質感 */
-        .header { text-align: center; margin-bottom: 80px; position: relative; }
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 50px; }
         .header h1 { 
-            font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 500; 
-            color: var(--pearl-white); margin: 0; letter-spacing: 18px; text-indent: 18px;
-            text-transform: uppercase; opacity: 0.9;
+            font-family: 'Oswald', sans-serif; font-size: 2.2rem; font-weight: 500; 
+            letter-spacing: 12px; margin: 0; color: var(--text-pure);
         }
-        .header .sub-brand { 
-            font-size: 0.65rem; color: var(--champagne-gold); 
-            letter-spacing: 8px; margin-top: 15px; font-weight: 300;
-        }
-        .header::after { 
-            content: ""; display: block; width: 30px; height: 1px; 
-            background: var(--champagne-gold); margin: 30px auto; opacity: 0.5;
+        .header p { 
+            font-size: 0.75rem; color: var(--accent-main); letter-spacing: 4px; 
+            margin-top: 10px; opacity: 0.8; font-weight: 300;
         }
 
-        /* 搜尋 - 融入背景 */
-        .search-container { margin-bottom: 40px; padding: 0 10px; }
+        /* 搜尋吧 - 柔和圓潤 */
+        .search-box { margin-bottom: 35px; }
         .search-input {
-            width: 100%; background: transparent; border: none;
-            border-bottom: 0.5px solid rgba(255,255,255,0.1);
-            padding: 10px 0; color: var(--pearl-white); font-size: 0.8rem;
-            text-align: center; letter-spacing: 3px; outline: none; transition: 0.4s;
+            width: 100%; padding: 12px 20px; border-radius: 30px;
+            background: var(--glass-bg); border: 1px solid var(--accent-light);
+            color: var(--text-pure); font-size: 0.9rem; outline: none;
+            text-align: center; box-sizing: border-box; transition: 0.3s;
         }
-        .search-input:focus { border-bottom-color: var(--champagne-gold); }
+        .search-input:focus { border-color: var(--accent-main); background: rgba(255,255,255,0.06); }
 
-        /* 導覽列 - 磨砂流體 */
-        .nav-wrapper {
+        /* 導覽列 - 磨砂玻璃質感 */
+        .nav-sticky {
             position: sticky; top: 0; z-index: 100;
-            background: var(--glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            margin: 0 -25px 50px -25px; border-bottom: 0.5px solid rgba(255,255,255,0.05);
+            background: rgba(8, 10, 15, 0.8); backdrop-filter: blur(15px);
+            margin: 0 -20px 40px -20px; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .nav-inner {
+        .nav-bar {
             display: flex; overflow-x: auto; white-space: nowrap;
-            padding: 18px 25px; gap: 40px; scrollbar-width: none;
+            padding: 15px 25px; gap: 35px; scrollbar-width: none;
         }
-        .nav-inner::-webkit-scrollbar { display: none; }
-        .nav-item { text-decoration: none; color: var(--smoke-gray); transition: 0.4s; }
-        .nav-item .cn { display: block; font-size: 0.85rem; font-weight: 400; letter-spacing: 2px; }
-        .nav-item .en { display: block; font-family: 'Oswald', sans-serif; font-size: 0.5rem; letter-spacing: 1px; margin-top: 3px; opacity: 0.5; }
-        .nav-item:active, .nav-item:focus { color: var(--champagne-gold); }
+        .nav-bar::-webkit-scrollbar { display: none; }
+        .nav-bar a { text-decoration: none; color: var(--text-soft); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-bar a.active { color: var(--accent-main); transform: scale(1.1); }
 
-        /* 品項列表 */
-        .category-section { margin-top: 100px; scroll-margin-top: 120px; }
-        .cat-header { margin-bottom: 50px; position: relative; text-align: left; }
-        .cat-cn { font-size: 1.4rem; font-weight: 300; letter-spacing: 6px; color: var(--pearl-white); }
-        .cat-en { 
-            font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--champagne-gold); 
-            letter-spacing: 4px; display: block; margin-top: 5px; opacity: 0.7;
+        /* 分類標題 */
+        .cat-group { margin-top: 70px; scroll-margin-top: 100px; }
+        .cat-head { margin-bottom: 30px; display: flex; align-items: baseline; gap: 10px; }
+        .cat-cn { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+        .cat-en { font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--accent-main); opacity: 0.6; text-transform: uppercase; }
+
+        .sub-tag {
+            font-size: 0.7rem; color: var(--accent-main); font-weight: 500;
+            margin: 30px 0 15px 0; letter-spacing: 2px; opacity: 0.8;
+            display: flex; align-items: center; gap: 10px;
         }
+        .sub-tag::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--accent-light), transparent); }
 
-        .sub-group-label {
-            font-size: 0.65rem; color: var(--champagne-gold); border: 0.5px solid var(--soft-gold);
-            display: inline-block; padding: 2px 12px; border-radius: 20px;
-            margin: 40px 0 25px 0; letter-spacing: 2px; text-transform: uppercase;
+        /* 品項卡片 - 呼吸感設計 */
+        .item { 
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;
+            padding: 20px; margin-bottom: 15px; transition: 0.3s;
         }
+        .item:active { transform: scale(0.98); background: rgba(255,255,255,0.08); }
 
-        .menu-card { 
-            margin-bottom: 40px; transition: 0.3s; cursor: pointer;
-            padding: 10px 0; border-radius: 8px;
-        }
-        .menu-card:active { background: rgba(255,255,255,0.02); }
-
-        .card-top { display: flex; justify-content: space-between; align-items: flex-end; }
-        .name-box { flex: 1; }
-        .main-name { font-size: 1.05rem; font-weight: 400; letter-spacing: 1.5px; color: var(--pearl-white); }
-        .sub-name { font-size: 0.65rem; color: var(--smoke-gray); letter-spacing: 1px; margin-top: 4px; display: block; text-transform: uppercase; }
-        .price { font-family: 'Oswald', sans-serif; color: var(--champagne-gold); font-size: 1.1rem; letter-spacing: 1px; }
-
-        .ingredients { 
-            font-size: 0.75rem; color: var(--smoke-gray); margin-top: 10px; 
-            line-height: 1.8; font-weight: 300; font-style: italic; opacity: 0.8;
+        .item-main { display: flex; justify-content: space-between; align-items: flex-start; }
+        .item-title { flex: 1; }
+        .cn-name { font-size: 1.15rem; font-weight: 500; color: var(--text-pure); display: block; margin-bottom: 4px; }
+        .en-name { font-size: 0.7rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 1px; font-weight: 300; }
+        .price { font-family: 'Oswald', sans-serif; font-size: 1.1rem; color: var(--accent-main); margin-left: 15px; }
+        
+        .desc { 
+            font-size: 0.8rem; color: var(--text-soft); margin-top: 12px; 
+            line-height: 1.6; font-weight: 300; opacity: 0.7;
         }
 
-        /* 腳部資訊 */
-        .footer { margin-top: 150px; padding: 100px 20px; text-align: center; border-top: 0.5px solid rgba(255,255,255,0.05); }
-        .footer-logo { font-family: 'Oswald', sans-serif; font-size: 2.2rem; letter-spacing: 15px; color: var(--champagne-gold); margin-bottom: 50px; opacity: 0.5; }
-        .contact-info { font-size: 0.8rem; color: var(--smoke-gray); line-height: 2.5; font-weight: 300; }
-        .contact-info b { color: var(--champagne-gold); font-weight: 400; margin-right: 15px; }
+        /* 頁腳 */
+        .footer { margin-top: 120px; padding: 60px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-logo { font-family: 'Oswald', sans-serif; font-size: 1.8rem; letter-spacing: 10px; color: var(--accent-main); margin-bottom: 30px; opacity: 0.6; }
+        .contact-link { display: block; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; margin: 12px 0; font-weight: 300; }
+        .contact-link b { color: var(--accent-main); font-weight: 500; margin-right: 8px; }
 
-        .legal-notice { 
-            margin-top: 60px; color: #7a3a35; font-size: 0.65rem; 
-            letter-spacing: 4px; line-height: 2.2; border: 0.5px solid rgba(122, 58, 53, 0.3);
-            padding: 20px; border-radius: 2px;
+        .warning { 
+            margin-top: 40px; padding: 20px; border: 1px solid rgba(184, 159, 129, 0.1);
+            color: #8c7371; font-size: 0.7rem; border-radius: 8px; letter-spacing: 2px;
         }
 
-        .btn-top {
-            position: fixed; bottom: 30px; right: 25px; width: 40px; height: 40px;
-            background: transparent; border: 0.5px solid var(--soft-gold);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: var(--champagne-gold); text-decoration: none; font-size: 0.6rem; z-index: 200;
+        .back-top {
+            position: fixed; bottom: 30px; right: 20px; width: 45px; height: 45px;
+            background: var(--bg-glow); border: 1px solid var(--accent-light);
+            color: var(--accent-main); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 0.7rem; z-index: 100; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -126,294 +118,136 @@
 <div class="container" id="top">
     <div class="header">
         <h1>AX SHISHA</h1>
-        <div class="sub-brand">CAFE & COCKTAIL BAR</div>
+        <p>CAFE & COCKTAIL LOUNGE</p>
     </div>
 
-    <div class="search-container">
-        <input type="text" class="search-input" placeholder="SEEK YOUR SPIRIT..." onkeyup="filterMenu(this.value)">
+    <div class="search-box">
+        <input type="text" class="search-input" placeholder="搜尋您的微醺品項..." onkeyup="filterMenu(this.value)">
     </div>
 
-    <div class="nav-wrapper">
-        <div class="nav-inner">
-            <a href="#special" class="nav-item"><span class="cn">特製系列</span><span class="en">Specials</span></a>
-            <a href="#classic" class="nav-item"><span class="cn">系列調酒</span><span class="en">Cocktails</span></a>
-            <a href="#spirits" class="nav-item"><span class="cn">烈酒精選</span><span class="en">Fine Spirits</span></a>
-            <a href="#yankov" class="nav-item"><span class="cn">洋可夫</span><span class="en">Yankov</span></a>
-            <a href="#beer-drinks" class="nav-item"><span class="cn">啤酒飲品</span><span class="en">Others</span></a>
+    <div class="nav-sticky">
+        <div class="nav-bar" id="navbar">
+            <a href="#special" class="nav-link active">特製調酒</a>
+            <a href="#classic" class="nav-link">系列調酒</a>
+            <a href="#spirits" class="nav-link">烈酒精選</a>
+            <a href="#yankov" class="nav-link">洋可夫</a>
+            <a href="#beer-drinks" class="nav-link">啤酒軟飲</a>
         </div>
     </div>
 
-    <section id="special" class="category-section">
-        <div class="cat-header"><span class="cat-cn">特製調酒</span><span class="cat-en">SIGNATURE SERIES</span></div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">青空琉璃</span><span class="sub-name">Azure Crystal</span></div>
+    <section id="special" class="cat-group">
+        <div class="cat-head"><span class="cat-cn">特製調酒</span><span class="cat-en">Signatures</span></div>
+        <div class="item menu-card">
+            <div class="item-main">
+                <div class="item-title"><span class="cn-name">青空琉璃</span><span class="en-name">Azure Crystal</span></div>
                 <div class="price">350</div>
             </div>
-            <div class="ingredients">香蕉利口酒 / 香草利口酒 / 萊姆汁 / 特製糖漿 / 藍柑橘糖漿 / 甜味氣泡水</div>
+            <div class="desc">香蕉利口酒 / 香草利口酒 / 萊姆汁 / 特製糖漿 / 藍柑橘糖漿 / 甜味氣泡水</div>
         </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">萌芽</span><span class="sub-name">Budding</span></div>
+        <div class="item menu-card">
+            <div class="item-main">
+                <div class="item-title"><span class="cn-name">萌芽</span><span class="en-name">Budding</span></div>
                 <div class="price">350</div>
             </div>
-            <div class="ingredients">伏特加 / 君度橙酒 / 百香果糖漿 / 特製糖漿 / 薑汁汽水 / 萊姆汁</div>
+            <div class="desc">伏特加 / 君度橙酒 / 百香果糖漿 / 特製糖漿 / 薑汁汽水 / 萊姆汁</div>
         </div>
     </section>
 
-    <section id="classic" class="category-section">
-        <div class="cat-header"><span class="cat-cn">系列調酒</span><span class="cat-en">THE COCKTAILS</span></div>
+    <section id="classic" class="cat-group">
+        <div class="cat-head"><span class="cat-cn">系列調酒</span><span class="cat-en">Classic Selection</span></div>
         
-        <div class="sub-group-label">Gin</div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">琴蕾</span><span class="sub-name">Gimlet</span></div>
-                <div class="price">250</div>
-            </div>
-            <div class="ingredients">琴酒 / 檸檬汁 / 特製糖漿</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">咖啡尼格羅尼</span><span class="sub-name">Cafe Negroni</span></div>
-                <div class="price">300</div>
-            </div>
-            <div class="ingredients">琴酒 / 咖啡口酒 / 金巴利香甜酒 / 法式香艾酒 / 檸檬酸</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">三葉草</span><span class="sub-name">Shamrock</span></div>
-                <div class="price">270</div>
-            </div>
-            <div class="ingredients">琴酒 / 覆盆子糖漿 / 檸檬汁 / 蛋白液</div>
-        </div>
+        <div class="sub-tag">Gin Base 琴酒基底</div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">琴蕾</span><span class="en-name">Gimlet</span></div><div class="price">250</div></div><div class="desc">琴酒 / 檸檬汁 / 特製糖漿</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">咖啡尼格羅尼</span><span class="en-name">Cafe Negroni</span></div><div class="price">300</div></div><div class="desc">琴酒 / 咖啡利口酒 / 金巴利 / 法式香艾酒 / 檸檬酸</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">三葉草</span><span class="en-name">Shamrock</span></div><div class="price">270</div></div><div class="desc">琴酒 / 覆盆子糖漿 / 檸檬汁 / 蛋白液</div></div>
 
-        <div class="sub-group-label">Vodka</div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">柯夢波丹</span><span class="sub-name">Cosmopolitan</span></div>
-                <div class="price">270</div>
-            </div>
-            <div class="ingredients">伏特加 / 君度橙酒 / 檸檬汁 / 特製糖漿 / 蔓越莓汁</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">海風</span><span class="sub-name">Sea Breeze</span></div>
-                <div class="price">270</div>
-            </div>
-            <div class="ingredients">伏特加 / 紫羅蘭香甜酒 / 蔓越莓汁 / 葡萄柚汁 / 檸檬汁</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">紅牛伏特加</span><span class="sub-name">Vodka Redbull</span></div>
-                <div class="price">300</div>
-            </div>
-            <div class="ingredients">伏特加 / 紅牛</div>
-        </div>
+        <div class="sub-tag">Vodka Base 伏特加基底</div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">柯夢波丹</span><span class="en-name">Cosmopolitan</span></div><div class="price">270</div></div><div class="desc">伏特加 / 君度橙酒 / 檸檬汁 / 特製糖漿 / 蔓越莓汁</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">海風</span><span class="en-name">Sea Breeze</span></div><div class="price">270</div></div><div class="desc">伏特加 / 紫羅蘭香甜酒 / 蔓越莓汁 / 葡萄柚汁 / 檸檬汁</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">紅牛伏特加</span><span class="en-name">Vodka Redbull</span></div><div class="price">300</div></div><div class="desc">伏特加 / 紅牛</div></div>
 
-        <div class="sub-group-label">Tequila</div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">破冰船</span><span class="sub-name">Ice Breaker</span></div>
-                <div class="price">270</div>
-            </div>
-            <div class="ingredients">龍舌蘭 / 君度橙酒 / 葡萄柚汁 / 檸檬汁 / 紅石榴糖漿</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">莫斯科驢子</span><span class="sub-name">Moscow Mule</span></div>
-                <div class="price">250</div>
-            </div>
-            <div class="ingredients">龍舌蘭 / 檸檬汁 / 薑汁汽水</div>
-        </div>
+        <div class="sub-tag">Tequila Base 龍舌蘭基底</div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">破冰船</span><span class="en-name">Ice Breaker</span></div><div class="price">270</div></div><div class="desc">龍舌蘭 / 君度橙酒 / 葡萄柚汁 / 檸檬汁 / 紅石榴糖漿</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">莫斯科驢子</span><span class="en-name">Moscow Mule</span></div><div class="price">250</div></div><div class="desc">龍舌蘭 / 檸檬汁 / 薑汁汽水</div></div>
 
-        <div class="sub-group-label">Whisky</div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">KISS ME</span><span class="sub-name">Sweet & Strong</span></div>
-                <div class="price">270</div>
-            </div>
-            <div class="ingredients">蘇格蘭威士忌 / 紅酒 / 檸檬汁 / 櫻桃利口酒 / 覆盆子糖漿</div>
-        </div>
+        <div class="sub-tag">Whisky Base 威士忌基底</div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">吻我</span><span class="en-name">Kiss Me</span></div><div class="price">270</div></div><div class="desc">蘇格蘭威士忌 / 紅酒 / 檸檬汁 / 櫻桃利口酒 / 覆盆子糖漿</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">嗨波</span><span class="en-name">High Ball</span></div><div class="price">220</div></div><div class="desc">威士忌 / 蘇打水</div></div>
 
-        <div class="sub-group-label">Boutique Cocktails</div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">桑格利亞</span><span class="sub-name">Sangria</span></div>
-                <div class="price">300</div>
-            </div>
-            <div class="ingredients">白蘭地 / 君度橙酒 / 紅酒 / 覆盆子糖漿 / 黑醋栗糖漿 / 檸檬汁</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">紅塵</span><span class="sub-name">Red Dust</span></div>
-                <div class="price">300</div>
-            </div>
-            <div class="ingredients">艾碧斯 / 赤梅酒 / 君度橙酒 / 芒果糖漿 / 檸檬汁</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">長島冰茶</span><span class="sub-name">Long Island Ice Tea</span></div>
-                <div class="price">350</div>
-            </div>
-            <div class="ingredients">伏特加 / 琴酒 / 蘭姆酒 / 龍舌蘭 / 君度橙酒 / 檸檬汁 / 特製糖漿 / 可樂</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">紅牛野莓</span><span class="sub-name">Red Bull Wild Berry</span></div>
-                <div class="price">300</div>
-            </div>
-            <div class="ingredients">紅牛野莓 / 野格</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">紅牛野格</span><span class="sub-name">Redbull Jager</span></div>
-                <div class="price">350</div>
-            </div>
-            <div class="ingredients">紅牛 / 野格</div>
-        </div>
+        <div class="sub-tag">More Creations 更多特調</div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">桑格利亞</span><span class="en-name">Sangria</span></div><div class="price">300</div></div><div class="desc">白蘭地 / 君度橙酒 / 紅酒 / 覆盆子糖漿 / 黑醋栗糖漿 / 檸檬汁</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">紅塵</span><span class="en-name">Red Dust</span></div><div class="price">300</div></div><div class="desc">艾碧斯 / 赤梅酒 / 君度橙酒 / 芒果糖漿 / 檸檬汁</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">長島冰茶</span><span class="en-name">Long Island Ice Tea</span></div><div class="price">350</div></div><div class="desc">伏特加 / 琴酒 / 蘭姆酒 / 龍舌蘭 / 君度 / 檸檬汁 / 特製糖漿 / 可樂</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">紅牛野莓</span><span class="en-name">Red Bull Wild Berry</span></div><div class="price">300</div></div><div class="desc">紅牛野莓 / 野格</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">紅牛野格</span><span class="en-name">Redbull Jager</span></div><div class="price">350</div></div><div class="desc">紅牛 / 野格</div></div>
     </section>
 
-    <section id="spirits" class="category-section">
-        <div class="cat-header"><span class="cat-cn">精選烈酒</span><span class="cat-en">SINGLE MALTS & SPIRITS</span></div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">格蘭傑 X 因子 單一麥芽</span><span class="sub-name">Glenmorangie X</span></div>
-                <div class="price">220 | 2200</div>
-            </div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">大摩 12年 單一麥芽</span><span class="sub-name">Dalmore 12Y</span></div>
-                <div class="price">390 | 3900</div>
-            </div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">百富 12年 雙桶單一麥芽</span><span class="sub-name">Balvenie 12Y</span></div>
-                <div class="price">390 | 3900</div>
-            </div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">格蘭利威 15年 雪莉桶單一麥芽</span><span class="sub-name">Glenlivet 15Y</span></div>
-                <div class="price">450 | 4500</div>
-            </div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">幕赫 12年 單一麥芽</span><span class="sub-name">Mortlach 12Y</span></div>
-                <div class="price">390 | 3900</div>
-            </div>
-        </div>
-        
-        <div class="sub-group-label">Boutique Vodka & Gin</div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">洋可夫特級伏特加</span><span class="sub-name">Yankov Premium Vodka</span></div>
-                <div class="price">290 | 2680</div>
-            </div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">緋紅凱薩琳伏特加</span><span class="sub-name">Scarlet Catherine Vodka</span></div>
-                <div class="price">400 | 4000</div>
-            </div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">唐胡立歐 ANEJO 龍舌蘭</span><span class="sub-name">Don Julio Anejo Tequila</span></div>
-                <div class="price">400 | 4000</div>
-            </div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">日本季之美京都干式琴酒</span><span class="sub-name">Ki No Bo Kyoto Dry Gin</span></div>
-                <div class="price">360 | 3600</div>
-            </div>
-        </div>
+    <section id="spirits" class="cat-group">
+        <div class="cat-head"><span class="cat-cn">烈酒精選</span><span class="cat-en">Fine Spirits</span></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">格蘭傑 X 因子</span><span class="en-name">Glenmorangie X</span></div><div class="price">220 | 2200</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">大摩 12年</span><span class="en-name">Dalmore 12Y</span></div><div class="price">390 | 3900</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">百富 12年雙桶</span><span class="en-name">Balvenie 12Y</span></div><div class="price">390 | 3900</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">格蘭利威 15年雪莉桶</span><span class="en-name">Glenlivet 15Y</span></div><div class="price">450 | 4500</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">幕赫 12年</span><span class="en-name">Mortlach 12Y</span></div><div class="price">390 | 3900</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">洋可夫特級伏特加</span><span class="en-name">Yankov Premium Vodka</span></div><div class="price">290 | 2680</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">緋紅凱薩琳伏特加</span><span class="en-name">Scarlet Catherine</span></div><div class="price">400 | 4000</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">日本季之美京都琴酒</span><span class="en-name">Ki No Bi Gin</span></div><div class="price">360 | 3600</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">唐胡立歐 Anejo</span><span class="en-name">Don Julio Anejo</span></div><div class="price">400 | 4000</div></div></div>
     </section>
 
-    <section id="yankov" class="category-section">
-        <div class="cat-header"><span class="cat-cn">洋可夫特調</span><span class="cat-en">YANKOV SELECTION</span></div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">緋紅撞奶</span><span class="sub-name">Scarlet Milk Fusion</span></div>
-                <div class="price">350</div>
-            </div>
-            <div class="ingredients">緋紅 / 鮮奶 / 特製糖漿</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">台灣凍檸茶</span><span class="sub-name">Taiwanese Iced Lemon Tea</span></div>
-                <div class="price">350</div>
-            </div>
-            <div class="ingredients">緋紅 / 白可可香甜酒 / 萊姆汁 / 蜂蜜 / 特製糖漿</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">戀人</span><span class="sub-name">Lover</span></div>
-                <div class="price">350</div>
-            </div>
-            <div class="ingredients">緋紅 / 覆盆子糖漿 / 蔓越莓汁 / 檸檬酸</div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top">
-                <div class="name-box"><span class="main-name">櫻花莓語</span><span class="sub-name">Sakura Berry Whisper</span></div>
-                <div class="price">350</div>
-            </div>
-            <div class="ingredients">緋紅 / 蔓越莓汁 / 赤梅酒 / 鹽漬櫻花糖漿 / 檸檬酸</div>
-        </div>
+    <section id="yankov" class="cat-group">
+        <div class="cat-head"><span class="cat-cn">洋可夫系列</span><span class="cat-en">Yankov Series</span></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">緋紅撞奶</span><span class="en-name">Scarlet Milk</span></div><div class="price">350</div></div><div class="desc">緋紅 / 鮮奶 / 特製糖漿</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">台灣凍檸茶</span><span class="en-name">Iced Lemon Tea</span></div><div class="price">350</div></div><div class="desc">緋紅 / 白可可香甜酒 / 萊姆汁 / 蜂蜜 / 特製糖漿</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">戀人</span><span class="en-name">Lover</span></div><span class="price">350</span></div><div class="desc">緋紅 / 覆盆子糖漿 / 蔓越莓汁 / 檸檬酸</div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">櫻花莓語</span><span class="en-name">Sakura Whisper</span></div><div class="price">350</div></div><div class="desc">緋紅 / 蔓越莓汁 / 赤梅酒 / 鹽漬櫻花糖漿 / 檸檬酸</div></div>
     </section>
 
-    <section id="beer-drinks" class="category-section">
-        <div class="cat-header"><span class="cat-cn">啤酒與軟飲</span><span class="cat-en">REFRESHMENTS</span></div>
-        <div class="menu-card item-row">
-            <div class="card-top"><div class="name-box"><span class="main-name">可樂娜 Corona / 西班牙金星 Estrella</span></div><div class="price">150 | 750</div></div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top"><div class="name-box"><span class="main-name">1664 白啤</span></div><div class="price">180 | 900</div></div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top"><div class="name-box"><span class="main-name">紅牛 Redbull (原味/無糖)</span></div><div class="price">150</div></div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top"><div class="name-box"><span class="main-name">氣泡水 Soda / 薑汁汽水 Ginger Ale / 通寧水 Tonic Water</span></div><div class="price">120</div></div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top"><div class="name-box"><span class="main-name">可樂 Coke / 雪碧 Sprite</span></div><div class="price">120</div></div>
-        </div>
-        <div class="menu-card item-row">
-            <div class="card-top"><div class="name-box"><span class="main-name">果汁 (蘋果/蔓越莓) Juice</span></div><div class="price">120</div></div>
-        </div>
+    <section id="beer-drinks" class="cat-group">
+        <div class="cat-head"><span class="cat-cn">啤酒與軟飲</span><span class="cat-en">Others</span></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">可樂娜 / 西班牙金星</span><span class="en-name">Beers</span></div><div class="price">150 | 750</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">1664 白啤</span><span class="en-name">1664 Blanc</span></div><div class="price">180 | 900</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">紅牛 (原味/無糖)</span><span class="en-name">Red Bull</span></div><div class="price">150</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">氣泡水 / 薑汁汽水 / 通寧水</span><span class="en-name">Mixers</span></div><div class="price">120</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">可樂 / 雪碧</span><span class="en-name">Sodas</span></div><div class="price">120</div></div></div>
+        <div class="item menu-card"><div class="item-main"><div class="item-title"><span class="cn-name">蘋果汁 / 蔓越莓汁</span><span class="en-name">Juice</span></div><div class="price">120</div></div></div>
     </section>
 
     <footer class="footer">
         <div class="footer-logo">AX SHISHA</div>
-        <div class="contact-info">
-            <div><b>ADDRESS</b> 高雄市楠梓區惠民路273號</div>
-            <div><b>RESERVATION</b> 0988-850-431</div>
-            <div><b>HOURS</b> 19:00 - 02:00</div>
+        <div class="contact-box">
+            <a href="https://maps.app.goo.gl/YourMapLink" class="contact-link"><b>ADD</b> 高雄市楠梓區惠民路273號</a>
+            <a href="tel:0988850431" class="contact-link"><b>TEL</b> 0988-850-431</a>
+            <span class="contact-link"><b>OPEN</b> 19:00 - 02:00</span>
         </div>
-        <div class="legal-notice">
+        <div class="warning">
             未滿十八歲禁止飲酒 • 禁止酒駕<br>
             DRINK RESPONSIBLY • BE SAFE
         </div>
     </footer>
 </div>
 
-<a href="#top" class="btn-top">TOP</a>
+<a href="#top" class="back-top">TOP</a>
 
 <script>
+    // 關鍵字搜尋功能
     function filterMenu(query) {
-        const items = document.querySelectorAll('.item-row');
+        const items = document.querySelectorAll('.menu-card');
         const search = query.toLowerCase();
         items.forEach(item => {
             const text = item.textContent.toLowerCase();
             item.style.display = text.includes(search) ? 'block' : 'none';
         });
-        const labels = document.querySelectorAll('.sub-group-label');
-        labels.forEach(label => label.style.display = search.length > 0 ? 'none' : 'inline-block');
     }
+
+    // 導覽列點擊效果
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
 </script>
 
 </body>
