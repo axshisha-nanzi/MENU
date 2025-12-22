@@ -11,21 +11,20 @@
         body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; -webkit-font-smoothing: antialiased; }
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
-        /* Header 區域：已移除 Logo */
-        .header { text-align: center; padding: 40px 20px 25px; }
+        /* Header */
+        .header { text-align: center; padding: 50px 20px 25px; }
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* 搜尋欄：寬度修正為 100% 完美對齊下方資訊框 */
-        .search-area { margin: 0 auto 20px; width: 100%; position: sticky; top: 15px; z-index: 110; }
+        /* Search Area */
+        .search-area { margin: 0 auto 20px; width: 80%; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
         
-        /* 導覽按鈕 */
         .nav-scroller { display: flex; overflow-x: auto; padding: 5px 0 20px; gap: 10px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 8px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
 
-        /* 資訊區塊 */
+        /* Info Section */
         .info-section { margin: 10px 0 50px; padding: 30px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
         .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 4px; display: block; margin-bottom: 20px; border-bottom: 1px solid rgba(243, 112, 33, 0.15); padding-bottom: 8px; text-transform: uppercase; text-align: center;}
         
@@ -34,10 +33,11 @@
         .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.7; letter-spacing: 0.5px; }
         .info-highlight { color: var(--hermes); font-weight: 400; }
 
-        /* 菜單分類與卡片樣式 */
+        /* Menu Styles */
         .cat-group { margin: 60px 0 30px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
+        .tag-line { font-size: 0.7rem; color: var(--hermes); margin: 30px 0 15px; text-align: center; letter-spacing: 3px; font-weight: 600; }
         
         .card { background: var(--glass); border-radius: 22px; padding: 18px 22px; margin-bottom: 12px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
@@ -71,52 +71,20 @@
         <span class="section-tag">⋄ Information / 店內資訊 ⋄</span>
         <div class="info-row">
             <span class="info-label">訂位資訊</span>
-            <span class="info-text">
-                LINE ꔛ IG 私訊詢問<br>
-                或致電 <span class="info-highlight">0988-850-431</span>
-            </span>
+            <span class="info-text">LINE ꔛ IG 私訊詢問<br>或致電 <span class="info-highlight">0988-850-431</span></span>
         </div>
         <div class="info-row">
             <span class="info-label">關於低消</span>
-            <span class="info-text">
-                每人低消 <span class="info-highlight">$400</span><br>
-                不限品項 ꔛ 盡情享受
-            </span>
+            <span class="info-text">每人低消 <span class="info-highlight">$400</span><br>不限品項 ꔛ 盡情享受</span>
         </div>
         <div class="info-row" style="margin-bottom: 25px;">
             <span class="info-label">WIFI 資訊</span>
-            <span class="info-text">
-                密碼 <span class="info-highlight">0988850431</span>
-            </span>
+            <span class="info-text">密碼 <span class="info-highlight">0988850431</span></span>
         </div>
-
         <span class="section-tag">⋄ Agreement / 溫柔約定 ⋄</span>
-        <div class="info-row">
-            <span class="info-label">關於呼吸</span>
-            <span class="info-text">
-                室內禁菸 ꔛ 請移駕戶外透氣<br>
-                <span class="info-highlight">煙灰缸在那裡，溫柔也在那裡</span>
-            </span>
-        </div>
-        <div class="info-row">
-            <span class="info-label">戶外音量</span>
-            <span class="info-text">
-                透氣時，<span class="info-highlight">請將溫柔留給鄰居</span><br>
-                小小聲就好 ꔛ 讓我們能長久相伴
-            </span>
-        </div>
-        <div class="info-row">
-            <span class="info-label">關於醉意</span>
-            <span class="info-text">
-                若反胃請務必讓我們送您進廁所<br>
-                吐錯地方老闆會心痛 ꔛ 酌收清潔費 <span class="info-highlight">$2000</span>
-            </span>
-        </div>
-
-        <div style="text-align: center; margin-top: 25px; font-size: 0.75rem; color: var(--dark); letter-spacing: 3px; line-height: 1.8;">
-            一個人也歡迎，我們陪你 / 妳<br>
-            來開心最重要 ꔛ 其他交給我們
-        </div>
+        <div class="info-row"><span class="info-label">關於呼吸</span><span class="info-text">室內禁菸 ꔛ 請移駕戶外透氣<br><span class="info-highlight">煙灰缸在那裡，溫柔也在那裡</span></span></div>
+        <div class="info-row"><span class="info-label">戶外音量</span><span class="info-text">透氣時，<span class="info-highlight">請將溫柔留給鄰居</span><br>小小聲就好 ꔛ 讓我們能長久相伴</span></div>
+        <div class="info-row"><span class="info-label">關於醉意</span><span class="info-text">若反胃請務必讓我們送您進廁所<br>吐錯地方老闆會心痛 ꔛ 酌收清潔費 <span class="info-highlight">$2000</span></span></div>
     </section>
 
     <div id="content"><div style="text-align:center;padding:120px;color:var(--hermes);font-family:'Montserrat';font-size:0.75rem;letter-spacing:3px;">LOADING...</div></div>
@@ -132,25 +100,72 @@
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
-    
+    let allData = [];
+
+    // 精準解析 CSV 函式
+    function parseCSV(text) {
+        const rows = [];
+        let currentRow = [];
+        let currentCell = "";
+        let inQuotes = false;
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            const nextChar = text[i+1];
+            if (inQuotes) {
+                if (char === '"' && nextChar === '"') { currentCell += '"'; i++; }
+                else if (char === '"') { inQuotes = false; }
+                else { currentCell += char; }
+            } else {
+                if (char === '"') { inQuotes = true; }
+                else if (char === ',') { currentRow.push(currentCell.trim()); currentCell = ""; }
+                else if (char === '\n' || char === '\r') {
+                    if (currentCell || currentRow.length > 0) {
+                        currentRow.push(currentCell.trim());
+                        rows.push(currentRow);
+                        currentRow = [];
+                        currentCell = "";
+                    }
+                    if (char === '\r' && nextChar === '\n') i++;
+                } else { currentCell += char; }
+            }
+        }
+        if (currentCell || currentRow.length > 0) { currentRow.push(currentCell.trim()); rows.push(currentRow); }
+        return rows;
+    }
+
     async function loadMenu() {
         try {
-            const response = await fetch(CSV_URL + '&t=' + Date.now());
+            const response = await fetch(`${CSV_URL}&t=${Date.now()}`);
             const csvText = await response.text();
-            const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
-            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-            const idx = { cat: headers.indexOf('category'), sub: headers.indexOf('subcategory'), zh: headers.indexOf('name_zh'), en: headers.indexOf('name_en'), price: headers.indexOf('price'), desc: headers.indexOf('description') };
+            const rows = parseCSV(csvText);
+            const headers = rows[0].map(h => h.toLowerCase());
             
-            const menuItems = [];
-            for (let i = 1; i < lines.length; i++) {
-                const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
+            const idx = {
+                cat: headers.indexOf('category'),
+                sub: headers.indexOf('subcategory'),
+                zh: headers.indexOf('name_zh'),
+                en: headers.indexOf('name_en'),
+                price: headers.indexOf('price'),
+                desc: headers.indexOf('description')
+            };
+
+            allData = [];
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i];
                 if (cols[idx.zh]) {
-                    menuItems.push({ category: cols[idx.cat] || "OTHER", subcategory: cols[idx.sub] || "", name_zh: cols[idx.zh], name_en: cols[idx.en] || "", price: cols[idx.price] || "", description: cols[idx.desc] || "" });
+                    allData.push({
+                        category: cols[idx.cat] || "其他",
+                        subcategory: (idx.sub !== -1) ? cols[idx.sub] : "",
+                        name_zh: cols[idx.zh],
+                        name_en: cols[idx.en] || "",
+                        price: cols[idx.price] || "",
+                        description: cols[idx.desc] || ""
+                    });
                 }
             }
-            renderMenu(menuItems);
-        } catch (error) { 
-            document.getElementById('content').innerHTML = `<div style="text-align:center;padding:50px;">讀取失敗</div>`; 
+            renderMenu(allData);
+        } catch (error) {
+            document.getElementById('content').innerHTML = `<div style="text-align:center;padding:120px;color:var(--hermes);">資料加載失敗，請檢查網路連線</div>`;
         }
     }
 
@@ -158,29 +173,44 @@
         const content = document.getElementById('content');
         const nav = document.getElementById('nav');
         content.innerHTML = ''; nav.innerHTML = '';
-        const categories = [...new Set(items.map(i => i.category))].filter(c => c && c !== "category");
-        
+
+        const categories = [...new Set(items.map(i => i.category))];
         categories.forEach((cat, index) => {
-            const btn = document.createElement('a');
-            btn.href = `#cat-${index}`;
-            btn.className = 'nav-btn';
-            btn.innerText = cat;
-            nav.appendChild(btn);
+            if(!cat) return;
+            const navBtn = document.createElement('a');
+            navBtn.href = `#cat-${index}`;
+            navBtn.className = 'nav-btn';
+            navBtn.innerText = cat;
+            nav.appendChild(navBtn);
 
             const section = document.createElement('div');
             section.id = `cat-${index}`;
             section.className = 'cat-group';
-            section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || 'MENU'}</span>`;
+            section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || ""}</span>`;
             content.appendChild(section);
 
             const catItems = items.filter(i => i.category === cat);
+            let currentSub = null;
+
             catItems.forEach(item => {
+                // 如果有子分類，且與前一個不同，則顯示子分類標題
+                if (item.subcategory && item.subcategory !== currentSub) {
+                    const subTag = document.createElement('div');
+                    subTag.className = 'tag-line';
+                    subTag.innerText = `⋄ ${item.subcategory} ⋄`;
+                    content.appendChild(subTag);
+                    currentSub = item.subcategory;
+                }
+
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="card-row">
-                        <div><span class="name-zh">${item.name_zh}</span><span class="name-en">${item.name_en}</span></div>
-                        <div class="price">$${item.price}</div>
+                        <div>
+                            <span class="name-zh">${item.name_zh}</span>
+                            <span class="name-en">${item.name_en}</span>
+                        </div>
+                        <div class="price">${item.price}</div>
                     </div>
                     ${item.description ? `<div class="desc">${item.description}</div>` : ''}
                 `;
@@ -190,16 +220,13 @@
     }
 
     function filterMenu() {
-        const input = document.getElementById('searchBox').value.toLowerCase();
-        const cards = document.getElementsByClassName('card');
-        const groups = document.getElementsByClassName('cat-group');
-        for (let card of cards) {
-            const text = card.innerText.toLowerCase();
-            card.style.display = text.includes(input) ? "block" : "none";
-        }
-        for (let group of groups) {
-            group.style.display = input === "" ? "block" : "none";
-        }
+        const keyword = document.getElementById('searchBox').value.toLowerCase();
+        const filtered = allData.filter(i => 
+            i.name_zh.toLowerCase().includes(keyword) || 
+            i.category.toLowerCase().includes(keyword) || 
+            (i.subcategory && i.subcategory.toLowerCase().includes(keyword))
+        );
+        renderMenu(filtered);
     }
 
     window.onload = loadMenu;
