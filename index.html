@@ -8,11 +8,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Noto+Sans+TC:wght@300;400&display=swap');
         
         :root { 
-            --hermes: #f37021;     /* 經典愛馬仕橘 */
-            --bg: #d9d4cc;         /* 背景大地色 */
+            --hermes: #f37021;     
+            --bg: #d9d4cc;         
             --glass: rgba(255,255,255,0.45); 
-            --dark: #3a3835;       /* 深咖啡色文字 */
-            --gray: #706d68;       /* 灰褐色文字 */
+            --dark: #3a3835;       
+            --gray: #706d68;       
         }
         
         html { scroll-behavior: smooth; }
@@ -27,7 +27,7 @@
         
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
-        /* 頂部 Header：精準間距還原 */
+        /* Header */
         .header { text-align: center; padding: 60px 20px 30px; }
         .header h1 { 
             font-family: 'Montserrat'; 
@@ -44,150 +44,51 @@
             letter-spacing: 4px; 
             margin-top: 15px; 
             text-transform: uppercase;
-            font-weight: 400;
         }
 
-        /* 搜尋框：還原圓潤感與磨砂效果 */
+        /* Search & Nav */
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
         .search-bar { 
-            width: 100%; 
-            padding: 14px 25px; 
-            border-radius: 50px; 
-            background: rgba(255,255,255,0.9); 
-            border: 1px solid rgba(255,255,255,0.5); 
-            text-align: center; 
-            outline: none; 
-            box-sizing: border-box; 
-            font-size: 0.95rem; 
-            backdrop-filter: blur(10px);
-            color: var(--dark);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            width: 100%; padding: 14px 25px; border-radius: 50px; 
+            background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); 
+            text-align: center; outline: none; box-sizing: border-box; font-size: 0.95rem; 
+            backdrop-filter: blur(10px); color: var(--dark);
         }
-
-        /* 快速導覽按鈕 */
         .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 30px; gap: 10px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { 
-            text-decoration: none; 
-            color: var(--gray); 
-            font-size: 0.8rem; 
-            background: var(--glass); 
-            padding: 9px 18px; 
-            border-radius: 25px; 
-            border: 1px solid rgba(255,255,255,0.3); 
-            white-space: nowrap;
-            transition: 0.3s;
+            text-decoration: none; color: var(--gray); font-size: 0.8rem; 
+            background: var(--glass); padding: 9px 18px; border-radius: 25px; 
+            border: 1px solid rgba(255,255,255,0.3); white-space: nowrap;
         }
 
-        /* 分類標題區塊 */
-        .cat-group { margin: 70px 0 40px; text-align: center; }
-        .cat-main { 
-            font-size: 1.5rem; 
-            font-weight: 400; 
-            letter-spacing: 6px; 
-            display: block; 
-            margin-bottom: 8px; 
-        }
-        .cat-en { 
-            font-family: 'Montserrat'; 
-            font-size: 0.7rem; 
-            color: var(--gray); 
-            letter-spacing: 4px; 
-            text-transform: uppercase; 
-            display: block; 
-            opacity: 0.7; 
-        }
+        /* Agreement Section (新的溫柔約定區塊) */
+        .agreement-section { margin-top: 60px; padding: 40px 20px; background: rgba(255,255,255,0.2); border-radius: 30px; border: 1px solid rgba(255,255,255,0.3); }
+        .agreement-title { text-align: center; margin-bottom: 40px; }
+        .agreement-title span { font-size: 1.2rem; letter-spacing: 5px; display: block; margin-bottom: 5px; }
+        .agreement-title small { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--gray); letter-spacing: 3px; opacity: 0.8; }
         
-        .tag-line { 
-            font-size: 0.7rem; 
-            color: var(--gray); 
-            margin: 40px 0 20px; 
-            text-align: center; 
-            letter-spacing: 3px; 
-        }
+        .info-item { margin-bottom: 35px; text-align: center; }
+        .info-label { font-size: 0.95rem; color: var(--hermes); letter-spacing: 2px; margin-bottom: 10px; display: block; font-weight: 400; }
+        .info-content { font-size: 0.8rem; color: var(--gray); line-height: 1.8; letter-spacing: 1px; }
+        .info-content strong { color: var(--dark); font-weight: 400; }
 
-        /* 菜單卡片細節校對 */
-        .card { 
-            background: var(--glass); 
-            border-radius: 25px; 
-            padding: 22px; 
-            margin-bottom: 15px; 
-            backdrop-filter: blur(12px); 
-            border: 1px solid rgba(255,255,255,0.5); 
-        }
+        /* Menu Display */
+        .cat-group { margin: 70px 0 40px; text-align: center; }
+        .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
+        .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
+        .tag-line { font-size: 0.7rem; color: var(--gray); margin: 40px 0 20px; text-align: center; letter-spacing: 3px; }
+        .card { background: var(--glass); border-radius: 25px; padding: 22px; margin-bottom: 15px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
         .name-zh { font-size: 1.05rem; font-weight: 400; letter-spacing: 1px; display: block; margin-bottom: 4px; }
-        .name-en { 
-            font-size: 0.65rem; 
-            color: var(--gray); 
-            text-transform: uppercase; 
-            font-family: 'Montserrat'; 
-            letter-spacing: 1px;
-        }
-        .price { 
-            font-family: 'Montserrat'; 
-            font-size: 0.9rem; 
-            color: var(--hermes); 
-            font-weight: 600; 
-            white-space: nowrap; 
-        }
-        .desc { 
-            font-size: 0.75rem; 
-            color: var(--gray); 
-            margin-top: 15px; 
-            line-height: 1.6; 
-            border-top: 0.5px solid rgba(0,0,0,0.06); 
-            padding-top: 12px; 
-            letter-spacing: 0.5px;
-        }
+        .name-en { font-size: 0.65rem; color: var(--gray); text-transform: uppercase; font-family: 'Montserrat'; letter-spacing: 1px; }
+        .price { font-family: 'Montserrat'; font-size: 0.9rem; color: var(--hermes); font-weight: 600; white-space: nowrap; }
+        .desc { font-size: 0.75rem; color: var(--gray); margin-top: 15px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 12px; }
 
-        /* TOP按鈕：還原半透明磨砂圓鈕 */
-        .top-btn { 
-            position: fixed; 
-            bottom: 35px; 
-            right: 25px; 
-            width: 48px; 
-            height: 48px; 
-            background: rgba(255,255,255,0.6); 
-            border-radius: 50%; 
-            border: 1px solid rgba(255,255,255,0.5); 
-            color: var(--gray); 
-            font-family: 'Montserrat'; 
-            font-size: 0.65rem; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-decoration: none; 
-            z-index: 100; 
-            backdrop-filter: blur(8px); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            letter-spacing: 1px;
-        }
-
-        /* 頁尾：地址與警語完全校對 */
-        .footer { 
-            margin-top: 100px; 
-            padding: 50px 20px 80px; 
-            text-align: center; 
-            font-size: 0.75rem; 
-            color: var(--gray); 
-            line-height: 2; 
-            border-top: 1px solid rgba(0,0,0,0.05); 
-        }
-        .footer-en-addr { font-family: 'Montserrat'; font-size: 0.6rem; letter-spacing: 1px; opacity: 0.8; }
-        .warning-en { font-family: 'Montserrat'; font-size: 0.6rem; opacity: 0.7; margin-top: 8px; display: block; letter-spacing: 1.5px; }
-        
-        /* 品牌最後一行標誌 AX SHISHA */
-        .brand-footer { 
-            font-family: 'Montserrat'; 
-            font-size: 1.3rem; 
-            font-weight: 200; 
-            letter-spacing: 15px; 
-            color: var(--dark); 
-            margin-top: 60px; 
-            opacity: 0.5; 
-            text-transform: uppercase; 
-        }
+        /* Footer & Top */
+        .top-btn { position: fixed; bottom: 35px; right: 25px; width: 48px; height: 48px; background: rgba(255,255,255,0.6); border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); color: var(--gray); font-family: 'Montserrat'; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; backdrop-filter: blur(8px); }
+        .footer { margin-top: 40px; padding: 50px 20px 80px; text-align: center; font-size: 0.75rem; color: var(--gray); line-height: 2; border-top: 1px solid rgba(0,0,0,0.05); }
+        .brand-footer { font-family: 'Montserrat'; font-size: 1.3rem; font-weight: 200; letter-spacing: 15px; color: var(--dark); margin-top: 60px; opacity: 0.5; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -201,21 +102,64 @@
         <input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單 SEARCH..." onkeyup="filterMenu()">
     </div>
 
-    <nav class="nav-scroller" id="nav"></nav>
+    <nav class="nav-scroller" id="nav-container">
+        <a href="#agreement" class="nav-btn" style="color: var(--hermes); border-color: var(--hermes);">與客人的約定</a>
+        <div id="nav" style="display: flex; gap: 10px;"></div>
+    </nav>
 
     <div id="content">
         <div style="text-align:center;padding:120px;color:var(--hermes);font-family:'Montserrat';font-size:0.75rem;letter-spacing:3px;">LOADING MENU...</div>
     </div>
 
+    <section class="agreement-section" id="agreement">
+        <div class="agreement-title">
+            <span>與客人的約定</span>
+            <small>OUR AGREEMENT</small>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">訂位方式</span>
+            <div class="info-content">想來玩玩？<br>官方 LINE / IG私訊 / 電話☎️<strong>0988-850-431</strong><br>我們等你 / 妳～</div>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">低消</span>
+            <div class="info-content">夜晚場低消 <strong>$400 / 人</strong><br>不限任何品項</div>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">有 WIFI</span>
+            <div class="info-content">密碼：<strong>0988850431</strong><br>（比酒單還好記！）</div>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">室內禁煙</span>
+            <div class="info-content">想抽煙的朋友，請移駕戶外～<br>煙灰缸在那，溫柔也在那</div>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">戶外音量</span>
+            <div class="info-content">到戶外透透氣時，小小音量就好<br>讓夜晚更溫柔一點</div>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">喝醉沒關係，我們懂</span>
+            <div class="info-content">如果不小心想吐，請讓我們幫你送進廁所<br>吐錯地方老闆會心痛<br><strong>清潔費 $2000</strong></div>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">一個人也歡迎</span>
+            <div class="info-content">就算只有一位，也非常適合來喝一杯<br>我們陪你 / 妳～</div>
+        </div>
+
+        <div style="text-align:center; font-size:0.8rem; color:var(--dark); margin-top:20px; letter-spacing:2px;">
+            總之～來開心最重要<br>其他的交給我們 🖤
+        </div>
+    </section>
+
     <footer class="footer">
-        <p>
-            📍 高雄楠梓區惠民路273號<br>
-            <span class="footer-en-addr">NO. 273, HUIMIN RD., NANZI DIST., KAOHSIUNG CITY</span>
-        </p>
-        <p style="margin-top: 30px;">
-            🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕<br>
-            <span class="warning-en">UNDERAGE DRINKING IS PROHIBITED. DRINK RESPONSIBLY.</span>
-        </p>
+        <p>📍 高雄楠梓區惠民路273號<br><span style="font-family:'Montserrat'; font-size:0.6rem;">NO. 273, HUIMIN RD., NANZI DIST., KAOHSIUNG CITY</span></p>
+        <p style="margin-top: 30px;">🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
         <div class="brand-footer">AX SHISHA</div>
     </footer>
 
@@ -224,94 +168,43 @@
 
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
-
-    // 精準對照分類翻譯
-    const catTranslations = {
-        "特製調酒": "SPECIAL COCKTAIL",
-        "系列調酒": "SERIES COCKTAIL",
-        "洋可夫特調": "YANKOV SPECIAL",
-        "烈酒精選": "SPIRITS SELECTION",
-        "啤酒": "BEER",
-        "軟飲": "SOFT DRINK"
-    };
+    const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
 
     async function loadMenu() {
         try {
             const response = await fetch(CSV_URL + '&t=' + Date.now());
             const csvText = await response.text();
             const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
-            
             const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-            const idx = {
-                cat: headers.indexOf('category'),
-                sub: headers.indexOf('subcategory'),
-                zh: headers.indexOf('name_zh'),
-                en: headers.indexOf('name_en'),
-                price: headers.indexOf('price'),
-                desc: headers.indexOf('description')
-            };
-
+            const idx = { cat: headers.indexOf('category'), sub: headers.indexOf('subcategory'), zh: headers.indexOf('name_zh'), en: headers.indexOf('name_en'), price: headers.indexOf('price'), desc: headers.indexOf('description') };
             const menuItems = [];
             for (let i = 1; i < lines.length; i++) {
                 const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 if (cols[idx.zh]) {
-                    menuItems.push({
-                        category: cols[idx.cat] || "OTHER",
-                        subcategory: cols[idx.sub] || "",
-                        name_zh: cols[idx.zh],
-                        name_en: cols[idx.en] || "",
-                        price: cols[idx.price] || "",
-                        description: cols[idx.desc] || ""
-                    });
+                    menuItems.push({ category: cols[idx.cat] || "OTHER", subcategory: cols[idx.sub] || "", name_zh: cols[idx.zh], name_en: cols[idx.en] || "", price: cols[idx.price] || "", description: cols[idx.desc] || "" });
                 }
             }
             renderMenu(menuItems);
-        } catch (error) {
-            document.getElementById('content').innerHTML = `<div style="text-align:center;padding:100px;font-family:'Montserrat';">LOAD ERROR</div>`;
-        }
+        } catch (error) { document.getElementById('content').innerHTML = `<div style="text-align:center;padding:100px;">LOAD ERROR</div>`; }
     }
 
     function renderMenu(items) {
         const content = document.getElementById('content');
         const nav = document.getElementById('nav');
         content.innerHTML = ''; nav.innerHTML = '';
-
         const categories = [...new Set(items.map(i => i.category))].filter(c => c && c !== "category");
-
         categories.forEach((cat, index) => {
             const btn = document.createElement('a');
-            btn.href = `#cat-${index}`;
-            btn.className = 'nav-btn';
-            btn.innerText = cat;
+            btn.href = `#cat-${index}`; btn.className = 'nav-btn'; btn.innerText = cat;
             nav.appendChild(btn);
-
             const section = document.createElement('section');
             section.id = `cat-${index}`;
-            
             const enTitle = catTranslations[cat] || "";
-            section.innerHTML = `
-                <div class="cat-group">
-                    <span class="cat-main">${cat}</span>
-                    <span class="cat-en">${enTitle}</span>
-                </div>`;
-
+            section.innerHTML = `<div class="cat-group"><span class="cat-main">${cat}</span><span class="cat-en">${enTitle}</span></div>`;
             let currentSub = "";
             items.filter(i => i.category === cat).forEach(item => {
-                if (item.subcategory && item.subcategory !== currentSub) {
-                    section.innerHTML += `<div class="tag-line">— ${item.subcategory} —</div>`;
-                    currentSub = item.subcategory;
-                }
-                section.innerHTML += `
-                    <div class="card menu-item">
-                        <div class="card-row">
-                            <div style="flex:1">
-                                <span class="name-zh">${item.name_zh}</span>
-                                <span class="name-en">${item.name_en}</span>
-                            </div>
-                            <div class="price">${item.price ? 'NT$ ' + item.price : ''}</div>
-                        </div>
-                        ${item.description ? `<div class="desc">${item.description}</div>` : ''}
-                    </div>`;
+                if (item.subcategory && item.subcategory !== currentSub) { section.innerHTML += `<div class="tag-line">— ${item.subcategory} —</div>`; currentSub = item.subcategory; }
+                section.innerHTML += `<div class="card menu-item"><div class="card-row"><div style="flex:1"><span class="name-zh">${item.name_zh}</span><span class="name-en">${item.name_en}</span></div><div class="price">${item.price ? 'NT$ ' + item.price : ''}</div></div>${item.description ? `<div class="desc">${item.description}</div>` : ''}</div>`;
             });
             content.appendChild(section);
         });
@@ -323,9 +216,7 @@
             card.style.display = card.innerText.toLowerCase().includes(keyword) ? 'block' : 'none';
         });
     }
-
     window.onload = loadMenu;
 </script>
 </body>
 </html>
-
