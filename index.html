@@ -13,7 +13,7 @@
         .header h1 { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 200; letter-spacing: 10px; margin: 0; }
         .header-sub { color: var(--hermes); font-size: 0.7rem; letter-spacing: 3px; margin-top: 10px; }
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
-        .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); text-align: center; outline: none; box-sizing: border-box; }
+        .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); text-align: center; outline: none; box-sizing: border-box; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 8px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
@@ -31,8 +31,13 @@
 </head>
 <body>
 <div class="container">
-    <header class="header"><h1>MENU</h1><div class="header-sub">AX SHISHA CAFE BAR</div></header>
-    <div class="search-area"><input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()"></div>
+    <header class="header">
+        <h1>MENU</h1>
+        <div class="header-sub">AX SHISHA CAFE BAR</div>
+    </header>
+    <div class="search-area">
+        <input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()">
+    </div>
     <nav class="nav-scroller" id="nav"></nav>
     <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">載入中...</div></div>
     <footer class="footer">
@@ -42,37 +47,47 @@
 </div>
 
 <script>
-    // 這是您 12:24 截圖中最精確的連結
-    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
+    // 已更新為您提供的最新連結
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
 
     async function loadMenu() {
         try {
             const response = await fetch(CSV_URL + '&t=' + Date.now());
-            const data = await response.text();
-            const lines = data.split(/\r?\n/);
-            const menuItems = [];
+            const csvText = await response.text();
+            const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
+            
+            // 自動偵測欄位索引
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            const getIdx = (name) => headers.indexOf(name);
+            
+            const idx = {
+                cat: getIdx('category'),
+                sub: getIdx('subcategory'),
+                zh: getIdx('name_zh'),
+                en: getIdx('name_en'),
+                price: getIdx('price'),
+                desc: getIdx('description')
+            };
 
+            const menuItems = [];
             for (let i = 1; i < lines.length; i++) {
-                if (!lines[i].trim()) continue;
-                // 強大解析：處理 CSV 中的逗號與雙引號
                 const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 
-                // 【徹底修正】：如果 B 欄是空的，就嘗試從 A 欄抓，總之一定要抓到分類
-                // 根據您 12:22 截圖，資料分布為：B:類別, C:子類別, D:中文名, E:英文名, F:價格, G:內容
-                let cat = cols[1] || cols[0];
-                let sub = cols[2] || "";
-                let zh = cols[3] || cols[2];
-                let en = cols[4] || "";
-                let price = cols[5] || "";
-                let desc = cols[6] || "";
-
-                if (zh && zh !== "name_zh") { 
-                    menuItems.push({ category: cat, subcategory: sub, name_zh: zh, name_en: en, price: price, description: desc });
+                // 只要中文名稱欄位有值，就抓取資料
+                if (cols[idx.zh]) {
+                    menuItems.push({
+                        category: cols[idx.cat] || "其他",
+                        subcategory: cols[idx.sub] || "",
+                        name_zh: cols[idx.zh],
+                        name_en: cols[idx.en] || "",
+                        price: cols[idx.price] || "",
+                        description: cols[idx.desc] || ""
+                    });
                 }
             }
             renderMenu(menuItems);
         } catch (error) {
-            document.getElementById('content').innerHTML = "讀取失敗";
+            document.getElementById('content').innerHTML = `<div style="text-align:center;padding:50px;">讀取失敗，請重新整理。</div>`;
         }
     }
 
@@ -85,7 +100,9 @@
 
         categories.forEach((cat, index) => {
             const btn = document.createElement('a');
-            btn.href = `#cat-${index}`; btn.className = 'nav-btn'; btn.innerText = cat;
+            btn.href = `#cat-${index}`;
+            btn.className = 'nav-btn';
+            btn.innerText = cat;
             nav.appendChild(btn);
 
             const section = document.createElement('section');
@@ -120,7 +137,9 @@
             card.style.display = card.innerText.toLowerCase().includes(keyword) ? 'block' : 'none';
         });
     }
+
     window.onload = loadMenu;
 </script>
 </body>
 </html>
+
