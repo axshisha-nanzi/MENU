@@ -11,28 +11,22 @@
         body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; -webkit-font-smoothing: antialiased; }
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
-        /* Header & Logo 區塊 - 僅擷取圖標部分 */
-        .header { text-align: center; padding: 30px 20px 25px; }
-        .logo-wrapper {
-            width: 100px;
-            height: 75px; /* 限制高度以隱藏下方文字 */
-            margin: 0 auto 10px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-        }
-        .brand-logo {
+        /* Header 區域 */
+        .header { text-align: center; padding: 20px 20px 25px; }
+        
+        /* Logo 容器：置中並調整大小，顏色與文字一致 */
+        .brand-logo-svg {
             width: 100px;
             height: auto;
-            /* 將白色圖片轉化為網頁深色 #3a3835 */
-            filter: invert(22%) sepia(4%) saturate(638%) hue-rotate(345deg) brightness(96%) contrast(89%);
-            object-fit: cover;
-            object-position: top;
+            margin: 0 auto 15px;
+            display: block;
+            fill: var(--dark); /* 自動對齊網頁深色碼 #3a3835 */
         }
+
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* 搜尋欄優化：寬度修正為 100% 以對齊下方框框 */
+        /* 搜尋欄：寬度修正為 100% 以完美對齊下方框框 */
         .search-area { margin: 0 auto 20px; width: 100%; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
         
@@ -40,7 +34,6 @@
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 8px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
 
-        /* 資訊區塊 - 保持原樣 */
         .info-section { margin: 10px 0 50px; padding: 30px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
         .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 4px; display: block; margin-bottom: 20px; border-bottom: 1px solid rgba(243, 112, 33, 0.15); padding-bottom: 8px; text-transform: uppercase; text-align: center;}
         
@@ -49,11 +42,9 @@
         .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.7; letter-spacing: 0.5px; }
         .info-highlight { color: var(--hermes); font-weight: 400; }
 
-        /* Menu Styles - 保持原樣 */
         .cat-group { margin: 60px 0 30px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
-        .tag-line { font-size: 0.7rem; color: var(--gray); margin: 30px 0 15px; text-align: center; letter-spacing: 3px; }
         
         .card { background: var(--glass); border-radius: 22px; padding: 18px 22px; margin-bottom: 12px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
@@ -70,9 +61,12 @@
 <body>
 <div class="container" id="top">
     <header class="header">
-        <div class="logo-wrapper">
-            <img src="https://i.postimg.cc/8z0XvR4f/logo-white.png" alt="AX SHISHA" class="brand-logo">
-        </div>
+        <svg class="brand-logo-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+            <path d="M250 50 L400 300 L250 250 L100 300 Z M250 220 L270 280 L250 270 L230 280 Z" />
+            <rect x="245" y="150" width="10" height="100" />
+            <path d="M220 180 L280 180" stroke-width="8" stroke="currentColor" />
+            <circle cx="250" cy="130" r="15" />
+        </svg>
         <h1>MENU</h1>
         <div class="header-sub">AX SHISHA CAFE BAR</div>
     </header>
@@ -144,7 +138,7 @@
         <p>📍 高雄楠梓區惠民路273號<br><span style="font-family:'Montserrat'; font-size:0.6rem;">NO. 273, HUIMIN RD., NANZI DIST., KAOHSIUNG CITY</span></p>
         <p style="margin-top: 30px;">🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
         <div class="brand-footer">AX SHISHA</div>
-    </footer>
+    </footer >
     <a href="#top" class="top-btn">TOP</a>
 </div>
 
@@ -225,3 +219,4 @@
 </script>
 </body>
 </html>
+
