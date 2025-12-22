@@ -16,7 +16,6 @@
         .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 8px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; transition: 0.3s; }
-        .nav-btn:active { background: var(--hermes); color: white; }
         .cat-group { margin: 40px 0 20px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 20px; }
         .cat-main { font-size: 1.2rem; font-weight: 400; letter-spacing: 5px; display: block; }
         .tag-line { font-size: 0.65rem; color: var(--gray); margin: 30px 0 10px; text-align: center; letter-spacing: 2px; }
@@ -32,14 +31,9 @@
 <body>
 <div class="container">
     <header class="header"><h1>MENU</h1><div style="color:var(--hermes); font-size:0.7rem; letter-spacing:3px; margin-top:10px;">AX SHISHA CAFE BAR</div></header>
-    
-    <div class="search-area">
-        <input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()">
-    </div>
-
+    <div class="search-area"><input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()"></div>
     <nav class="nav-scroller" id="nav"></nav>
     <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">正在連線 AX 雲端資料...</div></div>
-    
     <footer class="footer">
         <p>📍 高雄楠梓區惠民路273號</p>
         <p>🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
@@ -47,39 +41,38 @@
 </div>
 
 <script>
-    // 這裡已替換為您 12:07 截圖中的正確連結
+    // 使用您最新的 gid=0 連結
     const URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv&t=' + Date.now();
 
     async function loadData() {
         try {
             const res = await fetch(URL);
             const text = await res.text();
-            
-            // 拆分行並過濾掉空行
             const rows = text.split(/\r?\n/).filter(r => r.trim().length > 0);
             const items = [];
 
-            // 從第二行開始讀取 (跳過標題列)
             for (let i = 1; i < rows.length; i++) {
+                // 高級 CSV 分隔，確保描述裡的逗號不會斷開
                 const c = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 
-                // 只要中文名稱 (c[2]) 存在就存入
-                if (c[2]) {
+                // 【關鍵修正】根據您的截圖，資料是從第 2 格 (索引 1) 開始
+                // c[1] 是 category, c[2] 是 subcategory, c[3] 是 name_zh
+                if (c[3]) { 
                     items.push({
-                        cat: c[0] || "其他",
-                        sub: c[1] || "",
-                        zh: c[2],
-                        en: c[3] || "",
-                        price: c[4] || "",
-                        desc: c[5] || ""
+                        cat: c[1] || "其他",
+                        sub: c[2] || "",
+                        zh: c[3],
+                        en: c[4] || "",
+                        price: c[5] || "",
+                        desc: c[6] || ""
                     });
                 }
             }
 
             if (items.length > 0) { render(items); }
-            else { document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">目前雲端無資料，請確認試算表。</div>'; }
+            else { document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">資料解析失敗，請聯繫管理員。</div>'; }
         } catch (e) {
-            document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">讀取失敗，請確認網路連線。</div>';
+            document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">讀取失敗，請確認網路。</div>';
         }
     }
 
@@ -112,7 +105,7 @@
                                 <span class="name-zh">${item.zh}</span>
                                 <span class="name-en">${item.en}</span>
                             </div>
-                            <div class="price">${item.price ? 'NT$ ' + item.price : ''}</div>
+                            <div class="price">NT$ ${item.price}</div>
                         </div>
                         ${item.desc ? `<div class="desc">${item.desc}</div>` : ''}
                     </div>`;
