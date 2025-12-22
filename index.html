@@ -11,50 +11,41 @@
         body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; -webkit-font-smoothing: antialiased; }
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
-        /* --- Logo 區塊修正：確保比例正確並隱藏文字 --- */
-        .header { text-align: center; padding: 20px 20px 25px; }
-        .logo-box {
-            width: 150px; /* 控制 Logo 顯示寬度 */
-            height: 115px; /* 高度剛好切到橫線處，隱藏下方文字 */
-            margin: 0 auto 10px;
-            overflow: hidden; /* 核心：隱藏下半部文字 */
-            display: flex;
-            justify-content: center;
-        }
-        .brand-logo {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            /* 顏色自動適配：將原本深色圖片轉為與您網頁文字一致的 #3a3835 */
-            filter: contrast(1.1) brightness(0.9); 
-        }
-
+        /* Header 區域：已移除 Logo */
+        .header { text-align: center; padding: 40px 20px 25px; }
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* --- 搜尋欄對齊優化：寬度 100% --- */
+        /* 搜尋欄：寬度修正為 100% 完美對齊下方資訊框 */
         .search-area { margin: 0 auto 20px; width: 100%; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
         
-        /* 其餘樣式完全保留，不做任何變動 */
+        /* 導覽按鈕 */
         .nav-scroller { display: flex; overflow-x: auto; padding: 5px 0 20px; gap: 10px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 8px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
+
+        /* 資訊區塊 */
         .info-section { margin: 10px 0 50px; padding: 30px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
         .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 4px; display: block; margin-bottom: 20px; border-bottom: 1px solid rgba(243, 112, 33, 0.15); padding-bottom: 8px; text-transform: uppercase; text-align: center;}
+        
         .info-row { display: flex; margin-bottom: 15px; align-items: flex-start; }
         .info-label { width: 90px; font-size: 0.8rem; color: var(--dark); font-weight: 600; letter-spacing: 2px; flex-shrink: 0; }
         .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.7; letter-spacing: 0.5px; }
         .info-highlight { color: var(--hermes); font-weight: 400; }
+
+        /* 菜單分類與卡片樣式 */
         .cat-group { margin: 60px 0 30px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
+        
         .card { background: var(--glass); border-radius: 22px; padding: 18px 22px; margin-bottom: 12px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .name-zh { font-size: 1rem; font-weight: 400; letter-spacing: 1px; display: block; }
         .name-en { font-size: 0.6rem; color: var(--gray); text-transform: uppercase; font-family: 'Montserrat'; letter-spacing: 1px; display: block; margin-top: 2px; }
         .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; flex-shrink: 0; }
         .desc { font-size: 0.7rem; color: var(--gray); margin-top: 12px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 10px; letter-spacing: 0.5px; }
+
         .top-btn { position: fixed; bottom: 35px; right: 25px; width: 48px; height: 48px; background: rgba(255,255,255,0.6); border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); color: var(--gray); font-family: 'Montserrat'; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; backdrop-filter: blur(8px); }
         .footer { margin-top: 40px; padding: 40px 20px 80px; text-align: center; font-size: 0.75rem; color: var(--gray); line-height: 2; border-top: 1px solid rgba(0,0,0,0.05); }
         .brand-footer { font-family: 'Montserrat'; font-size: 1.3rem; font-weight: 200; letter-spacing: 15px; color: var(--dark); margin-top: 50px; opacity: 0.5; text-transform: uppercase; }
@@ -63,9 +54,6 @@
 <body>
 <div class="container" id="top">
     <header class="header">
-        <div class="logo-box">
-            <img src="https://i.postimg.cc/mDHS7LRP/image.png" alt="AX SHISHA" class="brand-logo">
-        </div>
         <h1>MENU</h1>
         <div class="header-sub">AX SHISHA CAFE BAR</div>
     </header>
@@ -83,28 +71,51 @@
         <span class="section-tag">⋄ Information / 店內資訊 ⋄</span>
         <div class="info-row">
             <span class="info-label">訂位資訊</span>
-            <span class="info-text">LINE ꔛ IG 私訊詢問<br>或致電 <span class="info-highlight">0988-850-431</span></span>
+            <span class="info-text">
+                LINE ꔛ IG 私訊詢問<br>
+                或致電 <span class="info-highlight">0988-850-431</span>
+            </span>
         </div>
         <div class="info-row">
             <span class="info-label">關於低消</span>
-            <span class="info-text">每人低消 <span class="info-highlight">$400</span><br>不限品項 ꔛ 盡情享受</span>
+            <span class="info-text">
+                每人低消 <span class="info-highlight">$400</span><br>
+                不限品項 ꔛ 盡情享受
+            </span>
         </div>
         <div class="info-row" style="margin-bottom: 25px;">
             <span class="info-label">WIFI 資訊</span>
-            <span class="info-text">密碼 <span class="info-highlight">0988850431</span></span>
+            <span class="info-text">
+                密碼 <span class="info-highlight">0988850431</span>
+            </span>
         </div>
+
         <span class="section-tag">⋄ Agreement / 溫柔約定 ⋄</span>
         <div class="info-row">
             <span class="info-label">關於呼吸</span>
-            <span class="info-text">室內禁菸 ꔛ 請移駕戶外透氣<br><span class="info-highlight">煙灰缸在那裡，溫柔也在那裡</span></span>
+            <span class="info-text">
+                室內禁菸 ꔛ 請移駕戶外透氣<br>
+                <span class="info-highlight">煙灰缸在那裡，溫柔也在那裡</span>
+            </span>
         </div>
         <div class="info-row">
             <span class="info-label">戶外音量</span>
-            <span class="info-text">透氣時，<span class="info-highlight">請將溫柔留給鄰居</span><br>小小聲就好 ꔛ 讓我們能長久相伴</span>
+            <span class="info-text">
+                透氣時，<span class="info-highlight">請將溫柔留給鄰居</span><br>
+                小小聲就好 ꔛ 讓我們能長久相伴
+            </span>
         </div>
         <div class="info-row">
             <span class="info-label">關於醉意</span>
-            <span class="info-text">若反胃請務必讓我們送您進廁所<br>吐錯地方老闆會心痛 ꔛ 酌收清潔費 <span class="info-highlight">$2000</span></span>
+            <span class="info-text">
+                若反胃請務必讓我們送您進廁所<br>
+                吐錯地方老闆會心痛 ꔛ 酌收清潔費 <span class="info-highlight">$2000</span>
+            </span>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; font-size: 0.75rem; color: var(--dark); letter-spacing: 3px; line-height: 1.8;">
+            一個人也歡迎，我們陪你 / 妳<br>
+            來開心最重要 ꔛ 其他交給我們
         </div>
     </section>
 
@@ -119,9 +130,9 @@
 </div>
 
 <script>
-    // JavaScript 部分完全保持原樣，確保您的菜單讀取正常
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
+    
     async function loadMenu() {
         try {
             const response = await fetch(CSV_URL + '&t=' + Date.now());
@@ -129,6 +140,7 @@
             const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
             const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
             const idx = { cat: headers.indexOf('category'), sub: headers.indexOf('subcategory'), zh: headers.indexOf('name_zh'), en: headers.indexOf('name_en'), price: headers.indexOf('price'), desc: headers.indexOf('description') };
+            
             const menuItems = [];
             for (let i = 1; i < lines.length; i++) {
                 const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
@@ -137,34 +149,60 @@
                 }
             }
             renderMenu(menuItems);
-        } catch (error) { document.getElementById('content').innerHTML = `讀取失敗`; }
+        } catch (error) { 
+            document.getElementById('content').innerHTML = `<div style="text-align:center;padding:50px;">讀取失敗</div>`; 
+        }
     }
+
     function renderMenu(items) {
-        const content = document.getElementById('content'); const nav = document.getElementById('nav');
+        const content = document.getElementById('content');
+        const nav = document.getElementById('nav');
         content.innerHTML = ''; nav.innerHTML = '';
         const categories = [...new Set(items.map(i => i.category))].filter(c => c && c !== "category");
+        
         categories.forEach((cat, index) => {
-            const btn = document.createElement('a'); btn.href = `#cat-${index}`; btn.className = 'nav-btn'; btn.innerText = cat; nav.appendChild(btn);
-            const section = document.createElement('div'); section.id = `cat-${index}`; section.className = 'cat-group';
+            const btn = document.createElement('a');
+            btn.href = `#cat-${index}`;
+            btn.className = 'nav-btn';
+            btn.innerText = cat;
+            nav.appendChild(btn);
+
+            const section = document.createElement('div');
+            section.id = `cat-${index}`;
+            section.className = 'cat-group';
             section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || 'MENU'}</span>`;
             content.appendChild(section);
+
             const catItems = items.filter(i => i.category === cat);
             catItems.forEach(item => {
-                const card = document.createElement('div'); card.className = 'card';
-                card.innerHTML = `<div class="card-row"><div><span class="name-zh">${item.name_zh}</span><span class="name-en">${item.name_en}</span></div><div class="price">$${item.price}</div></div>${item.description ? `<div class="desc">${item.description}</div>` : ''}`;
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-row">
+                        <div><span class="name-zh">${item.name_zh}</span><span class="name-en">${item.name_en}</span></div>
+                        <div class="price">$${item.price}</div>
+                    </div>
+                    ${item.description ? `<div class="desc">${item.description}</div>` : ''}
+                `;
                 content.appendChild(card);
             });
         });
     }
+
     function filterMenu() {
         const input = document.getElementById('searchBox').value.toLowerCase();
         const cards = document.getElementsByClassName('card');
         const groups = document.getElementsByClassName('cat-group');
-        for (let card of cards) { card.style.display = card.innerText.toLowerCase().includes(input) ? "block" : "none"; }
-        for (let group of groups) { group.style.display = input === "" ? "block" : "none"; }
+        for (let card of cards) {
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(input) ? "block" : "none";
+        }
+        for (let group of groups) {
+            group.style.display = input === "" ? "block" : "none";
+        }
     }
+
     window.onload = loadMenu;
 </script>
 </body>
 </html>
-
