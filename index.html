@@ -12,31 +12,31 @@
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
         /* Header */
-        .header { text-align: center; padding: 60px 20px 30px; }
+        .header { text-align: center; padding: 50px 20px 25px; }
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
         /* Search & Nav */
-        .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
+        .search-area { margin-bottom: 20px; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 14px 25px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.95rem; backdrop-filter: blur(10px); }
-        .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 10px; scrollbar-width: none; }
+        .nav-scroller { display: flex; overflow-x: auto; padding: 5px 0 20px; gap: 10px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
-        .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 9px 18px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
+        .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 8px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
 
-        /* 資訊區塊排版優化 */
-        .info-section { margin: 20px 0 60px; padding: 45px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
-        .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 4px; display: block; margin-bottom: 30px; border-bottom: 1px solid rgba(243, 112, 33, 0.15); padding-bottom: 12px; text-transform: uppercase; text-align: center;}
+        /* 資訊區塊 - 垂直瘦身優化 */
+        .info-section { margin: 10px 0 50px; padding: 30px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
+        .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 4px; display: block; margin-bottom: 20px; border-bottom: 1px solid rgba(243, 112, 33, 0.15); padding-bottom: 8px; text-transform: uppercase; text-align: center;}
         
-        .info-row { display: flex; margin-bottom: 25px; align-items: flex-start; }
-        .info-label { width: 90px; font-size: 0.8rem; color: var(--dark); font-weight: 600; letter-spacing: 2px; flex-shrink: 0; position: relative; }
-        .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.8; letter-spacing: 1px; }
+        .info-row { display: flex; margin-bottom: 15px; align-items: flex-start; }
+        .info-label { width: 90px; font-size: 0.8rem; color: var(--dark); font-weight: 600; letter-spacing: 2px; flex-shrink: 0; }
+        .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.7; letter-spacing: 0.5px; }
         .info-highlight { color: var(--hermes); font-weight: 400; }
 
         /* Menu Styles */
-        .cat-group { margin: 80px 0 40px; text-align: center; }
+        .cat-group { margin: 60px 0 30px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
-        .tag-line { font-size: 0.7rem; color: var(--gray); margin: 40px 0 20px; text-align: center; letter-spacing: 3px; }
+        .tag-line { font-size: 0.7rem; color: var(--gray); margin: 30px 0 15px; text-align: center; letter-spacing: 3px; }
         .card { background: var(--glass); border-radius: 25px; padding: 22px; margin-bottom: 15px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
         .name-zh { font-size: 1.05rem; font-weight: 400; letter-spacing: 1px; }
@@ -45,8 +45,8 @@
         .desc { font-size: 0.75rem; color: var(--gray); margin-top: 15px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 12px; }
 
         .top-btn { position: fixed; bottom: 35px; right: 25px; width: 48px; height: 48px; background: rgba(255,255,255,0.6); border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); color: var(--gray); font-family: 'Montserrat'; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; backdrop-filter: blur(8px); }
-        .footer { margin-top: 60px; padding: 50px 20px 80px; text-align: center; font-size: 0.75rem; color: var(--gray); line-height: 2; border-top: 1px solid rgba(0,0,0,0.05); }
-        .brand-footer { font-family: 'Montserrat'; font-size: 1.3rem; font-weight: 200; letter-spacing: 15px; color: var(--dark); margin-top: 60px; opacity: 0.5; text-transform: uppercase; }
+        .footer { margin-top: 40px; padding: 40px 20px 80px; text-align: center; font-size: 0.75rem; color: var(--gray); line-height: 2; border-top: 1px solid rgba(0,0,0,0.05); }
+        .brand-footer { font-family: 'Montserrat'; font-size: 1.3rem; font-weight: 200; letter-spacing: 15px; color: var(--dark); margin-top: 50px; opacity: 0.5; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -83,7 +83,7 @@
                 不限品項 ꔛ 請盡情享受夜晚
             </span>
         </div>
-        <div class="info-row" style="margin-bottom: 45px;">
+        <div class="info-row" style="margin-bottom: 25px;">
             <span class="info-label">連上網路 ⊹</span>
             <span class="info-text">
                 密碼 <span class="info-highlight">0988850431</span><br>
@@ -111,13 +111,13 @@
             <span class="info-label">關於醉意 ⊹</span>
             <span class="info-text">
                 若反胃請讓我們幫您送進廁所<br>
-                吐錯地方老闆會心痛 ꔛ 清潔費 <span class="info-highlight">$2000</span>
+                吐錯地方老闆會心痛 ꔛ 酌收清潔費 <span class="info-highlight">$2000</span>
             </span>
         </div>
 
-        <div style="text-align: center; margin-top: 40px; font-size: 0.75rem; color: var(--dark); letter-spacing: 3px; line-height: 2;">
+        <div style="text-align: center; margin-top: 25px; font-size: 0.75rem; color: var(--dark); letter-spacing: 3px; line-height: 1.8;">
             一個人也歡迎，我們陪你 / 妳<br>
-            來開心最重要 ꔛ 其他交給 AX 🖤
+            來開心最重要 ꔛ 其他交給我們
         </div>
     </section>
 
@@ -132,7 +132,6 @@
 </div>
 
 <script>
-    // ... (保持原本的 JavaScript 不變)
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
     async function loadMenu() {
