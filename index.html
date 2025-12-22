@@ -23,13 +23,13 @@
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 9px 18px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
 
-        /* 資訊區塊排版 */
-        .info-section { margin: 20px 0 60px; padding: 40px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
-        .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 3px; display: block; margin-bottom: 25px; border-bottom: 1px solid rgba(243, 112, 33, 0.2); padding-bottom: 10px; text-transform: uppercase; text-align: center;}
+        /* 資訊區塊排版優化 */
+        .info-section { margin: 20px 0 60px; padding: 45px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
+        .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 4px; display: block; margin-bottom: 30px; border-bottom: 1px solid rgba(243, 112, 33, 0.15); padding-bottom: 12px; text-transform: uppercase; text-align: center;}
         
-        .info-row { display: flex; margin-bottom: 20px; align-items: flex-start; }
-        .info-label { width: 85px; font-size: 0.75rem; color: var(--dark); font-weight: 600; letter-spacing: 1px; flex-shrink: 0; }
-        .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.8; letter-spacing: 0.5px; }
+        .info-row { display: flex; margin-bottom: 25px; align-items: flex-start; }
+        .info-label { width: 90px; font-size: 0.8rem; color: var(--dark); font-weight: 600; letter-spacing: 2px; flex-shrink: 0; position: relative; }
+        .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.8; letter-spacing: 1px; }
         .info-highlight { color: var(--hermes); font-weight: 400; }
 
         /* Menu Styles */
@@ -67,39 +67,57 @@
 
     <section class="info-section" id="info">
         
-        <span class="section-tag">Information / 店內資訊</span>
+        <span class="section-tag">⋄ Information / 店內資訊 ⋄</span>
         
         <div class="info-row">
-            <span class="info-label">訂位資訊</span>
-            <span class="info-text">LINE / IG 私訊 或撥打 <span class="info-highlight">0988-850-431</span></span>
+            <span class="info-label">訂位資訊 ⊹</span>
+            <span class="info-text">
+                LINE / IG 私訊詢問<br>
+                或致電 <span class="info-highlight">0988-850-431</span>
+            </span>
         </div>
         <div class="info-row">
-            <span class="info-label">關於低消</span>
-            <span class="info-text">每人低消 <span class="info-highlight">$400</span>，不限品項，請盡情享受</span>
+            <span class="info-label">關於低消 ⊹</span>
+            <span class="info-text">
+                每人低消 <span class="info-highlight">$400</span><br>
+                不限品項 ꔛ 請盡情享受夜晚
+            </span>
         </div>
-        <div class="info-row" style="margin-bottom: 40px;">
-            <span class="info-label">連上網路</span>
-            <span class="info-text">密碼 <span class="info-highlight">0988850431</span>，與電話相同，讓連結更簡單</span>
+        <div class="info-row" style="margin-bottom: 45px;">
+            <span class="info-label">連上網路 ⊹</span>
+            <span class="info-text">
+                密碼 <span class="info-highlight">0988850431</span><br>
+                與電話相同 ꔛ 連結更簡單
+            </span>
         </div>
 
-        <span class="section-tag">Agreement / 溫柔約定</span>
+        <span class="section-tag">⋄ Agreement / 溫柔約定 ⋄</span>
 
         <div class="info-row">
-            <span class="info-label">關於呼吸</span>
-            <span class="info-text">室內禁菸，<span class="info-highlight">戶外備有煙灰缸</span>，溫柔也在那裡</span>
+            <span class="info-label">關於呼吸 ⊹</span>
+            <span class="info-text">
+                室內禁菸 ꔛ 請移駕戶外<br>
+                <span class="info-highlight">煙灰缸備妥了，溫柔也在那裡</span>
+            </span>
         </div>
         <div class="info-row">
-            <span class="info-label">戶外音量</span>
-            <span class="info-text">到外面透氣時，<span class="info-highlight">請將溫柔留給鄰居</span>，小小聲就好</span>
+            <span class="info-label">戶外音量 ⊹</span>
+            <span class="info-text">
+                透透氣時，<span class="info-highlight">請將溫柔留給鄰居</span><br>
+                小小聲就好 ꔛ 讓我們能長久陪伴
+            </span>
         </div>
         <div class="info-row">
-            <span class="info-label">關於醉意</span>
-            <span class="info-text">若反胃請務必讓我們送您進廁所，吐錯地方老闆會心痛<br>並酌收 <span class="info-highlight">$2000</span> 清潔費</span>
+            <span class="info-label">關於醉意 ⊹</span>
+            <span class="info-text">
+                若反胃請讓我們幫您送進廁所<br>
+                吐錯地方老闆會心痛 ꔛ 清潔費 <span class="info-highlight">$2000</span>
+            </span>
         </div>
 
-        <div style="text-align: center; margin-top: 30px; font-size: 0.75rem; color: var(--dark); letter-spacing: 2px;">
+        <div style="text-align: center; margin-top: 40px; font-size: 0.75rem; color: var(--dark); letter-spacing: 3px; line-height: 2;">
             一個人也歡迎，我們陪你 / 妳<br>
-            來開心最重要，其他的交給 AX 🖤
+            來開心最重要 ꔛ 其他交給 AX 🖤
         </div>
     </section>
 
@@ -114,6 +132,7 @@
 </div>
 
 <script>
+    // ... (保持原本的 JavaScript 不變)
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
     async function loadMenu() {
@@ -158,4 +177,3 @@
 </script>
 </body>
 </html>
-
