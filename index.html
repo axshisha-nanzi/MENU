@@ -1,47 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AX SHISHA MENU</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Noto+Sans+TC:wght@300;400&display=swap');
-        :root { --hermes: #f37021; --bg: #d9d4cc; --glass: rgba(255,255,255,0.45); --dark: #3a3835; --gray: #706d68; }
-        body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-image: radial-gradient(at 50% 0%, #e2ded8 0%, #d9d4cc 100%); background-attachment: fixed; }
-        .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; }
-        .header { text-align: center; padding: 40px 20px 20px; }
-        .header h1 { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 200; letter-spacing: 10px; margin: 0; }
-        .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
-        .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(15px); box-sizing: border-box; text-align: center; outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 8px; scrollbar-width: none; }
-        .nav-scroller::-webkit-scrollbar { display: none; }
-        .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; transition: 0.3s; }
-        .cat-group { margin: 40px 0 20px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 20px; }
-        .cat-main { font-size: 1.2rem; font-weight: 400; letter-spacing: 5px; display: block; }
-        .tag-line { font-size: 0.65rem; color: var(--gray); margin: 30px 0 10px; text-align: center; letter-spacing: 2px; }
-        .card { background: var(--glass); border-radius: 20px; padding: 20px; margin-bottom: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.4); }
-        .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-        .name-zh { font-size: 0.95rem; font-weight: 400; letter-spacing: 1px; display: block; }
-        .name-en { font-size: 0.6rem; color: var(--gray); text-transform: uppercase; }
-        .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; white-space: nowrap; }
-        .desc { font-size: 0.7rem; color: var(--gray); margin-top: 10px; line-height: 1.5; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px; }
-        .footer { margin-top: 50px; padding: 40px 20px; text-align: center; font-size: 0.7rem; color: var(--gray); }
-    </style>
-</head>
-<body>
-<div class="container">
-    <header class="header"><h1>MENU</h1><div style="color:var(--hermes); font-size:0.7rem; letter-spacing:3px; margin-top:10px;">AX SHISHA CAFE BAR</div></header>
-    <div class="search-area"><input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()"></div>
-    <nav class="nav-scroller" id="nav"></nav>
-    <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">正在連線 AX 雲端資料...</div></div>
-    <footer class="footer">
-        <p>📍 高雄楠梓區惠民路273號</p>
-        <p>🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
-    </footer>
-</div>
-
 <script>
-    // 使用您最新的 gid=0 連結
+    // 1. 請確認這段網址結尾是 gid=0
     const URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv&t=' + Date.now();
 
     async function loadData() {
@@ -52,12 +10,16 @@
             const items = [];
 
             for (let i = 1; i < rows.length; i++) {
-                // 高級 CSV 分隔，確保描述裡的逗號不會斷開
+                // 高級解析：處理描述裡的逗號
                 const c = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 
-                // 【關鍵修正】根據您的截圖，資料是從第 2 格 (索引 1) 開始
-                // c[1] 是 category, c[2] 是 subcategory, c[3] 是 name_zh
-                if (c[3]) { 
+                // 根據您的截圖：
+                // c[0] 是 A 欄 (空的)
+                // c[1] 是 B 欄 (category)
+                // c[2] 是 C 欄 (subcategory)
+                // c[3] 是 D 欄 (name_zh) -> 這是判斷有沒有資料的重點
+                
+                if (c[3] && c[3] !== "") { 
                     items.push({
                         cat: c[1] || "其他",
                         sub: c[2] || "",
@@ -69,56 +31,14 @@
                 }
             }
 
-            if (items.length > 0) { render(items); }
-            else { document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">資料解析失敗，請聯繫管理員。</div>'; }
+            if (items.length > 0) {
+                render(items);
+            } else {
+                document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">抓取成功但內容格式不符，請檢查 B 欄到 G 欄是否有資料。</div>';
+            }
         } catch (e) {
-            document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">讀取失敗，請確認網路。</div>';
+            document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">連線失敗。</div>';
         }
     }
-
-    function render(items) {
-        const content = document.getElementById('content');
-        const nav = document.getElementById('nav');
-        content.innerHTML = ''; nav.innerHTML = '';
-
-        const categories = [...new Set(items.map(i => i.cat))].filter(c => c);
-
-        categories.forEach((cat, idx) => {
-            const btn = document.createElement('a');
-            btn.href = `#c${idx}`; btn.className = 'nav-btn'; btn.innerText = cat;
-            nav.appendChild(btn);
-
-            const sec = document.createElement('section');
-            sec.id = `c${idx}`;
-            sec.innerHTML = `<div class="cat-group"><span class="cat-main">${cat}</span></div>`;
-
-            let lastSub = "";
-            items.filter(i => i.cat === cat).forEach(item => {
-                if (item.sub && item.sub !== lastSub) {
-                    sec.innerHTML += `<div class="tag-line">— ${item.sub} —</div>`;
-                    lastSub = item.sub;
-                }
-                sec.innerHTML += `
-                    <div class="card card-item">
-                        <div class="card-row">
-                            <div style="flex:1">
-                                <span class="name-zh">${item.zh}</span>
-                                <span class="name-en">${item.en}</span>
-                            </div>
-                            <div class="price">NT$ ${item.price}</div>
-                        </div>
-                        ${item.desc ? `<div class="desc">${item.desc}</div>` : ''}
-                    </div>`;
-            });
-            content.appendChild(sec);
-        });
-    }
-
-    function filterMenu() {
-        const val = document.getElementById('searchBox').value.toLowerCase();
-        document.querySelectorAll('.card-item').forEach(c => c.style.display = c.innerText.toLowerCase().includes(val) ? 'block' : 'none');
-    }
-    window.onload = loadData;
+    // ... 其餘渲染代碼保持不變 ...
 </script>
-</body>
-</html>
