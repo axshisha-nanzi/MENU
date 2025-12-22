@@ -39,20 +39,22 @@
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 9px 18px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
 
-        /* AX 暖心指南 (精簡美化版) */
-        .guide-section { margin: 20px 0 40px; padding: 30px 20px; background: var(--glass); border-radius: 30px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
-        .guide-title { text-align: center; margin-bottom: 30px; }
-        .guide-title span { font-size: 1.1rem; letter-spacing: 6px; color: var(--dark); display: block; margin-bottom: 5px; }
-        .guide-title small { font-family: 'Montserrat'; font-size: 0.6rem; color: var(--hermes); letter-spacing: 3px; text-transform: uppercase; }
+        /* AX 暖心指南 - 精品極簡排版 */
+        .guide-section { margin: 20px 0 60px; padding: 40px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: center; }
+        .guide-title { margin-bottom: 45px; }
+        .guide-title span { font-size: 1.2rem; letter-spacing: 8px; color: var(--dark); display: block; margin-bottom: 8px; }
+        .guide-title small { font-family: 'Montserrat'; font-size: 0.6rem; color: var(--hermes); letter-spacing: 4px; text-transform: uppercase; font-weight: 400; }
         
-        .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: center; }
-        .guide-item { padding: 10px 5px; }
-        .guide-label { font-size: 0.85rem; color: var(--hermes); margin-bottom: 6px; display: block; letter-spacing: 1px; }
-        .guide-text { font-size: 0.75rem; color: var(--gray); line-height: 1.6; }
-        .guide-full { grid-column: 1 / -1; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .guide-box { margin-bottom: 40px; }
+        .guide-label { font-size: 0.9rem; color: var(--dark); letter-spacing: 3px; margin-bottom: 12px; display: block; font-weight: 400; }
+        .guide-content { font-size: 0.8rem; color: var(--gray); line-height: 2; letter-spacing: 1px; }
+        .guide-highlight { color: var(--hermes); font-weight: 400; }
+        
+        /* 強化：煙灰缸引導區塊 */
+        .smoking-guide { padding: 20px; border: 1px dashed var(--hermes); border-radius: 20px; margin: 20px 0; }
 
         /* Menu */
-        .cat-group { margin: 70px 0 40px; text-align: center; }
+        .cat-group { margin: 80px 0 40px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
         .tag-line { font-size: 0.7rem; color: var(--gray); margin: 40px 0 20px; text-align: center; letter-spacing: 3px; }
@@ -77,51 +79,63 @@
     </header>
 
     <div class="search-area">
-        <input type="text" class="search-bar" id="searchBox" placeholder="搜尋 SEARCH..." onkeyup="filterMenu()">
+        <input type="text" class="search-bar" id="searchBox" placeholder="SEARCH..." onkeyup="filterMenu()">
     </div>
 
     <nav class="nav-scroller">
-        <a href="#guide" class="nav-btn" style="color: var(--hermes); border-color: var(--hermes);">店內指南 GUIDE</a>
+        <a href="#guide" class="nav-btn" style="color: var(--hermes); border-color: var(--hermes);">GUIDE / 暖心指南</a>
         <div id="nav" style="display: flex; gap: 10px;"></div>
     </nav>
 
     <section class="guide-section" id="guide">
         <div class="guide-title">
             <span>與您的溫柔約定</span>
-            <small>AX Warm Guide</small>
+            <small>House Rules & Care</small>
         </div>
 
-        <div class="guide-grid">
-            <div class="guide-item">
-                <span class="guide-label">想來玩？</span>
-                <div class="guide-text">LINE / IG私訊<br>☎️ 0988-850-431</div>
+        <div class="guide-box">
+            <span class="guide-label">RESV. / 訂位</span>
+            <div class="guide-content">LINE / IG私訊 或撥打<br><span class="guide-highlight">0988-850-431</span></div>
+        </div>
+
+        <div class="guide-box">
+            <span class="guide-label">MIN. / 低消</span>
+            <div class="guide-content">夜晚場最低消費 <span class="guide-highlight">$400</span> / 人<br>不限品項，盡情享受</div>
+        </div>
+
+        <div class="guide-box">
+            <span class="guide-label">WIFI / 密碼</span>
+            <div class="guide-content"><span class="guide-highlight">0988850431</span><br>與店內電話相同，讓連結更簡單</div>
+        </div>
+
+        <div class="guide-box smoking-guide">
+            <span class="guide-label" style="color: var(--hermes);">SMOKING / 呼吸</span>
+            <div class="guide-content">
+                室內全面禁菸<br>
+                想抽菸的朋友，請移駕戶外透透氣<br>
+                <span class="guide-highlight">我們在外面準備了煙灰缸，溫柔也在那</span>
             </div>
-            <div class="guide-item">
-                <span class="guide-label">最低消費</span>
-                <div class="guide-text">夜晚場 $400 / 人<br>不限品項</div>
+        </div>
+
+        <div class="guide-box">
+            <span class="guide-label">CARE / 醉意</span>
+            <div class="guide-content">
+                喝醉沒關係，我們懂。<br>
+                若有反胃感，請務必讓我們送您進廁所<br>
+                吐錯地方老闆會心痛，並酌收 <span class="guide-highlight">$2000</span> 清潔費
             </div>
-            <div class="guide-item">
-                <span class="guide-label">連上 WIFI</span>
-                <div class="guide-text">0988850431<br>比酒單還好記</div>
-            </div>
-            <div class="guide-item">
-                <span class="guide-label">關於呼吸</span>
-                <div class="guide-text">室內禁菸<br>溫柔請移駕戶外</div>
-            </div>
-            <div class="guide-full">
-                <span class="guide-label">喝醉沒關係，我們懂</span>
-                <div class="guide-text">若不小心反胃，請讓我們送您進廁所<br>吐錯地方清潔費 $2000，老闆會心痛</div>
-            </div>
-            <div class="guide-full" style="border:none; padding-top:0;">
-                <div class="guide-text" style="color:var(--dark); letter-spacing:1px; margin-top:10px;">
-                    一個人也歡迎，我們陪你 / 妳<br>來開心最重要，其他的交給 AX 🖤
-                </div>
+        </div>
+
+        <div class="guide-box" style="margin-bottom: 0;">
+            <div class="guide-content" style="color: var(--dark); font-size: 0.85rem; letter-spacing: 2px;">
+                一個人也歡迎，我們陪你 / 妳<br>
+                來開心最重要，其他的交給 AX 🖤
             </div>
         </div>
     </section>
 
     <div id="content">
-        <div style="text-align:center;padding:120px;color:var(--hermes);font-family:'Montserrat';font-size:0.75rem;letter-spacing:3px;">LOADING MENU...</div>
+        <div style="text-align:center;padding:120px;color:var(--hermes);font-family:'Montserrat';font-size:0.75rem;letter-spacing:3px;">LOADING...</div>
     </div>
 
     <footer class="footer">
