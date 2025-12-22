@@ -16,7 +16,7 @@
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* 搜尋欄 - 恢復原始寬度與樣式 */
+        /* 搜尋欄 - 100% 寬度 */
         .search-area { margin: 0 0 20px 0; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
         
@@ -39,7 +39,6 @@
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
         .tag-line { font-size: 0.7rem; color: var(--gray); margin: 30px 0 15px; text-align: center; letter-spacing: 3px; }
         
-        /* 菜單卡片 */
         .card { background: var(--glass); border-radius: 22px; padding: 18px 22px; margin-bottom: 12px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .name-zh { font-size: 1rem; font-weight: 400; letter-spacing: 1px; display: block; }
@@ -100,7 +99,17 @@
 
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
-    const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
+    
+    const catTranslations = { 
+        "特製調酒": "SPECIAL COCKTAIL", 
+        "系列調酒": "SERIES COCKTAIL", 
+        "洋可夫特調": "YANKOV SPECIAL", 
+        "烈酒精選": "SPIRITS SELECTION", 
+        "啤酒": "BEER", 
+        "軟飲": "SOFT DRINK",
+        "深夜小食": "MIDNIGHT SNACKS"
+    };
+    
     let allData = [];
 
     async function loadMenu() {
@@ -108,7 +117,7 @@
             const response = await fetch(CSV_URL + '&t=' + Date.now());
             const csvText = await response.text();
             
-            // 修正：最穩定的 CSV 行解析
+            // 使用正則拆分 CSV，確保引號內的內容（含 $ 符號）被完整保留
             const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
             const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
             const idx = { 
@@ -122,7 +131,7 @@
 
             allData = [];
             for (let i = 1; i < lines.length; i++) {
-                // 修正：更精準的逗號解析，保留引號內的內容（包括帶單位的價錢）
+                // 正則解析確保帶單位的價錢不會因為逗號或引號出錯
                 const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 if (cols[idx.zh]) {
                     allData.push({ 
@@ -191,12 +200,11 @@
 
     function filterMenu() {
         const keyword = document.getElementById('searchBox').value.toLowerCase();
-        const filtered = allData.filter(i => 
+        renderMenu(allData.filter(i => 
             i.name_zh.toLowerCase().includes(keyword) || 
             i.category.toLowerCase().includes(keyword) || 
             (i.subcategory && i.subcategory.toLowerCase().includes(keyword))
-        );
-        renderMenu(filtered);
+        ));
     }
 
     window.onload = loadMenu;
