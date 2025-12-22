@@ -11,13 +11,21 @@
         body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; -webkit-font-smoothing: antialiased; }
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
-        /* Header */
-        .header { text-align: center; padding: 50px 20px 25px; }
+        /* Header & Logo */
+        .header { text-align: center; padding: 20px 20px 25px; }
+        .brand-logo { 
+            width: 120px; /* 您可以自行微調 Logo 大小 */
+            height: auto; 
+            margin: 0 auto 15px;
+            display: block;
+            /* 濾鏡：將白色 Logo 轉化為品牌深色 #3a3835，保持美感統一 */
+            filter: invert(24%) sepia(5%) saturate(541%) hue-rotate(346deg) brightness(95%) contrast(88%);
+        }
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* 搜尋欄優化：縮窄並置中 */
-        .search-area { margin: 0 auto 20px; width: 80%; position: sticky; top: 15px; z-index: 110; }
+        /* 搜尋欄：寬度修正為 100% 以對齊下方框框 */
+        .search-area { margin: 0 auto 20px; width: 100%; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
         
         .nav-scroller { display: flex; overflow-x: auto; padding: 5px 0 20px; gap: 10px; scrollbar-width: none; }
@@ -39,7 +47,7 @@
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
         .tag-line { font-size: 0.7rem; color: var(--gray); margin: 30px 0 15px; text-align: center; letter-spacing: 3px; }
         
-        /* 菜單卡片優化 */
+        /* 菜單卡片 */
         .card { background: var(--glass); border-radius: 22px; padding: 18px 22px; margin-bottom: 12px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .name-zh { font-size: 1rem; font-weight: 400; letter-spacing: 1px; display: block; }
@@ -55,6 +63,7 @@
 <body>
 <div class="container" id="top">
     <header class="header">
+        <img src="https://example.com/your-logo.png" alt="AX SHISHA" class="brand-logo">
         <h1>MENU</h1>
         <div class="header-sub">AX SHISHA CAFE BAR</div>
     </header>
@@ -133,6 +142,7 @@
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
+    
     async function loadMenu() {
         try {
             const response = await fetch(CSV_URL + '&t=' + Date.now());
@@ -140,6 +150,7 @@
             const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
             const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
             const idx = { cat: headers.indexOf('category'), sub: headers.indexOf('subcategory'), zh: headers.indexOf('name_zh'), en: headers.indexOf('name_en'), price: headers.indexOf('price'), desc: headers.indexOf('description') };
+            
             const menuItems = [];
             for (let i = 1; i < lines.length; i++) {
                 const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
@@ -148,29 +159,59 @@
                 }
             }
             renderMenu(menuItems);
-        } catch (error) { document.getElementById('content').innerHTML = `讀取失敗`; }
+        } catch (error) { 
+            document.getElementById('content').innerHTML = `<div style="text-align:center;padding:50px;">讀取失敗，請重新整理</div>`; 
+        }
     }
+
     function renderMenu(items) {
-        const content = document.getElementById('content'); const nav = document.getElementById('nav');
+        const content = document.getElementById('content');
+        const nav = document.getElementById('nav');
         content.innerHTML = ''; nav.innerHTML = '';
         const categories = [...new Set(items.map(i => i.category))].filter(c => c && c !== "category");
+        
         categories.forEach((cat, index) => {
-            const btn = document.createElement('a'); btn.href = `#cat-${index}`; btn.className = 'nav-btn'; btn.innerText = cat; nav.appendChild(btn);
-            const section = document.createElement('section'); section.id = `cat-${index}`;
-            const enTitle = catTranslations[cat] || "";
-            section.innerHTML = `<div class="cat-group"><span class="cat-main">${cat}</span><span class="cat-en">${enTitle}</span></div>`;
-            let currentSub = "";
-            items.filter(i => i.category === cat).forEach(item => {
-                if (item.subcategory && item.subcategory !== currentSub) { section.innerHTML += `<div class="tag-line">— ${item.subcategory} —</div>`; currentSub = item.subcategory; }
-                section.innerHTML += `<div class="card menu-item"><div class="card-row"><div style="flex:1"><span class="name-zh">${item.name_zh}</span><span class="name-en">${item.name_en}</span></div><div class="price">${item.price ? 'NT$ ' + item.price : ''}</div></div>${item.description ? `<div class="desc">${item.description}</div>` : ''}</div>`;
-            });
+            const btn = document.createElement('a');
+            btn.href = `#cat-${index}`;
+            btn.className = 'nav-btn';
+            btn.innerText = cat;
+            nav.appendChild(btn);
+
+            const section = document.createElement('div');
+            section.id = `cat-${index}`;
+            section.className = 'cat-group';
+            section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || 'MENU SELECTION'}</span>`;
             content.appendChild(section);
+
+            const catItems = items.filter(i => i.category === cat);
+            catItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-row">
+                        <div><span class="name-zh">${item.name_zh}</span><span class="name-en">${item.name_en}</span></div>
+                        <div class="price">$${item.price}</div>
+                    </div>
+                    ${item.description ? `<div class="desc">${item.description}</div>` : ''}
+                `;
+                content.appendChild(card);
+            });
         });
     }
+
     function filterMenu() {
-        const keyword = document.getElementById('searchBox').value.toLowerCase();
-        document.querySelectorAll('.menu-item').forEach(card => { card.style.display = card.innerText.toLowerCase().includes(keyword) ? 'block' : 'none'; });
+        const input = document.getElementById('searchBox').value.toLowerCase();
+        const cards = document.getElementsByClassName('card');
+        const groups = document.getElementsByClassName('cat-group');
+        for (let card of cards) {
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(input) ? "block" : "none";
+        }
+        for (let group of groups) {
+            group.style.display = input === "" ? "block" : "none";
+        }
     }
+
     window.onload = loadMenu;
 </script>
 </body>
