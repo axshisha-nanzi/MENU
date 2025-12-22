@@ -16,9 +16,10 @@
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* Search & Nav */
-        .search-area { margin-bottom: 20px; position: sticky; top: 15px; z-index: 110; }
-        .search-bar { width: 100%; padding: 14px 25px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.95rem; backdrop-filter: blur(10px); }
+        /* 搜尋欄優化：縮窄並置中 */
+        .search-area { margin: 0 auto 20px; width: 80%; position: sticky; top: 15px; z-index: 110; }
+        .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
+        
         .nav-scroller { display: flex; overflow-x: auto; padding: 5px 0 20px; gap: 10px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 8px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
@@ -37,12 +38,14 @@
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
         .tag-line { font-size: 0.7rem; color: var(--gray); margin: 30px 0 15px; text-align: center; letter-spacing: 3px; }
-        .card { background: var(--glass); border-radius: 25px; padding: 22px; margin-bottom: 15px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
-        .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-        .name-zh { font-size: 1.05rem; font-weight: 400; letter-spacing: 1px; }
-        .name-en { font-size: 0.65rem; color: var(--gray); text-transform: uppercase; font-family: 'Montserrat'; }
-        .price { font-family: 'Montserrat'; font-size: 0.9rem; color: var(--hermes); font-weight: 600; }
-        .desc { font-size: 0.75rem; color: var(--gray); margin-top: 15px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 12px; }
+        
+        /* 菜單卡片優化 */
+        .card { background: var(--glass); border-radius: 22px; padding: 18px 22px; margin-bottom: 12px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
+        .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .name-zh { font-size: 1rem; font-weight: 400; letter-spacing: 1px; display: block; }
+        .name-en { font-size: 0.6rem; color: var(--gray); text-transform: uppercase; font-family: 'Montserrat'; letter-spacing: 1px; display: block; margin-top: 2px; }
+        .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; flex-shrink: 0; }
+        .desc { font-size: 0.7rem; color: var(--gray); margin-top: 12px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 10px; letter-spacing: 0.5px; }
 
         .top-btn { position: fixed; bottom: 35px; right: 25px; width: 48px; height: 48px; background: rgba(255,255,255,0.6); border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); color: var(--gray); font-family: 'Montserrat'; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; backdrop-filter: blur(8px); }
         .footer { margin-top: 40px; padding: 40px 20px 80px; text-align: center; font-size: 0.75rem; color: var(--gray); line-height: 2; border-top: 1px solid rgba(0,0,0,0.05); }
@@ -57,7 +60,7 @@
     </header>
 
     <div class="search-area">
-        <input type="text" class="search-bar" id="searchBox" placeholder="SEARCH..." onkeyup="filterMenu()">
+        <input type="text" class="search-bar" id="searchBox" placeholder="搜尋微醺..." onkeyup="filterMenu()">
     </div>
 
     <nav class="nav-scroller">
@@ -66,9 +69,7 @@
     </nav>
 
     <section class="info-section" id="info">
-        
         <span class="section-tag">⋄ Information / 店內資訊 ⋄</span>
-        
         <div class="info-row">
             <span class="info-label">訂位資訊</span>
             <span class="info-text">
@@ -91,7 +92,6 @@
         </div>
 
         <span class="section-tag">⋄ Agreement / 溫柔約定 ⋄</span>
-
         <div class="info-row">
             <span class="info-label">關於呼吸</span>
             <span class="info-text">
