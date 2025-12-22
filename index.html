@@ -37,7 +37,19 @@
         .cat-group { margin: 60px 0 30px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
-        .tag-line { font-size: 0.7rem; color: var(--hermes); margin: 30px 0 15px; text-align: center; letter-spacing: 3px; font-weight: 600; }
+        
+        /* 修正後的子分類樣式：恢復簡約字體與灰色 */
+        .tag-line { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 0.7rem; 
+            color: var(--gray); 
+            margin: 35px 0 15px; 
+            text-align: center; 
+            letter-spacing: 4px; 
+            text-transform: uppercase;
+            opacity: 0.7;
+            font-weight: 400;
+        }
         
         .card { background: var(--glass); border-radius: 22px; padding: 18px 22px; margin-bottom: 12px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
@@ -102,7 +114,6 @@
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
     let allData = [];
 
-    // 精準解析 CSV 函式
     function parseCSV(text) {
         const rows = [];
         let currentRow = [];
@@ -193,7 +204,6 @@
             let currentSub = null;
 
             catItems.forEach(item => {
-                // 如果有子分類，且與前一個不同，則顯示子分類標題
                 if (item.subcategory && item.subcategory !== currentSub) {
                     const subTag = document.createElement('div');
                     subTag.className = 'tag-line';
