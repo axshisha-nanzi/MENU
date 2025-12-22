@@ -6,25 +6,9 @@
     <title>AX SHISHA MENU</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Noto+Sans+TC:wght@300;400&display=swap');
-        
-        :root { 
-            --hermes: #f37021;     
-            --bg: #d9d4cc;         
-            --glass: rgba(255,255,255,0.45); 
-            --dark: #3a3835;       
-            --gray: #706d68;       
-        }
-        
+        :root { --hermes: #f37021; --bg: #d9d4cc; --glass: rgba(255,255,255,0.45); --dark: #3a3835; --gray: #706d68; }
         html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Noto Sans TC', sans-serif; 
-            margin: 0; 
-            background-color: var(--bg); 
-            color: var(--dark); 
-            background-attachment: fixed;
-            -webkit-font-smoothing: antialiased;
-        }
-        
+        body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; -webkit-font-smoothing: antialiased; }
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
         /* Header */
@@ -39,19 +23,15 @@
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 9px 18px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
 
-        /* AX 暖心指南 - 精品垂直排版 */
-        .guide-section { margin: 20px 0 60px; padding: 45px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: center; }
-        .guide-title { margin-bottom: 50px; }
-        .guide-title span { font-size: 1.25rem; letter-spacing: 8px; color: var(--dark); display: block; margin-bottom: 8px; }
-        .guide-title small { font-family: 'Montserrat'; font-size: 0.6rem; color: var(--hermes); letter-spacing: 4px; text-transform: uppercase; }
+        /* 新版規範與資訊排版 */
+        .info-section { margin: 20px 0 60px; padding: 40px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
         
-        .guide-box { margin-bottom: 45px; }
-        .guide-label { font-size: 0.9rem; color: var(--dark); letter-spacing: 3px; margin-bottom: 12px; display: block; font-weight: 400; }
-        .guide-content { font-size: 0.8rem; color: var(--gray); line-height: 2.1; letter-spacing: 1px; }
-        .guide-highlight { color: var(--hermes); font-weight: 400; }
+        .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 3px; display: block; margin-bottom: 20px; border-bottom: 1px solid rgba(243, 112, 33, 0.2); padding-bottom: 10px; text-transform: uppercase; text-align: center;}
         
-        /* 特別設計：煙灰缸引導區塊 */
-        .highlight-box { padding: 22px; border: 1px dashed var(--hermes); border-radius: 20px; margin: 25px 0; }
+        .info-row { display: flex; margin-bottom: 20px; align-items: flex-start; }
+        .info-label { width: 85px; font-size: 0.75rem; color: var(--dark); font-weight: 600; letter-spacing: 1px; flex-shrink: 0; }
+        .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.6; letter-spacing: 0.5px; }
+        .info-highlight { color: var(--hermes); font-weight: 400; }
 
         /* Menu Styles */
         .cat-group { margin: 80px 0 40px; text-align: center; }
@@ -65,7 +45,6 @@
         .price { font-family: 'Montserrat'; font-size: 0.9rem; color: var(--hermes); font-weight: 600; }
         .desc { font-size: 0.75rem; color: var(--gray); margin-top: 15px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 12px; }
 
-        /* Footer & Top */
         .top-btn { position: fixed; bottom: 35px; right: 25px; width: 48px; height: 48px; background: rgba(255,255,255,0.6); border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); color: var(--gray); font-family: 'Montserrat'; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; backdrop-filter: blur(8px); }
         .footer { margin-top: 60px; padding: 50px 20px 80px; text-align: center; font-size: 0.75rem; color: var(--gray); line-height: 2; border-top: 1px solid rgba(0,0,0,0.05); }
         .brand-footer { font-family: 'Montserrat'; font-size: 1.3rem; font-weight: 200; letter-spacing: 15px; color: var(--dark); margin-top: 60px; opacity: 0.5; text-transform: uppercase; }
@@ -83,63 +62,45 @@
     </div>
 
     <nav class="nav-scroller">
-        <a href="#guide" class="nav-btn" style="color: var(--hermes); border-color: var(--hermes);">OUR GUIDE / 暖心指南</a>
+        <a href="#info" class="nav-btn" style="color: var(--hermes); border-color: var(--hermes);">GUIDE / 入店須知</a>
         <div id="nav" style="display: flex; gap: 10px;"></div>
     </nav>
 
-    <section class="guide-section" id="guide">
-        <div class="guide-title">
-            <span>與您的溫柔約定</span>
-            <small>House Rules & Care</small>
+    <section class="info-section" id="info">
+        
+        <span class="section-tag">Information / 店內資訊</span>
+        
+        <div class="info-row">
+            <span class="info-label">訂位洽詢</span>
+            <span class="info-text">LINE / IG 私訊 或撥打 <span class="info-highlight">0988-850-431</span></span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">消費方式</span>
+            <span class="info-text">夜晚場最低消費 <span class="info-highlight">$400</span> / 人<br>全品項皆可抵扣</span>
+        </div>
+        <div class="info-row" style="margin-bottom: 40px;">
+            <span class="info-label">無線網路</span>
+            <span class="info-text">WiFi 密碼：<span class="info-highlight">0988850431</span></span>
         </div>
 
-        <div class="guide-box">
-            <span class="guide-label">RESV. / 訂位</span>
-            <div class="guide-content">官方 LINE / IG私訊 或撥打<br><span class="guide-highlight">0988-850-431</span></div>
+        <span class="section-tag">Rules / 溫柔約定</span>
+
+        <div class="info-row">
+            <span class="info-label">關於呼吸</span>
+            <span class="info-text">室內全面禁菸，<span class="info-highlight">戶外備有煙灰缸</span><br>抽菸的朋友請移駕戶外</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">戶外音量</span>
+            <span class="info-text">請將 <span class="info-highlight">溫柔留給鄰居</span>，在戶外透透氣時<br>小小聲就好，讓我們能長久相伴</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">體貼環境</span>
+            <span class="info-text">如飲酒過量造成反胃，請至廁所處理<br>若嘔吐於廁所外，將酌收 <span class="info-highlight">$2000</span> 清潔費</span>
         </div>
 
-        <div class="guide-box">
-            <span class="guide-label">MIN. / 低消</span>
-            <div class="guide-content">夜晚場最低消費 <span class="guide-highlight">$400</span> / 人<br>不限品項，盡情享受</div>
-        </div>
-
-        <div class="guide-box">
-            <span class="guide-label">WIFI / 密碼</span>
-            <div class="guide-content"><span class="guide-highlight">0988850431</span><br>與店內電話相同，讓連結更簡單</div>
-        </div>
-
-        <div class="guide-box highlight-box">
-            <span class="guide-label" style="color: var(--hermes);">SMOKING / 呼吸</span>
-            <div class="guide-content">
-                室內全面禁菸<br>
-                想抽菸的朋友，請移駕戶外透透氣<br>
-                <span class="guide-highlight">我們在外面準備了煙灰缸，溫柔也在那</span>
-            </div>
-        </div>
-
-        <div class="guide-box">
-            <span class="guide-label">VOLUME / 語調</span>
-            <div class="guide-content">
-                到戶外透透氣時，<span class="guide-highlight">請將溫柔留給鄰居</span><br>
-                小小音量就好，讓我們共同守護<br>
-                這份深夜專屬的靜謐
-            </div>
-        </div>
-
-        <div class="guide-box">
-            <span class="guide-label">CARE / 醉意</span>
-            <div class="guide-content">
-                喝醉沒關係，我們懂。<br>
-                若有反胃感，請務必讓我們送您進廁所<br>
-                吐錯地方老闆會心痛，並酌收 <span class="guide-highlight">$2000</span> 清潔費
-            </div>
-        </div>
-
-        <div class="guide-box" style="margin-bottom: 0;">
-            <div class="guide-content" style="color: var(--dark); font-size: 0.85rem; letter-spacing: 2px;">
-                一個人也歡迎，我們陪你 / 妳<br>
-                來開心最重要，其他的交給 AX 🖤
-            </div>
+        <div style="text-align: center; margin-top: 30px; font-size: 0.7rem; color: var(--dark); letter-spacing: 2px;">
+            一個人也歡迎，我們陪你 / 妳<br>
+            來開心最重要，其他的交給 AX 🖤
         </div>
     </section>
 
