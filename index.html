@@ -12,7 +12,7 @@
         .header { text-align: center; padding: 50px 20px; }
         .header h1 { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 200; letter-spacing: 10px; margin: 0; }
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
-        .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(15px); box-sizing: border-box; text-align: center; outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(15px); box-sizing: border-box; text-align: center; outline: none; }
         .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 8px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
@@ -31,14 +31,9 @@
 <body>
 <div class="container">
     <header class="header"><h1>MENU</h1><div style="color:var(--hermes); font-size:0.7rem; letter-spacing:3px; margin-top:10px;">AX SHISHA CAFE BAR</div></header>
-    
-    <div class="search-area">
-        <input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()">
-    </div>
-
+    <div class="search-area"><input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()"></div>
     <nav class="nav-scroller" id="nav"></nav>
-    <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">載入中...</div></div>
-    
+    <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">正在從雲端更新菜單...</div></div>
     <footer class="footer">
         <p>📍 高雄楠梓區惠民路273號</p>
         <p>🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
@@ -53,29 +48,22 @@
             const res = await fetch(URL);
             const text = await res.text();
             
-            // 使用正則拆分行，並過濾掉空行
-            const rows = text.split(/\r?\n/).filter(line => line.trim().length > 0);
-            
-            const items = rows.slice(1).map(row => {
-                // 更強大的 CSV 欄位拆分邏輯
-                const cells = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
-                return {
-                    cat: cells[0] || "",
-                    sub: cells[1] || "",
-                    zh: cells[2] || "",
-                    en: cells[3] || "",
-                    price: cells[4] || "",
-                    desc: cells[5] || ""
-                };
-            }).filter(i => i.zh !== ""); // 只要中文名稱在就顯示
+            // 強化版解析：先處理換行問題，再處理逗號
+            const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+            const items = [];
 
-            if (items.length > 0) {
-                render(items);
-            } else {
-                document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">目前雲端資料讀取為空，請確認試算表內容。</div>';
+            for (let i = 1; i < lines.length; i++) {
+                // 使用高級解析正則，確保不會被描述裡的符號搞混
+                const c = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
+                if (c[2]) { // 只要有中文名稱
+                    items.push({ cat: c[0], sub: c[1], zh: c[2], en: c[3], price: c[4], desc: c[5] });
+                }
             }
+
+            if (items.length > 0) { render(items); }
+            else { document.getElementById('content').innerHTML = "資料解析中，請重新整理。"; }
         } catch (e) {
-            document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">連線異常，請稍後再試。</div>';
+            document.getElementById('content').innerHTML = "連線異常，請稍後再試。";
         }
     }
 
@@ -123,7 +111,6 @@
             card.style.display = card.innerText.toLowerCase().includes(val) ? 'block' : 'none';
         });
     }
-    
     window.onload = loadData;
 </script>
 </body>
