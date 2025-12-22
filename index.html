@@ -50,17 +50,17 @@
         .guide-content { font-size: 0.8rem; color: var(--gray); line-height: 2.1; letter-spacing: 1px; }
         .guide-highlight { color: var(--hermes); font-weight: 400; }
         
-        /* 特別設計：引導區塊 */
+        /* 特別設計：煙灰缸引導區塊 */
         .highlight-box { padding: 22px; border: 1px dashed var(--hermes); border-radius: 20px; margin: 25px 0; }
 
-        /* Menu */
+        /* Menu Styles */
         .cat-group { margin: 80px 0 40px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
         .tag-line { font-size: 0.7rem; color: var(--gray); margin: 40px 0 20px; text-align: center; letter-spacing: 3px; }
         .card { background: var(--glass); border-radius: 25px; padding: 22px; margin-bottom: 15px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
         .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-        .name-zh { font-size: 1.05rem; font-weight: 400; letter-spacing: 1px; display: block; }
+        .name-zh { font-size: 1.05rem; font-weight: 400; letter-spacing: 1px; }
         .name-en { font-size: 0.65rem; color: var(--gray); text-transform: uppercase; font-family: 'Montserrat'; }
         .price { font-family: 'Montserrat'; font-size: 0.9rem; color: var(--hermes); font-weight: 600; }
         .desc { font-size: 0.75rem; color: var(--gray); margin-top: 15px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 12px; }
@@ -83,7 +83,7 @@
     </div>
 
     <nav class="nav-scroller">
-        <a href="#guide" class="nav-btn" style="color: var(--hermes); border-color: var(--hermes);">GUIDE / 暖心指南</a>
+        <a href="#guide" class="nav-btn" style="color: var(--hermes); border-color: var(--hermes);">OUR GUIDE / 暖心指南</a>
         <div id="nav" style="display: flex; gap: 10px;"></div>
     </nav>
 
@@ -95,7 +95,7 @@
 
         <div class="guide-box">
             <span class="guide-label">RESV. / 訂位</span>
-            <div class="guide-content">LINE / IG私訊 或撥打<br><span class="guide-highlight">0988-850-431</span></div>
+            <div class="guide-content">官方 LINE / IG私訊 或撥打<br><span class="guide-highlight">0988-850-431</span></div>
         </div>
 
         <div class="guide-box">
@@ -120,9 +120,9 @@
         <div class="guide-box">
             <span class="guide-label">VOLUME / 語調</span>
             <div class="guide-content">
-                到戶外透透氣時，<span class="guide-highlight">請將音量交給晚風</span><br>
-                小小聲就好，讓我們共同守護<br>
-                這份深夜專屬的溫柔
+                到戶外透透氣時，<span class="guide-highlight">請將溫柔留給鄰居</span><br>
+                小小音量就好，讓我們共同守護<br>
+                這份深夜專屬的靜謐
             </div>
         </div>
 
@@ -143,23 +143,19 @@
         </div>
     </section>
 
-    <div id="content">
-        <div style="text-align:center;padding:120px;color:var(--hermes);font-family:'Montserrat';font-size:0.75rem;letter-spacing:3px;">LOADING...</div>
-    </div>
+    <div id="content"><div style="text-align:center;padding:120px;color:var(--hermes);font-family:'Montserrat';font-size:0.75rem;letter-spacing:3px;">LOADING...</div></div>
 
     <footer class="footer">
         <p>📍 高雄楠梓區惠民路273號<br><span style="font-family:'Montserrat'; font-size:0.6rem;">NO. 273, HUIMIN RD., NANZI DIST., KAOHSIUNG CITY</span></p>
         <p style="margin-top: 30px;">🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
         <div class="brand-footer">AX SHISHA</div>
     </footer>
-
     <a href="#top" class="top-btn">TOP</a>
 </div>
 
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
-
     async function loadMenu() {
         try {
             const response = await fetch(CSV_URL + '&t=' + Date.now());
@@ -177,18 +173,13 @@
             renderMenu(menuItems);
         } catch (error) { document.getElementById('content').innerHTML = `讀取失敗`; }
     }
-
     function renderMenu(items) {
-        const content = document.getElementById('content');
-        const nav = document.getElementById('nav');
+        const content = document.getElementById('content'); const nav = document.getElementById('nav');
         content.innerHTML = ''; nav.innerHTML = '';
         const categories = [...new Set(items.map(i => i.category))].filter(c => c && c !== "category");
         categories.forEach((cat, index) => {
-            const btn = document.createElement('a');
-            btn.href = `#cat-${index}`; btn.className = 'nav-btn'; btn.innerText = cat;
-            nav.appendChild(btn);
-            const section = document.createElement('section');
-            section.id = `cat-${index}`;
+            const btn = document.createElement('a'); btn.href = `#cat-${index}`; btn.className = 'nav-btn'; btn.innerText = cat; nav.appendChild(btn);
+            const section = document.createElement('section'); section.id = `cat-${index}`;
             const enTitle = catTranslations[cat] || "";
             section.innerHTML = `<div class="cat-group"><span class="cat-main">${cat}</span><span class="cat-en">${enTitle}</span></div>`;
             let currentSub = "";
@@ -199,12 +190,9 @@
             content.appendChild(section);
         });
     }
-
     function filterMenu() {
         const keyword = document.getElementById('searchBox').value.toLowerCase();
-        document.querySelectorAll('.menu-item').forEach(card => {
-            card.style.display = card.innerText.toLowerCase().includes(keyword) ? 'block' : 'none';
-        });
+        document.querySelectorAll('.menu-item').forEach(card => { card.style.display = card.innerText.toLowerCase().includes(keyword) ? 'block' : 'none'; });
     }
     window.onload = loadMenu;
 </script>
