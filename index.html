@@ -9,7 +9,6 @@
 
         :root {
             --hermes-orange: #f37021;
-            /* 棉麻米灰色調 */
             --bg-linen: #d9d4cc; 
             --glass-card: rgba(255, 255, 255, 0.45); 
             --text-dark: #3a3835;
@@ -20,7 +19,6 @@
         body { 
             font-family: 'Noto Sans TC', 'Montserrat', sans-serif; 
             margin: 0; background-color: var(--bg-linen); color: var(--text-dark); 
-            /* 模擬棉麻材質感背景 */
             background-image: 
                 radial-gradient(at 50% 0%, #e2ded8 0%, #d9d4cc 100%),
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
@@ -33,14 +31,14 @@
         .header { text-align: center; padding: 60px 20px 40px; }
         .header h1 { 
             font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 200; 
-            letter-spacing: 12px; margin: 0; text-indent: 12px; color: var(--text-dark);
+            letter-spacing: 12px; margin: 0; text-indent: 12px;
         }
         .header .sub-brand { 
             font-family: 'Montserrat', sans-serif; font-size: 0.7rem; 
             color: var(--hermes-orange); letter-spacing: 4px; margin-top: 15px; font-weight: 500;
         }
 
-        /* 智能搜尋列 */
+        /* 搜尋列 */
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
         .search-bar {
             width: 100%; padding: 12px 25px; border-radius: 40px;
@@ -60,32 +58,30 @@
             background: var(--glass-card); padding: 8px 16px; border-radius: 20px;
             transition: 0.3s; font-weight: 400; border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .nav-btn:active, .nav-btn.active { background: var(--hermes-orange); color: white; border-color: var(--hermes-orange); }
+        .nav-btn.active { background: var(--hermes-orange); color: white; border-color: var(--hermes-orange); }
 
         /* 分類標題 */
         .cat-group { margin: 60px 0 25px; text-align: center; }
-        .cat-main { font-size: 1.3rem; font-weight: 400; letter-spacing: 6px; display: block; color: var(--text-dark); }
+        .cat-main { font-size: 1.3rem; font-weight: 400; letter-spacing: 6px; display: block; }
         .cat-sub { font-size: 0.6rem; color: var(--hermes-orange); letter-spacing: 3px; font-weight: 500; text-transform: uppercase; margin-top: 8px; }
 
+        /* 琴酒/伏特加等小標 */
         .tag-line {
             font-size: 0.65rem; color: var(--text-gray); font-weight: 400;
             margin: 35px 0 15px; letter-spacing: 2px; text-align: center;
         }
 
-        /* 品項卡片 - 棉麻上的薄紗質感 */
+        /* 品項卡片 */
         .card { 
             background: var(--glass-card); border-radius: 25px; padding: 22px 25px;
             margin-bottom: 12px; backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.4); transition: 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
-        .card:active { transform: scale(0.98); background: rgba(255,255,255,0.6); }
-
         .card-row { display: flex; justify-content: space-between; align-items: flex-start; }
         .name-zh { font-size: 0.95rem; font-weight: 400; color: var(--text-dark); letter-spacing: 1.5px; margin-bottom: 3px; display: block; }
         .name-en { font-size: 0.6rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; font-weight: 400; }
         .val-ntd { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: var(--hermes-orange); font-weight: 600; }
-        
         .item-desc { 
             font-size: 0.7rem; color: var(--text-gray); margin-top: 12px; 
             line-height: 1.5; font-weight: 300; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px;
@@ -97,14 +93,10 @@
         .pill-btn {
             display: inline-flex; align-items: center; background: var(--glass-card);
             padding: 9px 20px; border-radius: 30px; margin: 5px; 
-            color: var(--text-dark); text-decoration: none; font-size: 0.75rem; font-weight: 400;
+            color: var(--text-dark); text-decoration: none; font-size: 0.75rem;
             border: 1px solid rgba(255,255,255,0.3);
         }
-
-        .legal-notice { 
-            margin-top: 40px; color: #a5a19b; font-size: 0.6rem; 
-            letter-spacing: 2px; line-height: 2;
-        }
+        .legal-notice { margin-top: 40px; color: #a5a19b; font-size: 0.6rem; letter-spacing: 2px; line-height: 2; }
 
         .top-scroller {
             position: fixed; bottom: 30px; right: 25px; width: 42px; height: 42px;
@@ -113,6 +105,8 @@
             text-decoration: none; backdrop-filter: blur(10px); font-size: 0.55rem; z-index: 100;
             border: 1px solid rgba(255,255,255,0.4);
         }
+        
+        #loading { text-align: center; padding: 50px; color: var(--hermes-orange); font-size: 0.8rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -124,129 +118,132 @@
     </header>
 
     <div class="search-area">
-        <input type="text" class="search-bar" id="searchBox" placeholder="尋找微醺..." onkeyup="filterMenu()">
+        <input type="text" class="search-bar" id="searchBox" placeholder="搜尋雲端菜單..." onkeyup="filterMenu()">
     </div>
 
-    <nav class="nav-scroller">
-        <a href="#cat1" class="nav-btn">特製調酒</a>
-        <a href="#cat2" class="nav-btn">系列調酒</a>
-        <a href="#cat3" class="nav-btn">烈酒精選</a>
-        <a href="#cat4" class="nav-btn">洋可夫特調</a>
-        <a href="#cat5" class="nav-btn">啤酒軟飲</a>
-    </nav>
+    <nav class="nav-scroller" id="navCategories"></nav>
 
-    <section id="cat1">
-        <div class="cat-group"><span class="cat-main">特製調酒</span><span class="cat-sub">Signatures</span></div>
-        <div class="card card-item">
-            <div class="card-row">
-                <div><span class="name-zh">青空琉璃</span><span class="name-en">Azure Crystal</span></div>
-                <div class="val-ntd">NTD 350</div>
-            </div>
-            <div class="item-desc">香蕉利口酒 / 香草利口酒 / 萊姆汁 / 特製糖漿 / 藍柑橘糖漿 / 甜味氣泡水</div>
-        </div>
-        <div class="card card-item">
-            <div class="card-row">
-                <div><span class="name-zh">萌芽</span><span class="name-en">Budding</span></div>
-                <div class="val-ntd">NTD 350</div>
-            </div>
-            <div class="item-desc">伏特加 / 君度橙酒 / 百香果糖漿 / 特製糖漿 / 薑汁汽水 / 萊姆汁</div>
-        </div>
-    </section>
-
-    <section id="cat2">
-        <div class="cat-group"><span class="cat-main">系列調酒</span><span class="cat-sub">Classic Cocktails</span></div>
-        <div class="tag-line">— GIN BASE —</div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">琴蕾</span><span class="name-en">Gimlet</span></div><div class="val-ntd">NTD 250</div></div><div class="item-desc">琴酒 / 檸檬汁 / 特製糖漿</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">咖啡尼格羅尼</span><span class="name-en">Cafe Negroni</span></div><div class="val-ntd">NTD 300</div></div><div class="item-desc">琴酒 / 咖啡利口酒 / 金巴利 / 法式香艾酒 / 檸檬酸</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">三葉草</span><span class="name-en">Shamrock</span></div><div class="val-ntd">NTD 270</div></div><div class="item-desc">琴酒 / 覆盆子糖漿 / 檸檬汁 / 蛋白液</div></div>
-
-        <div class="tag-line">— VODKA BASE —</div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">柯夢波丹</span><span class="name-en">Cosmopolitan</span></div><div class="val-ntd">NTD 270</div></div><div class="item-desc">伏特加 / 君度橙酒 / 檸檬汁 / 特製糖漿 / 蔓越莓汁</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">海風</span><span class="name-en">Sea Breeze</span></div><div class="val-ntd">NTD 270</div></div><div class="item-desc">伏特加 / 紫羅蘭香甜酒 / 蔓越莓汁 / 葡萄柚汁 / 檸檬汁</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">紅牛伏特加</span><span class="name-en">Vodka Redbull</span></div><div class="val-ntd">NTD 300</div></div><div class="item-desc">伏特加 / 紅牛</div></div>
-
-        <div class="tag-line">— TEQUILA BASE —</div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">破冰船</span><span class="name-en">Ice Breaker</span></div><div class="val-ntd">NTD 270</div></div><div class="item-desc">龍舌蘭 / 君度橙酒 / 葡萄柚汁 / 檸檬汁 / 紅石榴糖漿</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">莫斯科驢子</span><span class="name-en">Moscow Mule</span></div><div class="val-ntd">NTD 250</div></div><div class="item-desc">龍舌蘭 / 檸檬汁 / 薑汁汽水</div></div>
-
-        <div class="tag-line">— WHISKY BASE —</div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">吻我</span><span class="name-en">Kiss Me</span></div><div class="val-ntd">NTD 270</div></div><div class="item-desc">蘇格蘭威士忌 / 紅酒 / 檸檬汁 / 櫻桃利口酒 / 覆盆子糖漿</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">嗨波</span><span class="name-en">High Ball</span></div><div class="val-ntd">NTD 220</div></div><div class="item-desc">威士忌 / 蘇打水</div></div>
-
-        <div class="tag-line">— HOUSE CREATION —</div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">桑格利亞</span><span class="name-en">Sangria</span></div><div class="val-ntd">NTD 300</div></div><div class="item-desc">白蘭地 / 君度橙酒 / 紅酒 / 覆盆子糖漿 / 黑醋栗糖漿 / 檸檬汁</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">紅塵</span><span class="name-en">Red Dust</span></div><div class="val-ntd">NTD 300</div></div><div class="item-desc">艾碧斯 / 赤梅酒 / 君度橙酒 / 芒果糖漿 / 檸檬汁</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">長島冰茶</span><span class="name-en">Long Island Ice Tea</span></div><div class="val-ntd">NTD 350</div></div><div class="item-desc">伏特加 / 琴酒 / 蘭姆酒 / 龍舌蘭 / 君度 / 檸檬汁 / 特製糖漿 / 可樂</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">紅牛野莓</span><span class="name-en">Bull Berry Jager</span></div><div class="val-ntd">NTD 300</div></div><div class="item-desc">紅牛野莓 / 野格</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">紅牛野格</span><span class="name-en">Bull Jager Classic</span></div><div class="val-ntd">NTD 350</div></div><div class="item-desc">紅牛 / 野格</div></div>
-    </section>
-
-    <section id="cat3">
-        <div class="cat-group"><span class="cat-main">烈酒精選</span><span class="cat-sub">Premium Spirits</span></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">格蘭傑 X 因子</span><span class="name-en">Glenmorangie X</span></div><div class="val-ntd">NTD 220 | 2200</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">大摩 12年</span><span class="name-en">Dalmore 12Y</span></div><div class="val-ntd">NTD 390 | 3900</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">百富 12年雙桶</span><span class="name-en">Balvenie 12Y</span></div><div class="val-ntd">NTD 390 | 3900</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">格蘭利威 15年雪莉桶</span><span class="name-en">Glenlivet 15Y</span></div><div class="val-ntd">NTD 450 | 4500</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">幕赫 12年</span><span class="name-en">Mortlach 12Y</span></div><div class="val-ntd">NTD 390 | 3900</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">洋可夫特級伏特加</span><span class="name-en">Yankov Premium</span></div><div class="val-ntd">NTD 290 | 2680</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">緋紅凱薩琳伏特加</span><span class="name-en">Scarlet Catherine</span></div><div class="val-ntd">NTD 400 | 4000</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">日本季之美京都琴酒</span><span class="name-en">Ki No Bi Gin</span></div><div class="val-ntd">NTD 360 | 3600</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">唐胡立歐 Anejo</span><span class="name-en">Don Julio Anejo</span></div><div class="val-ntd">NTD 400 | 4000</div></div></div>
-    </section>
-
-    <section id="cat4">
-        <div class="cat-group"><span class="cat-main">洋可夫特調</span><span class="cat-sub">Yankov Collection</span></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">緋紅撞奶</span><span class="name-en">Scarlet Milk</span></div><div class="val-ntd">NTD 350</div></div><div class="item-desc">緋紅 / 鮮奶 / 特製糖漿</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">台灣凍檸茶</span><span class="name-en">Iced Lemon Tea</span></div><div class="val-ntd">NTD 350</div></div><div class="item-desc">緋紅 / 白可可香甜酒 / 萊姆汁 / 蜂蜜 / 特製糖漿</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">戀人</span><span class="name-en">Lover</span></div><div class="val-ntd">NTD 350</div></div><div class="item-desc">緋紅 / 覆盆子糖漿 / 蔓越莓汁 / 檸檬酸</div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">櫻花莓語</span><span class="name-en">Sakura Whisper</span></div><div class="val-ntd">NTD 350</div></div><div class="item-desc">緋紅 / 蔓越莓汁 / 赤梅酒 / 鹽漬櫻花糖漿 / 檸檬酸</div></div>
-    </section>
-
-    <section id="cat5">
-        <div class="cat-group"><span class="cat-main">啤酒軟飲</span><span class="cat-sub">Others</span></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">可樂娜 / 西班牙金星</span><span class="name-en">Beer Select</span></div><div class="val-ntd">NTD 150 | 750</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">1664 白啤</span><span class="name-en">1664 Blanc</span></div><div class="val-ntd">NTD 180 | 900</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">紅牛 (原味/無糖)</span><span class="name-en">Red Bull</span></div><div class="val-ntd">NTD 150</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">氣泡水 / 薑汁汽水 / 通寧水</span><span class="name-en">Mixers</span></div><div class="val-ntd">NTD 120</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">可樂 / 雪碧</span><span class="name-en">Sodas</span></div><div class="val-ntd">NTD 120</div></div></div>
-        <div class="card card-item"><div class="card-row"><div><span class="name-zh">蘋果汁 / 蔓越莓汁</span><span class="name-en">Fruit Juice</span></div><div class="val-ntd">NTD 120</div></div></div>
-    </section>
+    <div id="menuContent">
+        <div id="loading">正在同步 AX SHISHA 雲端品項...</div>
+    </div>
 
     <footer class="footer">
         <div class="footer-brand">AX SHISHA</div>
         <div>
-            <a href="https://maps.google.com/?q=高雄市楠梓區惠民路273號" class="pill-btn">📍 高雄楠梓區惠民路273號</a>
+            <a href="#" class="pill-btn">📍 高雄楠梓區惠民路273號</a>
             <a href="tel:0988850431" class="pill-btn">📞 0988-850-431</a>
             <div class="pill-btn">🕒 19:00 - 02:00</div>
         </div>
-        <div class="legal-notice">
-            🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕<br>
-            NATURAL VIBE • DRINK RESPONSIBLY
-        </div>
+        <div class="legal-notice">🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</div>
     </footer>
 </div>
 
 <a href="#home" class="top-scroller">TOP</a>
 
 <script>
-    function filterMenu() {
-        let input = document.getElementById('searchBox').value.toLowerCase();
-        let cards = document.querySelectorAll('.card-item');
-        cards.forEach(card => {
-            let text = card.textContent.toLowerCase();
-            card.style.display = text.includes(input) ? 'block' : 'none';
+    // 已更新為您的專屬 ID
+    const SHEET_ID = '1-Tz_UPIN9sxQkBIOhvmofXDBItGADaC0LQBhEB41lzI'; 
+    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?output=csv`;
+
+    async function fetchMenu() {
+        try {
+            const response = await fetch(CSV_URL);
+            const data = await response.text();
+            // 分割行並移除空白行與標題行
+            const rows = data.split('\n').map(r => r.trim()).filter(r => r !== "").slice(1);
+            
+            const menuData = rows.map(row => {
+                const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                return {
+                    category: cols[0]?.replace(/"/g, '').trim(),
+                    subcategory: cols[1]?.replace(/"/g, '').trim(),
+                    name_zh: cols[2]?.replace(/"/g, '').trim(),
+                    name_en: cols[3]?.replace(/"/g, '').trim(),
+                    price: cols[4]?.replace(/"/g, '').trim(),
+                    description: cols[5]?.replace(/"/g, '').trim()
+                };
+            });
+            renderMenu(menuData);
+        } catch (error) {
+            document.getElementById('loading').innerHTML = "連線失敗。請確認試算表已設為「發佈到網路」並選擇「CSV格式」。";
+        }
+    }
+
+    function renderMenu(items) {
+        const container = document.getElementById('menuContent');
+        const nav = document.getElementById('navCategories');
+        container.innerHTML = ''; nav.innerHTML = '';
+
+        const categories = [...new Set(items.map(i => i.category))];
+        
+        categories.forEach((cat, index) => {
+            if(!cat) return;
+
+            // 1. 生成導航
+            const navBtn = document.createElement('a');
+            navBtn.href = `#cat-${index}`;
+            navBtn.className = 'nav-btn';
+            navBtn.innerText = cat;
+            nav.appendChild(navBtn);
+
+            // 2. 生成區塊標題
+            const section = document.createElement('section');
+            section.id = `cat-${index}`;
+            section.innerHTML = `
+                <div class="cat-group">
+                    <span class="cat-main">${cat}</span>
+                    <span class="cat-sub">${getEn(cat)}</span>
+                </div>
+            `;
+
+            let lastSub = "";
+            items.filter(i => i.category === cat).forEach(item => {
+                // 3. 處理 GIN BASE / VODKA BASE 等小標
+                if (item.subcategory && item.subcategory !== lastSub) {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag-line';
+                    tag.innerText = `— ${item.subcategory} —`;
+                    section.appendChild(tag);
+                    lastSub = item.subcategory;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'card card-item';
+                card.innerHTML = `
+                    <div class="card-row">
+                        <div>
+                            <span class="name-zh">${item.name_zh}</span>
+                            <span class="name-en">${item.name_en}</span>
+                        </div>
+                        <div class="val-ntd">NTD ${item.price}</div>
+                    </div>
+                    ${item.description ? `<div class="item-desc">${item.description}</div>` : ''}
+                `;
+                section.appendChild(card);
+            });
+            container.appendChild(section);
         });
     }
 
-    const navs = document.querySelectorAll('.nav-btn');
-    navs.forEach(nav => {
-        nav.addEventListener('click', () => {
-            navs.forEach(n => n.classList.remove('active'));
-            nav.classList.add('active');
-        });
-    });
-</script>
+    function getEn(cn) {
+        const m = { 
+            "特製調酒": "Signatures", 
+            "系列調酒": "Classics", 
+            "烈酒精選": "Spirits", 
+            "洋可夫特調": "Yankov", 
+            "啤酒": "Beers", 
+            "軟飲": "Soft Drinks" 
+        };
+        return m[cn] || "Selection";
+    }
 
+    function filterMenu() {
+        let input = document.getElementById('searchBox').value.toLowerCase();
+        document.querySelectorAll('.card-item').forEach(c => {
+            c.style.display = c.textContent.toLowerCase().includes(input) ? 'block' : 'none';
+        });
+    }
+    window.onload = fetchMenu;
+</script>
 </body>
 </html>
-
