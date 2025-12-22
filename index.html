@@ -12,26 +12,25 @@
         body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; }
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; position: relative; }
         
-        /* 頂部標題 */
+        /* 標題 */
         .header { text-align: center; padding: 40px 20px 20px; }
         .header h1 { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 200; letter-spacing: 10px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; }
 
-        /* 搜尋與快速導覽 */
+        /* 搜尋與導覽 */
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); text-align: center; outline: none; box-sizing: border-box; font-size: 0.9rem; backdrop-filter: blur(10px); }
         .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 8px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
 
-        /* 分類大標題：加入英文翻譯樣式 */
+        /* 分類標題與英文翻譯 */
         .cat-group { margin: 60px 0 30px; text-align: center; }
         .cat-main { font-size: 1.4rem; font-weight: 400; letter-spacing: 5px; display: block; margin-bottom: 5px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--gray); letter-spacing: 3px; text-transform: uppercase; display: block; opacity: 0.8; }
-        
         .tag-line { font-size: 0.65rem; color: var(--gray); margin: 30px 0 15px; text-align: center; letter-spacing: 2px; }
 
-        /* 菜單卡片 */
+        /* 卡片設計 */
         .card { background: var(--glass); border-radius: 20px; padding: 20px; margin-bottom: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.4); }
         .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
         .name-zh { font-size: 0.95rem; font-weight: 400; letter-spacing: 1px; display: block; }
@@ -42,9 +41,12 @@
         /* TOP按鈕 */
         .top-btn { position: fixed; bottom: 30px; right: 20px; width: 45px; height: 45px; background: var(--glass); border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); color: var(--gray); font-family: 'Montserrat'; font-size: 0.6rem; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; backdrop-filter: blur(10px); }
 
-        /* 頁尾警語與地址 */
-        .footer { margin-top: 80px; padding: 40px 20px; text-align: center; font-size: 0.7rem; color: var(--gray); line-height: 1.8; border-top: 1px solid rgba(0,0,0,0.05); }
+        /* 頁尾區塊 */
+        .footer { margin-top: 80px; padding: 40px 20px 60px; text-align: center; font-size: 0.7rem; color: var(--gray); line-height: 1.8; border-top: 1px solid rgba(0,0,0,0.05); }
         .warning-en { font-family: 'Montserrat'; font-size: 0.55rem; opacity: 0.8; margin-top: 5px; display: block; letter-spacing: 1px; }
+        
+        /* 您提到的 AX SHISHA 英文字母標誌 */
+        .brand-footer { font-family: 'Montserrat'; font-size: 1.2rem; font-weight: 200; letter-spacing: 12px; color: var(--dark); margin-top: 40px; opacity: 0.6; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -70,6 +72,7 @@
             🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕
             <span class="warning-en">UNDERAGE DRINKING IS PROHIBITED. DRINK RESPONSIBLY.</span>
         </p>
+        <div class="brand-footer">AX SHISHA</div>
     </footer>
 
     <a href="#top" class="top-btn">TOP</a>
@@ -78,7 +81,7 @@
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
 
-    // 分類翻譯對照表 (您可以自行在這裡增加或修改)
+    // 分類翻譯對照表
     const catTranslations = {
         "特製調酒": "SPECIAL COCKTAIL",
         "系列調酒": "SERIES COCKTAIL",
@@ -141,7 +144,6 @@
             const section = document.createElement('section');
             section.id = `cat-${index}`;
             
-            // 這裡會自動對照翻譯表，如果找不到就顯示空白
             const enTitle = catTranslations[cat] || "";
             section.innerHTML = `
                 <div class="cat-group">
@@ -182,4 +184,3 @@
 </script>
 </body>
 </html>
-
