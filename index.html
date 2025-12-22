@@ -7,15 +7,16 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Noto+Sans+TC:wght@300;400&display=swap');
         :root { --hermes: #f37021; --bg: #d9d4cc; --glass: rgba(255,255,255,0.45); --dark: #3a3835; --gray: #706d68; }
-        body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; }
+        body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-image: radial-gradient(at 50% 0%, #e2ded8 0%, #d9d4cc 100%); background-attachment: fixed; }
         .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; }
-        .header { text-align: center; padding: 40px 20px; }
+        .header { text-align: center; padding: 40px 20px 20px; }
         .header h1 { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 200; letter-spacing: 10px; margin: 0; }
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
-        .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(15px); box-sizing: border-box; text-align: center; outline: none; }
+        .search-bar { width: 100%; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(15px); box-sizing: border-box; text-align: center; outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 8px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
-        .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
+        .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; transition: 0.3s; }
+        .nav-btn:active { background: var(--hermes); color: white; }
         .cat-group { margin: 40px 0 20px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 20px; }
         .cat-main { font-size: 1.2rem; font-weight: 400; letter-spacing: 5px; display: block; }
         .tag-line { font-size: 0.65rem; color: var(--gray); margin: 30px 0 10px; text-align: center; letter-spacing: 2px; }
@@ -31,9 +32,14 @@
 <body>
 <div class="container">
     <header class="header"><h1>MENU</h1><div style="color:var(--hermes); font-size:0.7rem; letter-spacing:3px; margin-top:10px;">AX SHISHA CAFE BAR</div></header>
-    <div class="search-area"><input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()"></div>
+    
+    <div class="search-area">
+        <input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()">
+    </div>
+
     <nav class="nav-scroller" id="nav"></nav>
     <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">正在連線 AX 雲端資料...</div></div>
+    
     <footer class="footer">
         <p>📍 高雄楠梓區惠民路273號</p>
         <p>🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
@@ -41,24 +47,24 @@
 </div>
 
 <script>
-    const URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?output=csv&t=' + Date.now();
+    // 這裡已替換為您 12:07 截圖中的正確連結
+    const URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv&t=' + Date.now();
 
     async function loadData() {
         try {
             const res = await fetch(URL);
             const text = await res.text();
             
-            // 將整份文件拆成行
+            // 拆分行並過濾掉空行
             const rows = text.split(/\r?\n/).filter(r => r.trim().length > 0);
             const items = [];
 
-            // 從第 2 行開始讀 (跳過標題)，直接用位置拿資料
+            // 從第二行開始讀取 (跳過標題列)
             for (let i = 1; i < rows.length; i++) {
-                // 正則解析：處理描述裡的逗號
                 const c = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 
-                // 只要 C 欄 (中文名) 有字就抓進來
-                if (c[2] && c[2] !== "") {
+                // 只要中文名稱 (c[2]) 存在就存入
+                if (c[2]) {
                     items.push({
                         cat: c[0] || "其他",
                         sub: c[1] || "",
@@ -71,9 +77,9 @@
             }
 
             if (items.length > 0) { render(items); }
-            else { document.getElementById('content').innerHTML = "目前暫無內容，請確認試算表。"; }
+            else { document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">目前雲端無資料，請確認試算表。</div>'; }
         } catch (e) {
-            document.getElementById('content').innerHTML = "讀取失敗，請確認網路連線。";
+            document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">讀取失敗，請確認網路連線。</div>';
         }
     }
 
@@ -82,7 +88,7 @@
         const nav = document.getElementById('nav');
         content.innerHTML = ''; nav.innerHTML = '';
 
-        const categories = [...new Set(items.map(i => i.cat))];
+        const categories = [...new Set(items.map(i => i.cat))].filter(c => c);
 
         categories.forEach((cat, idx) => {
             const btn = document.createElement('a');
