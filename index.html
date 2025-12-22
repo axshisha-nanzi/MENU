@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AX SHISHA MENU</title>
     <style>
+        /* 保持原本的高級棉麻米灰風格與愛馬仕橘色調 */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
         :root {
@@ -27,7 +28,6 @@
 
         .container { max-width: 480px; margin: auto; padding: 20px; }
 
-        /* HEADER */
         .header { text-align: center; padding: 60px 20px 40px; }
         .header h1 { 
             font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 200; 
@@ -38,7 +38,6 @@
             color: var(--hermes-orange); letter-spacing: 4px; margin-top: 15px; font-weight: 500;
         }
 
-        /* 搜尋列 */
         .search-area { margin-bottom: 25px; position: sticky; top: 15px; z-index: 110; }
         .search-bar {
             width: 100%; padding: 12px 25px; border-radius: 40px;
@@ -47,7 +46,6 @@
             backdrop-filter: blur(15px); box-sizing: border-box; text-align: center;
         }
 
-        /* 導覽列 */
         .nav-scroller {
             display: flex; overflow-x: auto; white-space: nowrap;
             padding: 10px 0 30px; gap: 10px; scrollbar-width: none;
@@ -58,20 +56,16 @@
             background: var(--glass-card); padding: 8px 16px; border-radius: 20px;
             transition: 0.3s; font-weight: 400; border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .nav-btn.active { background: var(--hermes-orange); color: white; border-color: var(--hermes-orange); }
 
-        /* 分類標題 */
         .cat-group { margin: 60px 0 25px; text-align: center; }
         .cat-main { font-size: 1.3rem; font-weight: 400; letter-spacing: 6px; display: block; }
         .cat-sub { font-size: 0.6rem; color: var(--hermes-orange); letter-spacing: 3px; font-weight: 500; text-transform: uppercase; margin-top: 8px; }
 
-        /* 琴酒/伏特加等小標 */
         .tag-line {
             font-size: 0.65rem; color: var(--text-gray); font-weight: 400;
             margin: 35px 0 15px; letter-spacing: 2px; text-align: center;
         }
 
-        /* 品項卡片 */
         .card { 
             background: var(--glass-card); border-radius: 25px; padding: 22px 25px;
             margin-bottom: 12px; backdrop-filter: blur(10px);
@@ -87,7 +81,6 @@
             line-height: 1.5; font-weight: 300; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px;
         }
 
-        /* 頁腳 */
         .footer { margin-top: 100px; padding: 60px 20px; text-align: center; }
         .footer-brand { font-size: 1.1rem; letter-spacing: 8px; color: var(--text-gray); font-weight: 300; margin-bottom: 30px; }
         .pill-btn {
@@ -105,7 +98,6 @@
             text-decoration: none; backdrop-filter: blur(10px); font-size: 0.55rem; z-index: 100;
             border: 1px solid rgba(255,255,255,0.4);
         }
-        
         #loading { text-align: center; padding: 50px; color: var(--hermes-orange); font-size: 0.8rem; letter-spacing: 2px; }
     </style>
 </head>
@@ -141,15 +133,13 @@
 <a href="#home" class="top-scroller">TOP</a>
 
 <script>
-    // 已更新為您的專屬 ID
-    const SHEET_ID = '1-Tz_UPIN9sxQkBIOhvmofXDBItGADaC0LQBhEB41lzI'; 
-    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?output=csv`;
+    // ⚠️ 直接使用您截圖中發佈成功的 CSV 連結
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?output=csv';
 
     async function fetchMenu() {
         try {
             const response = await fetch(CSV_URL);
             const data = await response.text();
-            // 分割行並移除空白行與標題行
             const rows = data.split('\n').map(r => r.trim()).filter(r => r !== "").slice(1);
             
             const menuData = rows.map(row => {
@@ -165,7 +155,7 @@
             });
             renderMenu(menuData);
         } catch (error) {
-            document.getElementById('loading').innerHTML = "連線失敗。請確認試算表已設為「發佈到網路」並選擇「CSV格式」。";
+            document.getElementById('loading').innerHTML = "連線失敗，請稍後再試或檢查網路。";
         }
     }
 
@@ -179,14 +169,12 @@
         categories.forEach((cat, index) => {
             if(!cat) return;
 
-            // 1. 生成導航
             const navBtn = document.createElement('a');
             navBtn.href = `#cat-${index}`;
             navBtn.className = 'nav-btn';
             navBtn.innerText = cat;
             nav.appendChild(navBtn);
 
-            // 2. 生成區塊標題
             const section = document.createElement('section');
             section.id = `cat-${index}`;
             section.innerHTML = `
@@ -198,7 +186,6 @@
 
             let lastSub = "";
             items.filter(i => i.category === cat).forEach(item => {
-                // 3. 處理 GIN BASE / VODKA BASE 等小標
                 if (item.subcategory && item.subcategory !== lastSub) {
                     const tag = document.createElement('div');
                     tag.className = 'tag-line';
