@@ -16,7 +16,7 @@
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* 搜尋欄優化 */
+        /* 搜尋欄 */
         .search-area { margin: 0 auto 20px; width: 80%; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
         
@@ -33,7 +33,7 @@
         .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.7; letter-spacing: 0.5px; }
         .info-highlight { color: var(--hermes); font-weight: 400; }
 
-        /* Menu Styles - 嚴格遵守原始設計 */
+        /* Menu Styles */
         .cat-group { margin: 60px 0 30px; text-align: center; }
         .cat-main { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; display: block; margin-bottom: 8px; }
         .cat-en { font-family: 'Montserrat'; font-size: 0.7rem; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; display: block; opacity: 0.7; }
@@ -43,7 +43,7 @@
         .card-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .name-zh { font-size: 1rem; font-weight: 400; letter-spacing: 1px; display: block; }
         .name-en { font-size: 0.6rem; color: var(--gray); text-transform: uppercase; font-family: 'Montserrat'; letter-spacing: 1px; display: block; margin-top: 2px; }
-        .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; flex-shrink: 0; }
+        .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; flex-shrink: 0; white-space: nowrap; }
         .desc { font-size: 0.7rem; color: var(--gray); margin-top: 12px; line-height: 1.6; border-top: 0.5px solid rgba(0,0,0,0.06); padding-top: 10px; letter-spacing: 0.5px; }
 
         .top-btn { position: fixed; bottom: 35px; right: 25px; width: 48px; height: 48px; background: rgba(255,255,255,0.6); border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); color: var(--gray); font-family: 'Montserrat'; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; backdrop-filter: blur(8px); }
@@ -102,44 +102,18 @@
     const catTranslations = { "特製調酒": "SPECIAL COCKTAIL", "系列調酒": "SERIES COCKTAIL", "洋可夫特調": "YANKOV SPECIAL", "烈酒精選": "SPIRITS SELECTION", "啤酒": "BEER", "軟飲": "SOFT DRINK" };
     let allData = [];
 
-    // 精準還原 CSV 解析，確保不掉單位與格式
-    function parseCSV(text) {
-        const rows = [];
-        let currentRow = [];
-        let currentCell = "";
-        let inQuotes = false;
-        for (let i = 0; i < text.length; i++) {
-            const char = text[i];
-            const nextChar = text[i+1];
-            if (inQuotes) {
-                if (char === '"' && nextChar === '"') { currentCell += '"'; i++; }
-                else if (char === '"') { inQuotes = false; }
-                else { currentCell += char; }
-            } else {
-                if (char === '"') { inQuotes = true; }
-                else if (char === ',') { currentRow.push(currentCell.trim()); currentCell = ""; }
-                else if (char === '\n' || char === '\r') {
-                    if (currentCell || currentRow.length > 0) {
-                        currentRow.push(currentCell.trim());
-                        rows.push(currentRow);
-                        currentRow = [];
-                        currentCell = "";
-                    }
-                    if (char === '\r' && nextChar === '\n') i++;
-                } else { currentCell += char; }
-            }
-        }
-        if (currentCell || currentRow.length > 0) { currentRow.push(currentCell.trim()); rows.push(currentRow); }
-        return rows;
-    }
-
+    // 極致簡化解析，確保單位不丟失
     async function loadMenu() {
         try {
             const response = await fetch(`${CSV_URL}&t=${Date.now()}`);
             const csvText = await response.text();
-            const rows = parseCSV(csvText);
-            const headers = rows[0].map(h => h.toLowerCase().trim());
             
+            // 使用正則拆分 CSV，保留所有字元（含 $ 符號）
+            const rows = csvText.split(/\r?\n/).map(row => {
+                return row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
+            }).filter(r => r.length > 1);
+
+            const headers = rows[0].map(h => h.toLowerCase());
             const idx = {
                 cat: headers.indexOf('category'),
                 sub: headers.indexOf('subcategory'),
@@ -158,7 +132,7 @@
                         subcategory: (idx.sub !== -1) ? cols[idx.sub] : "",
                         name_zh: cols[idx.zh],
                         name_en: cols[idx.en] || "",
-                        price: cols[idx.price] || "",
+                        price: cols[idx.price] || "", // 這裡會完整保留如 $350 | 3500
                         description: cols[idx.desc] || ""
                     });
                 }
@@ -188,11 +162,8 @@
             section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || ""}</span>`;
             content.appendChild(section);
 
-            const catItems = items.filter(i => i.category === cat);
             let lastSub = null;
-
-            catItems.forEach(item => {
-                // 只有當子分類存在且與上一個不同時才顯示標題
+            items.filter(i => i.category === cat).forEach(item => {
                 if (item.subcategory && item.subcategory !== lastSub) {
                     const tag = document.createElement('div');
                     tag.className = 'tag-line';
@@ -220,12 +191,11 @@
 
     function filterMenu() {
         const keyword = document.getElementById('searchBox').value.toLowerCase();
-        const filtered = allData.filter(i => 
+        renderMenu(allData.filter(i => 
             i.name_zh.toLowerCase().includes(keyword) || 
             i.category.toLowerCase().includes(keyword) || 
             (i.subcategory && i.subcategory.toLowerCase().includes(keyword))
-        );
-        renderMenu(filtered);
+        ));
     }
 
     window.onload = loadMenu;
