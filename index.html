@@ -1,44 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AX SHISHA MENU</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Noto+Sans+TC:wght@300;400&display=swap');
+        :root { --hermes: #f37021; --bg: #d9d4cc; --glass: rgba(255,255,255,0.45); --dark: #3a3835; --gray: #706d68; }
+        body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-attachment: fixed; }
+        .container { max-width: 480px; margin: auto; padding: 20px; min-height: 100vh; }
+        .header { text-align: center; padding: 40px 20px 20px; }
+        .header h1 { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 200; letter-spacing: 10px; margin: 0; }
+        .search-bar { width: 100%; padding: 12px; border-radius: 40px; background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.4); text-align: center; margin-bottom: 20px; box-sizing: border-box; outline: none; }
+        .nav-scroller { display: flex; overflow-x: auto; padding-bottom: 20px; gap: 8px; }
+        .nav-scroller::-webkit-scrollbar { display: none; }
+        .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; white-space: nowrap; }
+        .card { background: var(--glass); border-radius: 20px; padding: 20px; margin-bottom: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.4); }
+        .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; }
+        .desc { font-size: 0.7rem; color: var(--gray); margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px; line-height: 1.5; }
+        .cat-group { margin: 40px 0 20px; text-align: center; font-size: 1.2rem; letter-spacing: 5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="header"><h1>MENU</h1><div style="color:var(--hermes); font-size:0.7rem; letter-spacing:3px;">AX SHISHA CAFE BAR</div></header>
+    <input type="text" class="search-bar" id="searchBox" placeholder="搜尋菜單..." onkeyup="filterMenu()">
+    <nav class="nav-scroller" id="nav"></nav>
+    <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">正在連線雲端資料...</div></div>
+</div>
+
 <script>
-    // 1. 請確認這段網址結尾是 gid=0
-    const URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv&t=' + Date.now();
+    const URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
 
     async function loadData() {
         try {
-            const res = await fetch(URL);
+            const res = await fetch(URL + '&t=' + Date.now());
             const text = await res.text();
             const rows = text.split(/\r?\n/).filter(r => r.trim().length > 0);
             const items = [];
 
             for (let i = 1; i < rows.length; i++) {
-                // 高級解析：處理描述裡的逗號
                 const c = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 
-                // 根據您的截圖：
-                // c[0] 是 A 欄 (空的)
-                // c[1] 是 B 欄 (category)
-                // c[2] 是 C 欄 (subcategory)
-                // c[3] 是 D 欄 (name_zh) -> 這是判斷有沒有資料的重點
-                
-                if (c[3] && c[3] !== "") { 
+                // 根據您 11:33 的截圖：
+                // c[0] = category, c[1] = subcategory, c[2] = name_zh, c[3] = name_en, c[4] = price, c[5] = description
+                if (c[2]) { 
                     items.push({
-                        cat: c[1] || "其他",
-                        sub: c[2] || "",
-                        zh: c[3],
-                        en: c[4] || "",
-                        price: c[5] || "",
-                        desc: c[6] || ""
+                        cat: c[0] || "其他",
+                        sub: c[1] || "",
+                        zh: c[2],
+                        en: c[3] || "",
+                        price: c[4] || "",
+                        desc: c[5] || ""
                     });
                 }
             }
-
-            if (items.length > 0) {
-                render(items);
-            } else {
-                document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">抓取成功但內容格式不符，請檢查 B 欄到 G 欄是否有資料。</div>';
-            }
+            render(items);
         } catch (e) {
-            document.getElementById('content').innerHTML = '<div style="text-align:center;padding:50px;">連線失敗。</div>';
+            document.getElementById('content').innerHTML = "讀取失敗";
         }
     }
-    // ... 其餘渲染代碼保持不變 ...
+
+    function render(items) {
+        const content = document.getElementById('content');
+        const nav = document.getElementById('nav');
+        content.innerHTML = ''; nav.innerHTML = '';
+        const cats = [...new Set(items.map(i => i.cat))];
+
+        cats.forEach((cat, idx) => {
+            const btn = document.createElement('a');
+            btn.className = 'nav-btn'; btn.innerText = cat; btn.href = `#c${idx}`;
+            nav.appendChild(btn);
+
+            const sec = document.createElement('div');
+            sec.id = `c${idx}`;
+            sec.innerHTML = `<div class="cat-group">${cat}</div>`;
+            
+            items.filter(i => i.cat === cat).forEach(item => {
+                sec.innerHTML += `
+                    <div class="card card-item">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <div><div style="font-size:0.95rem;">${item.zh}</div><div style="font-size:0.6rem; color:var(--gray);">${item.en}</div></div>
+                            <div class="price">${item.price ? 'NT$ ' + item.price : ''}</div>
+                        </div>
+                        ${item.desc ? `<div class="desc">${item.desc}</div>` : ''}
+                    </div>`;
+            });
+            content.appendChild(sec);
+        });
+    }
+
+    function filterMenu() {
+        const val = document.getElementById('searchBox').value.toLowerCase();
+        document.querySelectorAll('.card-item').forEach(c => c.style.display = c.innerText.toLowerCase().includes(val) ? 'block' : 'none');
+    }
+    window.onload = loadData;
 </script>
+</body>
+</html>
+
