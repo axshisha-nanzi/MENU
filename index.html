@@ -5,33 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AX SHISHA MENU</title>
     <style>
-        /* 保持原本的高級棉麻米灰風格 */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+        /* [保持您最愛的優雅設計] */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Noto+Sans+TC:wght@300;400&display=swap');
         :root { --hermes: #f37021; --bg: #d9d4cc; --glass: rgba(255,255,255,0.45); --dark: #3a3835; --gray: #706d68; }
-        body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Noto Sans TC', sans-serif; margin: 0; background-color: var(--bg); color: var(--dark); background-image: radial-gradient(at 50% 0%, #e2ded8 0%, #d9d4cc 100%); background-attachment: fixed; }
         .container { max-width: 480px; margin: auto; padding: 20px; }
         .header { text-align: center; padding: 50px 20px; }
         .header h1 { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 200; letter-spacing: 10px; margin: 0; }
         .nav-scroller { display: flex; overflow-x: auto; padding: 10px 0 25px; gap: 8px; scrollbar-width: none; }
         .nav-scroller::-webkit-scrollbar { display: none; }
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.75rem; background: var(--glass); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
-        .cat-group { margin: 40px 0 20px; text-align: center; }
+        .cat-group { margin: 40px 0 20px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 20px; }
         .cat-main { font-size: 1.2rem; font-weight: 400; letter-spacing: 5px; display: block; }
-        .tag-line { font-size: 0.65rem; color: var(--gray); margin: 30px 0 10px; text-align: center; letter-spacing: 2px; opacity: 0.7; }
+        .tag-line { font-size: 0.65rem; color: var(--gray); margin: 30px 0 10px; text-align: center; letter-spacing: 2px; }
         .card { background: var(--glass); border-radius: 20px; padding: 20px; margin-bottom: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.4); }
-        .card-row { display: flex; justify-content: space-between; align-items: flex-start; }
-        .name-zh { font-size: 0.95rem; font-weight: 400; letter-spacing: 1px; display: block; margin-bottom: 2px; }
+        .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+        .name-zh { font-size: 0.95rem; font-weight: 400; letter-spacing: 1px; display: block; }
         .name-en { font-size: 0.6rem; color: var(--gray); text-transform: uppercase; }
-        .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; }
+        .price { font-family: 'Montserrat'; font-size: 0.85rem; color: var(--hermes); font-weight: 600; white-space: nowrap; }
         .desc { font-size: 0.7rem; color: var(--gray); margin-top: 10px; line-height: 1.5; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px; }
-        .footer { margin-top: 50px; padding-bottom: 40px; text-align: center; font-size: 0.7rem; color: var(--gray); }
+        .footer { margin-top: 50px; padding: 40px 20px; text-align: center; font-size: 0.7rem; color: var(--gray); }
     </style>
 </head>
 <body>
 <div class="container">
     <header class="header"><h1>MENU</h1><div style="color:var(--hermes); font-size:0.7rem; letter-spacing:3px; margin-top:10px;">AX SHISHA CAFE BAR</div></header>
     <nav class="nav-scroller" id="nav"></nav>
-    <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">正在從雲端更新菜單...</div></div>
+    <div id="content"><div style="text-align:center;padding:100px;color:var(--hermes);">正在讀取 AX 菜單...</div></div>
     <footer class="footer">
         <p>📍 高雄楠梓區惠民路273號</p>
         <p>🔞 未滿十八歲禁止飲酒 • 🚫 禁止酒駕</p>
@@ -39,23 +39,23 @@
 </div>
 
 <script>
-    // 加入隨機數防止快取舊資料
     const URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4I_vVrlfY1ZqucJOmTisSaC/pub?output=csv&t=' + new Date().getTime();
 
     async function loadData() {
         try {
             const res = await fetch(URL);
             const text = await res.text();
-            const rows = text.split('\n').map(r => r.trim()).filter(r => r !== "");
+            // 改良解析邏輯：處理可能的換行與特殊字元
+            const rows = text.split(/\r?\n/).map(r => r.trim()).filter(r => r.length > 5);
             
-            // 使用索引位置(0,1,2,3,4,5)而不是名稱，防止標題打錯
             const items = rows.slice(1).map(row => {
-                const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/"/g, '').trim());
+                // 使用更強大的 CSV 分隔正則，處理描述中的逗號
+                const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 return { cat: c[0], sub: c[1], zh: c[2], en: c[3], price: c[4], desc: c[5] };
             });
 
-            render(items);
-        } catch (e) { document.getElementById('content').innerHTML = "菜單更新中，請重新整理網頁。"; }
+            render(items.filter(i => i.zh)); // 濾掉空白行
+        } catch (e) { document.getElementById('content').innerHTML = "更新中，請稍候重整"; }
     }
 
     function render(items) {
@@ -64,12 +64,6 @@
         content.innerHTML = ''; nav.innerHTML = '';
 
         const categories = [...new Set(items.map(i => i.cat))].filter(c => c);
-        
-        // 如果連分類都沒有，顯示預警
-        if (categories.length === 0) {
-            content.innerHTML = '<div style="text-align:center;padding:50px;">目前雲端無資料，請確認試算表內容是否填寫正確。</div>';
-            return;
-        }
 
         categories.forEach((cat, idx) => {
             const btn = document.createElement('a');
@@ -89,8 +83,11 @@
                 sec.innerHTML += `
                     <div class="card">
                         <div class="card-row">
-                            <div><span class="name-zh">${item.zh || '品項'}</span><span class="name-en">${item.en || ''}</span></div>
-                            <div class="price">${item.price ? 'NTD ' + item.price : ''}</div>
+                            <div style="flex:1">
+                                <span class="name-zh">${item.zh}</span>
+                                <span class="name-en">${item.en || ''}</span>
+                            </div>
+                            <div class="price">${item.price ? 'NT$ ' + item.price : ''}</div>
                         </div>
                         ${item.desc ? `<div class="desc">${item.desc}</div>` : ''}
                     </div>`;
@@ -102,3 +99,4 @@
 </script>
 </body>
 </html>
+
