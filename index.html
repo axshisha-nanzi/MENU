@@ -58,7 +58,7 @@
 <div class="container" id="top">
     <header class="header">
         <h1>MENU</h1>
-        <div class="header-sub">AX CAFE BISTRO</div>
+        <div class="header-sub">AX SHISHA CAFE BAR</div>
     </header>
 
     <div class="search-area">
@@ -122,7 +122,7 @@
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     
-    // 補足所有大分類標題翻譯
+    // 【大標題翻譯對照】
     const catTranslations = { 
         "特製調酒": "SPECIAL COCKTAIL", 
         "系列調酒": "SERIES COCKTAIL", 
@@ -135,12 +135,15 @@
         "深夜小食": "MIDNIGHT SNACKS"
     };
 
-    // 補足所有子標題翻譯 (對應 subcategory)
+    // 【小標題翻譯對照】(請確保試算表中 Subcategory 內容與此對應)
     const subTranslations = {
         "鹹味提案": "SAVORY SELECTION",
         "甜味抹醬": "SWEET SPREADS",
         "COFFEE": "COFFEE SERIES",
-        "TEA": "TEA SELECTION"
+        "TEA": "TEA SELECTION",
+        "經典調酒": "CLASSIC COCKTAIL",
+        "創意調酒": "CREATIVE COCKTAIL",
+        "無酒精調飲": "MOCKTAILS"
     };
     
     let allData = [];
@@ -180,7 +183,8 @@
             const section = document.createElement('div');
             section.id = `cat-${index}`;
             section.className = 'cat-group';
-            section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || ""}</span>`;
+            // 大標題渲染：顯示中文 + 對應的英文翻譯
+            section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || "AX SELECTION"}</span>`;
             content.appendChild(section);
 
             const catItems = items.filter(i => i.category === cat);
@@ -189,7 +193,7 @@
                 if (item.subcategory && item.subcategory !== lastSub) {
                     const tag = document.createElement('div');
                     tag.className = 'tag-line';
-                    // 在這裡加入子標題的英文對應
+                    // 小標題渲染：顯示中文 + 對應的英文翻譯
                     tag.innerHTML = `${item.subcategory}<span class="tag-en">${subTranslations[item.subcategory] || ""}</span>`;
                     content.appendChild(tag);
                     lastSub = item.subcategory;
