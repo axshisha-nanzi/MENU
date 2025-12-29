@@ -122,28 +122,30 @@
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     
-    // 【大標題翻譯對照】
+    // 【大標題 Category 翻譯對照表】
     const catTranslations = { 
-        "特製調酒": "SPECIAL COCKTAIL", 
-        "系列調酒": "SERIES COCKTAIL", 
+        "特製調酒": "SPECIAL COCKTAILS", 
+        "系列調酒": "SERIES COCKTAILS", 
         "洋可夫特調": "YANKOV SPECIAL", 
         "烈酒精選": "SPIRITS SELECTION", 
-        "啤酒": "BEER", 
-        "軟飲": "SOFT DRINK",
+        "啤酒": "BEER SELECTION", 
+        "軟飲": "SOFT DRINKS",
         "精選咖啡": "PREMIUM COFFEE",
         "嚴選茶飲": "SELECTED TEA",
         "深夜小食": "MIDNIGHT SNACKS"
     };
 
-    // 【小標題翻譯對照】(請確保試算表中 Subcategory 內容與此對應)
+    // 【小標題 Subcategory 翻譯對照表】
     const subTranslations = {
-        "鹹味提案": "SAVORY SELECTION",
+        "鹹味提案": "SAVORY PROPOSAL",
         "甜味抹醬": "SWEET SPREADS",
         "COFFEE": "COFFEE SERIES",
         "TEA": "TEA SELECTION",
-        "經典調酒": "CLASSIC COCKTAIL",
-        "創意調酒": "CREATIVE COCKTAIL",
-        "無酒精調飲": "MOCKTAILS"
+        "經典調酒": "CLASSIC COCKTAILS",
+        "創意調酒": "CREATIVE COCKTAILS",
+        "無酒精調飲": "MOCKTAILS",
+        "純飲": "NEAT / SPIRITS",
+        "氣泡飲": "SPARKLING DRINKS"
     };
     
     let allData = [];
@@ -183,8 +185,9 @@
             const section = document.createElement('div');
             section.id = `cat-${index}`;
             section.className = 'cat-group';
-            // 大標題渲染：顯示中文 + 對應的英文翻譯
-            section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${catTranslations[cat] || "AX SELECTION"}</span>`;
+            // 修正大標題翻譯邏輯
+            const translatedCat = catTranslations[cat.trim()] || cat.toUpperCase();
+            section.innerHTML = `<span class="cat-main">${cat}</span><span class="cat-en">${translatedCat}</span>`;
             content.appendChild(section);
 
             const catItems = items.filter(i => i.category === cat);
@@ -193,8 +196,9 @@
                 if (item.subcategory && item.subcategory !== lastSub) {
                     const tag = document.createElement('div');
                     tag.className = 'tag-line';
-                    // 小標題渲染：顯示中文 + 對應的英文翻譯
-                    tag.innerHTML = `${item.subcategory}<span class="tag-en">${subTranslations[item.subcategory] || ""}</span>`;
+                    // 修正小標題翻譯邏輯
+                    const translatedSub = subTranslations[item.subcategory.trim()] || "";
+                    tag.innerHTML = `${item.subcategory}<span class="tag-en">${translatedSub}</span>`;
                     content.appendChild(tag);
                     lastSub = item.subcategory;
                 }
