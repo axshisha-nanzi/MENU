@@ -81,9 +81,16 @@
             <span class="info-label">WIFI 資訊</span>
             <span class="info-text">密碼 <span class="info-highlight">0988850431</span></span>
         </div>
+        
         <span class="section-tag">⋄ Store Policy / 入店規定 ⋄</span>
-        <div class="info-row"><span class="info-label">關於呼吸</span><span class="info-text">室內禁菸 ꔛ 請移駕至戶外煙灰缸放置處透氣
-        <div class="info-row"><span class="info-label">戶外音量</span><span class="info-text">至戶外透氣時，<span class="info-highlight">請降低音量 
+        <div class="info-row">
+            <span class="info-label">關於呼吸</span>
+            <span class="info-text">室內禁菸 ꔛ 請移駕至戶外煙灰缸放置處透氣</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">戶外音量</span>
+            <span class="info-text">至戶外透氣時，<span class="info-highlight">請降低音量</span></span>
+        </div>
     </section>
 
     <div id="content"><div style="text-align:center;padding:120px;color:var(--hermes);font-family:'Montserrat';font-size:0.75rem;letter-spacing:3px;">LOADING...</div></div>
@@ -116,7 +123,6 @@
             const response = await fetch(CSV_URL + '&t=' + Date.now());
             const csvText = await response.text();
             
-            // 使用正則拆分 CSV，確保引號內的內容（含 $ 符號）被完整保留
             const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
             const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
             const idx = { 
@@ -130,7 +136,6 @@
 
             allData = [];
             for (let i = 1; i < lines.length; i++) {
-                // 正則解析確保帶單位的價錢不會因為逗號或引號出錯
                 const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 if (cols[idx.zh]) {
                     allData.push({ 
