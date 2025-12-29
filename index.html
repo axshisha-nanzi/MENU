@@ -16,7 +16,7 @@
         .header h1 { font-family: 'Montserrat'; font-size: 2.4rem; font-weight: 200; letter-spacing: 12px; margin: 0; }
         .header-sub { color: var(--hermes); font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
 
-        /* 搜尋欄 - 100% 寬度 */
+        /* 搜尋欄 */
         .search-area { margin: 0 0 20px 0; position: sticky; top: 15px; z-index: 110; }
         .search-bar { width: 100%; padding: 12px 20px; border-radius: 50px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.5); text-align: center; outline: none; box-sizing: border-box; font-size: 0.85rem; backdrop-filter: blur(10px); color: var(--dark); letter-spacing: 2px; }
         
@@ -25,13 +25,15 @@
         .nav-btn { text-decoration: none; color: var(--gray); font-size: 0.8rem; background: var(--glass); padding: 8px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); white-space: nowrap; }
 
         /* 資訊區塊 */
-        .info-section { margin: 10px 0 50px; padding: 30px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
+        .info-section { margin: 10px 0 20px; padding: 30px 25px; background: var(--glass); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); text-align: left; }
+        .offer-section { margin: 10px 0 50px; padding: 30px 25px; background: rgba(243, 112, 33, 0.05); border-radius: 35px; backdrop-filter: blur(15px); border: 1px solid var(--hermes); text-align: center; }
+        
         .section-tag { font-family: 'Montserrat'; font-size: 0.65rem; color: var(--hermes); letter-spacing: 4px; display: block; margin-bottom: 20px; border-bottom: 1px solid rgba(243, 112, 33, 0.15); padding-bottom: 8px; text-transform: uppercase; text-align: center;}
         
         .info-row { display: flex; margin-bottom: 15px; align-items: flex-start; }
         .info-label { width: 90px; font-size: 0.8rem; color: var(--dark); font-weight: 600; letter-spacing: 2px; flex-shrink: 0; }
         .info-text { font-size: 0.75rem; color: var(--gray); line-height: 1.7; letter-spacing: 0.5px; }
-        .info-highlight { color: var(--hermes); font-weight: 400; }
+        .info-highlight { color: var(--hermes); font-weight: 600; }
 
         /* Menu Styles */
         .cat-group { margin: 60px 0 30px; text-align: center; }
@@ -77,19 +79,22 @@
             <span class="info-label">關於低消</span>
             <span class="info-text">每人低消 <span class="info-highlight">$400</span><br>不限品項 ꔛ 盡情享受</span>
         </div>
-        <div class="info-row" style="margin-bottom: 25px;">
+        <div class="info-row">
             <span class="info-label">WIFI 資訊</span>
             <span class="info-text">密碼 <span class="info-highlight">0988850431</span></span>
         </div>
-        
-        <span class="section-tag">⋄ Store Policy / 入店規定 ⋄</span>
-        <div class="info-row">
-            <span class="info-label">關於呼吸</span>
-            <span class="info-text">室內禁菸 ꔛ 請移駕至戶外煙灰缸放置處透氣</span>
+    </section>
+
+    <section class="offer-section">
+        <span class="section-tag">⋄ Limited Offer / 期間限定 ⋄</span>
+        <div style="font-size: 1.1rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 10px;">下午茶套餐 <span style="font-family: 'Montserrat';">13:00 - 18:00</span></div>
+        <div style="font-size: 0.8rem; color: var(--gray); line-height: 1.8; letter-spacing: 1px;">
+            選購任何 <span style="color: var(--dark); font-weight: 600;">貝果 / 厚片</span><br>
+            搭配 <span style="color: var(--dark); font-weight: 600;">精品義式咖啡</span> 或 <span style="color: var(--dark); font-weight: 600;">特選台灣原葉茶</span><br>
+            <span class="info-highlight" style="font-size: 1.1rem;">現折 $10 元</span>
         </div>
-        <div class="info-row">
-            <span class="info-label">戶外音量</span>
-            <span class="info-text">至戶外透氣時，<span class="info-highlight">請降低音量</span></span>
+        <div style="font-family: 'Montserrat'; font-size: 0.6rem; color: var(--hermes); margin-top: 15px; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase;">
+            Pair any Bagel or Toast with Coffee/Tea for a $10 discount
         </div>
     </section>
 
@@ -106,6 +111,7 @@
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKAYY3Eeo-4GAqI0URzEcIZGt2eRbRlPC8UeVv-DWRde7RDVY3xSssQ4l_VvRlfY1ZqucJOmTisSaC/pub?gid=0&single=true&output=csv';
     
+    // 所有標題翻譯已更新
     const catTranslations = { 
         "特製調酒": "SPECIAL COCKTAIL", 
         "系列調酒": "SERIES COCKTAIL", 
@@ -113,7 +119,11 @@
         "烈酒精選": "SPIRITS SELECTION", 
         "啤酒": "BEER", 
         "軟飲": "SOFT DRINK",
-        "深夜小食": "MIDNIGHT SNACKS"
+        "精選咖啡": "PREMIUM COFFEE",
+        "嚴選茶飲": "SELECTED TEA",
+        "深夜小食": "MIDNIGHT SNACKS",
+        "鹹味提案": "SAVORY SELECTION",
+        "甜味抹醬": "SWEET SPREADS"
     };
     
     let allData = [];
@@ -122,9 +132,9 @@
         try {
             const response = await fetch(CSV_URL + '&t=' + Date.now());
             const csvText = await response.text();
-            
             const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
             const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            
             const idx = { 
                 cat: headers.indexOf('category'), 
                 sub: headers.indexOf('subcategory'), 
